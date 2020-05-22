@@ -1,3 +1,90 @@
+<nav *ngIf="auth.user | async as user; else login" class="navbar navbar-expand-lg navbar-light bg-light">
 
+  <a class="navbar-brand" routerLink="/">LOGO</a>
 
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a routerLink="/" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="settings" class="nav-link">Settings</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="users" class="nav-link">Users</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="userDiv">
+    {{ user.email }}
+    <button (click)="auth.logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+  </div>
+</nav>
+
+<ng-container #login>
+  <!-- Barra de navegacion -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top flex-column flex-md-row bd-navba">
+    <a class="navbar-brand" href="Principal.html"><img width="30rem" src="./images/bootstapLogo.png" alt="logo"></a>
+    <form class="form-inline">
+      <input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#entrar" type="button" value="Login">
+    </form>
+  </nav>
+
+  <div class="modal" id="entrar">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <div class="modal-title">
+                    Entra en sesión
+                </div>
+                <span data-dismiss="modal">X</span>
+            </div>
+            <form>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control" type="text" name="email" placeholder="Escribe tu email ..."
+        [(ngModel)]="auth.email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña:</label>
+                        <input class="form-control" type="password" name="pass" placeholder="Escribe tu contraseña ..."
+        [(ngModel)]="auth.pass" />
+                    </div>     
+                </div>
+                <div class="modal-footer text-right">
+                  <button class="btn btn-primary" (click)="auth.login()">Email Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+  <!-- <div class="loginDiv">
+
+    <form class="form">
+
+      <input class="form-control" type="text" name="email" placeholder="Escribe tu email ..."
+        [(ngModel)]="auth.email" />
+
+      <br />
+      <br />
+
+      <input class="form-control" type="password" name="pass" placeholder="Escribe tu contraseña ..."
+        [(ngModel)]="auth.pass" />
+
+      <br /><br />
+      <button class="btn btn-primary" (click)="auth.login()">Email Login</button>
+
+    </form>
+  </div> -->
+</ng-container>
+<div class="container-fluid">
+  <p> Aqui vamos a poner cosas de las redes sociales que si no está logeado ocupa toda la pantalla. <br>
+    PERO si sí lo esta pues ocupara un trozo como lo que teniamo pensdo</p>
+</div>
 <router-outlet></router-outlet>
