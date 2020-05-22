@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "IDEApp-TFC-Project"
+    }
+  },
+  "defaultProject": "IDEApp-TFC-Project",
+  "cli": {
+    "analytics": false
+  }
 }
