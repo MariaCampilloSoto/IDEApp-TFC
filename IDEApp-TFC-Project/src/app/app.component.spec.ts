@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'IDEApp-TFC-proyect'`, () => {
+  it(`should have as title 'IDEApp-TFC-Project'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('IDEApp-TFC-proyect');
+    expect(app.title).toEqual('IDEApp-TFC-Project');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('IDEApp-TFC-proyect app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('IDEApp-TFC-Project app is running!');
   });
 });

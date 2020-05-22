@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "IDEApp-TFC-proyect": {
+    "IDEApp-TFC-Project": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/IDEApp-TFC-proyect",
+            "outputPath": "dist/IDEApp-TFC-Project",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "IDEApp-TFC-proyect:build"
+            "browserTarget": "IDEApp-TFC-Project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "IDEApp-TFC-proyect:build:production"
+              "browserTarget": "IDEApp-TFC-Project:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "IDEApp-TFC-proyect:build"
+            "browserTarget": "IDEApp-TFC-Project:build"
           }
         },
         "test": {
@@ -110,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "IDEApp-TFC-proyect:serve"
+            "devServerTarget": "IDEApp-TFC-Project:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "IDEApp-TFC-proyect:serve:production"
+              "devServerTarget": "IDEApp-TFC-Project:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "IDEApp-TFC-proyect"
+  "defaultProject": "IDEApp-TFC-Project"
 }
