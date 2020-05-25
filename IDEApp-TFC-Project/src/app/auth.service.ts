@@ -11,7 +11,8 @@ export class AuthService {
   email = '';
   pass = '';
 
-  constructor(public auth: AngularFireAuth) {}
+  constructor(public auth: AngularFireAuth,
+              private router: Router) {}
 
   user = this.auth.authState.pipe(
     map((authState) => {
@@ -35,6 +36,7 @@ export class AuthService {
   logout() {
     console.log('logout!');
     this.auth.signOut();
+    this.router.navigate(['/']);
     this.email = '';
     this.pass = '';
   }

@@ -87,4 +87,4 @@
   <p> Aqui vamos a poner cosas de las redes sociales que si no está logeado ocupa toda la pantalla. <br>
     PERO si sí lo esta pues ocupara un trozo como lo que teniamo pensdo</p>
 </div>
-<router-outlet></router-outlet>
+<router-outlet *ngIf="auth.user | async as user; else login"></router-outlet>
