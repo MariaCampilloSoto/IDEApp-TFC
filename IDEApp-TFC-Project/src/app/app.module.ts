@@ -16,6 +16,11 @@ import { PersonalAreaComponent } from './personal-area/personal-area.component';
 import { GroupComponent } from './group/group.component';
 import { ContactInformationComponent } from './contact-information/contact-information.component';
 import { YearsComponent } from './years/years.component'
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -29,14 +34,19 @@ import { YearsComponent } from './years/years.component'
     PersonalAreaComponent,
     GroupComponent,
     ContactInformationComponent,
-    YearsComponent
+    YearsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    FormsModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
