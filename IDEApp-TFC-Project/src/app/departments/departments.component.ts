@@ -12,4 +12,19 @@ export class DepartmentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  createDepartament(){
+
+  }
+
+  removeDepartament(){
+
+  }
+
+  getDepartaments(){
+
+  }
+
+  myOwnDepartament(){
+    
+  }
 }

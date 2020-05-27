@@ -12,4 +12,12 @@ export class YearsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDocuments(){
+
+  }
+
+  getSubjects(){
+
+  }
+
 }

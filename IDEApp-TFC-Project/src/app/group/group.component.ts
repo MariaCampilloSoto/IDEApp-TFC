@@ -12,4 +12,11 @@ export class GroupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getGroups(){
+
+  }
+
+  getMyGroup(){
+
+  }
 }

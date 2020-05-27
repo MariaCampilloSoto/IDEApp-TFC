@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './users/users.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { UsersComponent } from './users/users.component';
     AngularFireStorageModule,
     FormsModule,
     BrowserAnimationsModule,
-    CommonModule
+    CommonModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

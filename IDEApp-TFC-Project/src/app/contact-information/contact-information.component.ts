@@ -12,4 +12,7 @@ export class ContactInformationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getMyContactInformation(){
+    
+  }
 }

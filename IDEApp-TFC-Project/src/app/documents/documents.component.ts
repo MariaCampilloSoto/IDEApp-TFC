@@ -12,4 +12,28 @@ export class DocumentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDocumentsAll(){
+
+  }
+
+  getMyDocuments(){
+
+  }
+
+  getDocumentsBySubject(){
+
+  }
+
+  getMyDocumentsBySubject(){
+
+  }
+
+  uploadDocument(){
+
+  }
+
+  removeDocument(){
+    
+  }
+
 }
