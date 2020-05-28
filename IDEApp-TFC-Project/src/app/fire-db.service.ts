@@ -28,5 +28,10 @@ export class FireDbService {
     const path = 'users/' + userUid;
     return this.db.object(path).remove();
   }
+
+  getSubjects(){
+    const path = 'subjects';
+    return this.db.list(path).snapshotChanges();
+  }
  
 }
