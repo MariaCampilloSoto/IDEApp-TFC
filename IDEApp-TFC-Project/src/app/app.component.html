@@ -1,71 +1,77 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <!-- Poner la imagen -->
 
-  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <!-- Poner la imagen -->
-    <h5 class="my-0 mr-md-auto font-weight-normal">IDEApp</h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-      <!-- que se muestren segun el user y todo eso 
-        <a class="p-2 text-dark" href="#">Features</a>
-        <a class="p-2 text-dark" href="#">Enterprise</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a> -->
-      </nav>
-      <!-- no funciona como modal(pop up cuando le das al boton) <a class="btn btn-outline-primary" href="#formularioLogin">Sign up</a> -->
-      <div class="userDiv" *ngIf="auth.user | async as user;">
-        {{ user.email }}
-        <button (click)="auth.logout()">
-          <i class="fas fa-sign-out-alt"></i>
-        </button>
-      </div>
+  <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+    <a class="navbar-brand" routerLink="/"><img width="30rem" src="../images/logo-IDEAPP.png"
+        alt="logo"></a>
+    <a class="navbar-brand" routerLink="/">IDEApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="subjects" *ngIf="auth.user | async as user">Asignaturas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="documents" *ngIf="auth.user | async as user">Documentos</a>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Documentos</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li> -->
+      </ul>
+      <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
     </div>
 
-<div  *ngIf="auth.user | async as user; else login"></div>
-
-<ng-template #login>
-  <div class="loginDiv">
-
-    <form class="form">
-
-      <input class="form-control" type="text" name="email" 
-        placeholder="Escribe tu email ..."
-        [(ngModel)]="auth.email"
-        />
-
-      <br/>
-      <br/>
-        
-      <input  class="form-control" type="password" name="pass" 
-        placeholder="Escribe tu contraseña ..."
-        [(ngModel)]="auth.pass"
-        />
-
-      <br/><br/>
-      <button class="btn btn-primary" (click)="signEmail()">Email Login</button>
-     
-
-    </form>
-  </div>
-</ng-template>
-
-
-<ng-template #login>
-<div class="container text-center mx-auto d-block justify-content-center" >
-  <form class="form-signin">
-    <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" [(ngModel)]="auth.email" placeholder="Email address" required="" autofocus="">
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" [(ngModel)]="auth.pass" placeholder="Password" required="">
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
+    <div class="userDiv" *ngIf="auth.user | async as user;">
+      {{ user.email }}
+      <button (click)="auth.logout()">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" (click)="signEmail()">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">2020</p>
-  </form>
+  </nav>
 </div>
+
+<div *ngIf="auth.user | async as user; else login"></div>
+
+<ng-template #login>
+  <div class="container text-center mx-auto mt-5 d-block justify-content-center">
+    <form class="form">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+      <input class="form-control" type="text" name="email" placeholder="Escribe tu email ..."
+        [(ngModel)]="auth.email" />
+
+      <br />
+      <br />
+
+      <input class="form-control" type="password" name="pass" placeholder="Escribe tu contraseña ..."
+        [(ngModel)]="auth.pass" />
+
+      <br /><br />
+      <button class="btn btn-primary" (click)="signEmail()">Email Login</button>
+      <p class="mt-5 mb-3 text-muted">IDEApp - 2020</p>
+    </form>
+
+
+  </div>
+
 </ng-template>
+
+
 
 
 <router-outlet *ngIf="auth.user | async as user"></router-outlet>
