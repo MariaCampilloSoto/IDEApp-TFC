@@ -1,0 +1,163 @@
+[
+{"type":"header","version":"4.8.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"plataformaeducativa"},
+{"type":"table","name":"alumnos","database":"plataformaeducativa","data":
+[
+{"idAlumno":"1","idUsuario":"14","idClase":"4","idContacto":"1","numExpediente":"9876344"},
+{"idAlumno":"2","idUsuario":"12","idClase":"4","idContacto":"4","numExpediente":"6398765"},
+{"idAlumno":"3","idUsuario":"16","idClase":"6","idContacto":"10","numExpediente":"4456762"},
+{"idAlumno":"4","idUsuario":"13","idClase":"2","idContacto":"5","numExpediente":"6782345"},
+{"idAlumno":"5","idUsuario":"8","idClase":"8","idContacto":"7","numExpediente":"9870987"}
+]
+}
+,{"type":"table","name":"anyosacademicos","database":"plataformaeducativa","data":
+[
+{"anyoAcademico":"2015"},
+{"anyoAcademico":"2016"},
+{"anyoAcademico":"2017"},
+{"anyoAcademico":"2018"},
+{"anyoAcademico":"2019"},
+{"anyoAcademico":"2020"}
+]
+}
+,{"type":"table","name":"asignaturas","database":"plataformaeducativa","data":
+[
+{"idAsignatura":"1","idProfesor":"3","idCurso":"7","nombre":"Programacion"},
+{"idAsignatura":"2","idProfesor":"2","idCurso":"8","nombre":"Disenyo Interfaces"},
+{"idAsignatura":"3","idProfesor":"1","idCurso":"8","nombre":"Procesos"},
+{"idAsignatura":"4","idProfesor":"4","idCurso":"7","nombre":"Sistemas"},
+{"idAsignatura":"5","idProfesor":"4","idCurso":"8","nombre":"Sistemas de Gestion Empresarial"},
+{"idAsignatura":"6","idProfesor":"1","idCurso":"7","nombre":"Entornos de Desarrollo"},
+{"idAsignatura":"7","idProfesor":"1","idCurso":"8","nombre":"Acceso a Datos"}
+]
+}
+,{"type":"table","name":"calificaciones","database":"plataformaeducativa","data":
+[
+
+]
+}
+,{"type":"table","name":"clases","database":"plataformaeducativa","data":
+[
+{"idClase":"1","idCurso":"1","idGrupo":"1","anyoAcademico":"2015"},
+{"idClase":"2","idCurso":"1","idGrupo":"2","anyoAcademico":"2015"},
+{"idClase":"3","idCurso":"7","idGrupo":"5","anyoAcademico":"2019"},
+{"idClase":"4","idCurso":"8","idGrupo":"5","anyoAcademico":"2020"},
+{"idClase":"5","idCurso":"2","idGrupo":"1","anyoAcademico":"2019"},
+{"idClase":"6","idCurso":"3","idGrupo":"1","anyoAcademico":"2020"},
+{"idClase":"7","idCurso":"5","idGrupo":"1","anyoAcademico":"2019"},
+{"idClase":"8","idCurso":"6","idGrupo":"1","anyoAcademico":"2020"}
+]
+}
+,{"type":"table","name":"contactos","database":"plataformaeducativa","data":
+[
+{"idContacto":"0","tutor1":"","tutor2":null,"direccion1":"","direccion2":null,"telefono1":"","telefono2":null,"emailContacto1":"","emailContacto2":null},
+{"idContacto":"1","tutor1":"tutor1","tutor2":"tutor2","direccion1":"direccionObligatoria","direccion2":"direccionOpcional","telefono1":"948231061","telefono2":"626918443","emailContacto1":"contacto@email.com","emailContacto2":"contactoOpcional@email.com"},
+{"idContacto":"2","tutor1":"Sandra Garcia","tutor2":null,"direccion1":"C\/Rio Ega 13, Pamplona (Navarra)","direccion2":null,"telefono1":"948731495","telefono2":null,"emailContacto1":"sandra@email.com","emailContacto2":null},
+{"idContacto":"3","tutor1":"Jesús Fuensanta","tutor2":"Marta Fuentes","direccion1":"Calle Mayor 8, Murcia (R.Murcia)","direccion2":null,"telefono1":"663398654","telefono2":null,"emailContacto1":"jesus@email.com","emailContacto2":"marta@email.com"},
+{"idContacto":"4","tutor1":"Federico Martin Gonzalez","tutor2":null,"direccion1":"Calle Campillo 55, Esparragal (Murcia)","direccion2":null,"telefono1":"633844354","telefono2":null,"emailContacto1":"federicoMarGon@email.com","emailContacto2":null},
+{"idContacto":"5","tutor1":"Francisco Rodriguez","tutor2":"Almudena Gonzalez","direccion1":"Calle Valencia 3, Murcia","direccion2":null,"telefono1":"968732762","telefono2":"696522381","emailContacto1":"franciscoRodriguez@email.com","emailContacto2":null},
+{"idContacto":"6","tutor1":"Raquel Alonso","tutor2":"Miguel Ruiz","direccion1":"Calle Claveles 12, Murcia","direccion2":null,"telefono1":"722758595","telefono2":null,"emailContacto1":"raquelAlonso@email.com","emailContacto2":null},
+{"idContacto":"7","tutor1":"Jorge Torres","tutor2":"Beatriz Gil","direccion1":"Calle Petalos 6,Cobatillas","direccion2":null,"telefono1":"676446635","telefono2":null,"emailContacto1":"beatriz_gil@email.com","emailContacto2":null},
+{"idContacto":"8","tutor1":"Luis","tutor2":"Calvo","direccion1":"","direccion2":"Calle valor 17,Alicante","telefono1":"676443562","telefono2":null,"emailContacto1":"luis_c@email.com","emailContacto2":null},
+{"idContacto":"9","tutor1":"Helena Perez","tutor2":"","direccion1":"calle Mayor 34, Santomera","direccion2":"","telefono1":"968836251","telefono2":null,"emailContacto1":"helena_perez@email.com","emailContacto2":null},
+{"idContacto":"10","tutor1":"Belen del Amo","tutor2":"","direccion1":"Calle Remiro de Goñi 28","direccion2":"","telefono1":"948817364","telefono2":null,"emailContacto1":"belenDelAmo@email.com","emailContacto2":null}
+]
+}
+,{"type":"table","name":"cursos","database":"plataformaeducativa","data":
+[
+{"idCurso":"1","nombre":"1ºESO"},
+{"idCurso":"2","nombre":"2ºESO"},
+{"idCurso":"3","nombre":"3ºESO"},
+{"idCurso":"4","nombre":"4ºESO"},
+{"idCurso":"5","nombre":"1º BACHILLER"},
+{"idCurso":"6","nombre":"2º BACHILLER"},
+{"idCurso":"7","nombre":"DAM1"},
+{"idCurso":"8","nombre":"DAM2"}
+]
+}
+,{"type":"table","name":"documentos","database":"plataformaeducativa","data":
+[
+
+]
+}
+,{"type":"table","name":"evaluaciones","database":"plataformaeducativa","data":
+[
+{"idEvaluacion":"1","numEvaluacion":"1"},
+{"idEvaluacion":"2","numEvaluacion":"2"},
+{"idEvaluacion":"3","numEvaluacion":"3"},
+{"idEvaluacion":"4","numEvaluacion":"extraordinaria"}
+]
+}
+,{"type":"table","name":"evaluacionescurso","database":"plataformaeducativa","data":
+[
+
+]
+}
+,{"type":"table","name":"grupos","database":"plataformaeducativa","data":
+[
+{"idGrupo":"1","nombre":"A"},
+{"idGrupo":"2","nombre":"B"},
+{"idGrupo":"3","nombre":"C"},
+{"idGrupo":"4","nombre":"D"},
+{"idGrupo":"5","nombre":"UNICO"}
+]
+}
+,{"type":"table","name":"imparticiones","database":"plataformaeducativa","data":
+[
+
+]
+}
+,{"type":"table","name":"incluidos","database":"plataformaeducativa","data":
+[
+
+]
+}
+,{"type":"table","name":"matriculas","database":"plataformaeducativa","data":
+[
+
+]
+}
+,{"type":"table","name":"profesores","database":"plataformaeducativa","data":
+[
+{"idProfesor":"1","idUsuario":"28","dni":"84756621","telefono":"655555555","direccion":"Calle Cisne 4, Murcia","departamento":"Programacion","cargo":"jefeDepartamento","isActivo":"1"},
+{"idProfesor":"2","idUsuario":"25","dni":"73529501","telefono":"675532421","direccion":"Calle Pintor Joaquin 5, Murcia","departamento":"Sistemas","cargo":"profesor","isActivo":"1"},
+{"idProfesor":"3","idUsuario":"26","dni":"65002123","telefono":"677453623","direccion":"Calle San Anton 35, Murcia","departamento":"Programacion","cargo":"profesor","isActivo":"1"},
+{"idProfesor":"4","idUsuario":"27","dni":"72631234","telefono":"698332112","direccion":"Calle Mediterraneo 2, Murcia","departamento":"Sistemas","cargo":"profesor","isActivo":"1"}
+]
+}
+,{"type":"table","name":"usuarios","database":"plataformaeducativa","data":
+[
+{"idUsuario":"0","nombre":"usuario0","apellido1":"apellidoUsuario","apellido2":"apellidoOpciona","email":"email@usuario.com","password":"admin1234"},
+{"idUsuario":"1","nombre":"usuario01","apellido1":"apellidoUsuario","apellido2":"apellidoOpciona","email":"email@usuario.com","password":"admin1234"},
+{"idUsuario":"2","nombre":"usuario02","apellido1":"apellidoUsuario","apellido2":"SegundoApellido","email":"email02@usuario.com","password":"pass1234"},
+{"idUsuario":"3","nombre":"Pepe","apellido1":"Garcia","apellido2":"Fuentes","email":"pepe@usuario.com","password":"pass1234"},
+{"idUsuario":"4","nombre":"Maria","apellido1":"Fuensanta","apellido2":"Garcia","email":"maria@usuario.com","password":"pass1234"},
+{"idUsuario":"5","nombre":"Francisco","apellido1":"Rodrigez","apellido2":"Gonzalez","email":"FranciscoRoGon@email.com","password":"1234"},
+{"idUsuario":"6","nombre":"Nerea","apellido1":"Ruiz","apellido2":"Alonso","email":"NereaRuAl@email.com","password":"1234"},
+{"idUsuario":"7","nombre":"Paula","apellido1":"Castro","apellido2":"Molina","email":"paulaCasMo@email.com","password":"12345"},
+{"idUsuario":"8","nombre":"Lucas","apellido1":"Torres","apellido2":"Gil","email":"lucasTo@email.com","password":"1234"},
+{"idUsuario":"9","nombre":"Hugo","apellido1":"Castro","apellido2":"Moya","email":"hugoCas@email.com","password":"1234"},
+{"idUsuario":"10","nombre":"admin","apellido1":"admin","apellido2":null,"email":"admin@email.com","password":"admin"},
+{"idUsuario":"11","nombre":"Juan Carlos","apellido1":"Blanco","apellido2":"Morales","email":"JuanCar@email.com","password":"1234"},
+{"idUsuario":"12","nombre":"Estibaliz","apellido1":"Echeverria","apellido2":null,"email":"estibaliz@email.com","password":"1234"},
+{"idUsuario":"13","nombre":"Celia","apellido1":"Soto","apellido2":null,"email":"celiaSoto@email.com","password":"1234"},
+{"idUsuario":"14","nombre":"Maria","apellido1":"Campillo","apellido2":"Soto","email":"mariaCampillo@email.com","password":"1234"},
+{"idUsuario":"15","nombre":"Daniel","apellido1":"Vidal","apellido2":"Sanchez","email":"danielViSan@email.com","password":"1234"},
+{"idUsuario":"16","nombre":"Lorena","apellido1":"Aguerri","apellido2":"del Amo","email":"lorenaA@email.com","password":"12345"},
+{"idUsuario":"17","nombre":"Enrique","apellido1":"Gomez","apellido2":"Mañas","email":"enriqueGM@email.com","password":"1234"},
+{"idUsuario":"18","nombre":"Jordi","apellido1":"Lopez","apellido2":"Herrero","email":"jordiLH@email.com","password":"1234"},
+{"idUsuario":"19","nombre":"Francisco Israe","apellido1":"Leal","apellido2":"Vazquez","email":"franciscoIsraelLV@email.com","password":"12345"},
+{"idUsuario":"20","nombre":"Pilar","apellido1":"Alegria","apellido2":"Zueco","email":"pilarAZ@email.com","password":"1234"},
+{"idUsuario":"21","nombre":"Pedro","apellido1":"Martinez","apellido2":"Marin","email":"pedroMM@email.com","password":"9876"},
+{"idUsuario":"22","nombre":"Ania","apellido1":"Berazaluce","apellido2":"Berasategui","email":"aniaBera@email.com","password":"12343"},
+{"idUsuario":"23","nombre":"Silvia","apellido1":"Calvo","apellido2":"","email":"silviaC@email.com","password":"1234"},
+{"idUsuario":"24","nombre":"Helena","apellido1":"Campillo","apellido2":"Gonzalez","email":"helenaCG@email.com","password":"1234"},
+{"idUsuario":"25","nombre":"Basilio","apellido1":"Coloma","apellido2":"Martinez","email":"basilioCM@email.com","password":"basilio"},
+{"idUsuario":"26","nombre":"Juan Antonio","apellido1":"Lopez","apellido2":"Soro","email":"JuanAntonioLS@email.com","password":"1234"},
+{"idUsuario":"27","nombre":"Francisco Manue","apellido1":"Collado","apellido2":"Cortes","email":"FranManuelCC@email.com","password":"1234"},
+{"idUsuario":"28","nombre":"Antonio","apellido1":"Alcaraz","apellido2":"Carcel","email":"antonioAC@email.com","password":"1234"},
+{"idUsuario":"29","nombre":"Monica","apellido1":"Hoyos","apellido2":"","email":"monicaH@email.com","password":"1234"},
+{"idUsuario":"30","nombre":"Patricia","apellido1":"Conde","apellido2":"","email":"patriciaC@email.com","password":"1234"}
+]
+}
+]
