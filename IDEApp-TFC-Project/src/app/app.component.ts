@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
@@ -10,9 +10,9 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = environment.title;
 
-  constructor( public auth: AuthService) {
+   constructor( public auth: AuthService) {
 
-  }
+   }
 
   signEmail() {
     this.auth.login()
@@ -24,5 +24,7 @@ export class AppComponent {
     //   }
     // })
   }
+
+  
 
 }

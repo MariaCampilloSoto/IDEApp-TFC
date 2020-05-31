@@ -7,6 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import {FormsModule} from '@angular/forms';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+import {ReactiveFormsModule} from '@angular/forms'
+
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SubjectsComponent } from './subjects/subjects.component';
@@ -16,10 +25,6 @@ import { PersonalAreaComponent } from './personal-area/personal-area.component';
 import { GroupComponent } from './group/group.component';
 import { ContactInformationComponent } from './contact-information/contact-information.component';
 import { YearsComponent } from './years/years.component'
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './users/users.component';
 
 
@@ -48,6 +53,8 @@ import { UsersComponent } from './users/users.component';
     FormsModule,
     BrowserAnimationsModule,
     CommonModule,
+    BsDatepickerModule.forRoot(),
+    ReactiveFormsModule
    
   ],
   providers: [],
