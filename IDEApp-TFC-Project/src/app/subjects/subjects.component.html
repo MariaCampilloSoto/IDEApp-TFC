@@ -8,7 +8,10 @@
     <thead>
       <tr>
       <th scope="col">Nombre</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Clase</th>
       <th scope="col">Notas</th>
+      <th scope="col">Poner notas</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +21,16 @@
           {{ subject.name }}
         </td>
         <td>
-          Nota: 
+          {{ subject.state }}
+        </td>
+        <td>
+          {{ subject.class }}
+        </td>
+        <td>
+          Nota: {{subject.mark}}
+        </td>
+        <td>
+          Poner nota-> futuro boton
         </td>
       </tr>
     
