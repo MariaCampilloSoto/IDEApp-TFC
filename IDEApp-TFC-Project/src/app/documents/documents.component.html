@@ -1,5 +1,30 @@
 <div class="container mt-5">
-
-    
-
+    <h1 class="align-content-center">Documentos</h1>
+    <p>poner busqueda y filtrado: openWebinars Angular 4</p>
+    <br /><br />
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Fecha de subida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let document of documents">
+          <td>
+            {{ document.name }}
+          </td>
+          <td>
+            {{ subject.auth }}
+          </td>
+          <td>
+            {{ subject.date | date }}
+          </td>>
+        </tr>
+  
+      </tbody>
+    </table>
+  
 </div>
