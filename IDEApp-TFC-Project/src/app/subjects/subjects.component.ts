@@ -8,9 +8,10 @@ import { FireDbService } from '../fire-db.service';
 })
 export class SubjectsComponent implements OnInit {
   subjects = []
-
+  
+  
   constructor(public db: FireDbService) { }
-
+  
   ngOnInit(): void {
     this.db.getSubjects().subscribe(snap => {
       this.subjects = [];
@@ -23,6 +24,10 @@ export class SubjectsComponent implements OnInit {
       })
       console.log('subjects: ', this.subjects)
     });
+
   }
+
+  
+  
 
 }

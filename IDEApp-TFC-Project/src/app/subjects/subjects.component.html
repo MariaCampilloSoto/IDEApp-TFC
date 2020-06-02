@@ -1,21 +1,20 @@
 <div class="container mt-5">
 
-    <h1 class="align-content-center">Asignaturas</h1>
+  <h1 class="align-content-center">Asignaturas</h1>
 
-  <br/><br/>
+  <br /><br />
 
   <table class="table">
     <thead>
       <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Clase</th>
-      <th scope="col">Notas</th>
-      <th scope="col">Poner notas</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Clase</th>
+        <th scope="col">Notas</th>
+        <th scope="col">Poner notas</th>
       </tr>
     </thead>
     <tbody>
-    
       <tr *ngFor="let subject of subjects">
         <td>
           {{ subject.name }}
@@ -33,7 +32,7 @@
           Poner nota-> futuro boton
         </td>
       </tr>
-    
+
     </tbody>
   </table>
 
