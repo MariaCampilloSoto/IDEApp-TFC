@@ -4,38 +4,11 @@
 
   <br /><br />
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Clase</th>
-        <th scope="col">Notas</th>
-        <th scope="col">Poner notas</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let subject of subjects">
-        <td>
-          {{ subject.name }}
-        </td>
-        <td>
-          {{ subject.state }}
-        </td>
-        <td>
-          {{ subject.class }}
-        </td>
-        <td>
-          Nota: {{subject.mark}}
-        </td>
-        <td>
-          Poner nota-> futuro boton
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-
 </div>
 
-<app-subjects></app-subjects>
+  <h2>Esto viene de subjects normal</h2>
+
+  <app-subjects-main></app-subjects-main>
+
+
+

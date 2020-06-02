@@ -32,11 +32,15 @@ import { GroupComponent } from './group/group.component';
 import { ContactInformationComponent } from './contact-information/contact-information.component';
 import { YearsComponent } from './years/years.component'
 import { UsersComponent } from './users/users.component';
+
+//import asignaturas
+import {SubjectsComponentMain} from './components/subjects/subjectsmain.component';
 import { SubjectListComponent } from './components/subjects/subject-list/subject-list.component';
 import { SubjectComponent } from './components/subjects/subject/subject.component';
 
 //Services
 import { SubjectService } from './services/subject.service'
+
 
 
 @NgModule({
@@ -52,6 +56,7 @@ import { SubjectService } from './services/subject.service'
     ContactInformationComponent,
     YearsComponent,
     UsersComponent,
+    SubjectsComponentMain,
     SubjectListComponent,
     SubjectComponent
   ],
