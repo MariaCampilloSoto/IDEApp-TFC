@@ -19,12 +19,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getNews(){
+  getNews(){  }
 
-  }
-
-  showCalendar(){
-    
-  }
+  showCalendar(){}
 
 }

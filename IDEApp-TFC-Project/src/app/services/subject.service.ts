@@ -1,50 +1,54 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable
+} from '@angular/core';
 
 //mis imports
-import { AngularFireDatabase, AngularFireList, AngularFireDatabaseModule} from '@angular/fire/database';
+import {  AngularFireDatabase,  AngularFireList } from '@angular/fire/database';
+
 import { Subject } from '../models/subject';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SubjectService {
   //lista de asignaturas
-  subjectList: AngularFireList<any>;
+  subjectList: AngularFireList < any > ;
   //almacena temporalmente el dato seleccionado 
   //Al iniciar el servicio esta en blanco
-  selectSubject:Subject = new Subject(); 
+  selectedSubject: Subject = new Subject();
 
-  constructor(private firebase:AngularFireDatabase) { }
+  constructor(private firebase: AngularFireDatabase) { }
 
   //obtiene el listado de asignaturas
-  getSubject(){
+  getSubjects() {
     //obtengo de firebase la lista con todas las asignaturas
     this.subjectList = this.firebase.list('subjects');
   }
   //crea una nueva asignatura
-  insertSubject(subject: Subject){
+  insertSubject(subject: Subject) {
     this.subjectList.push({
-      idSubject: subject.$IdSubject,
-      idSchoolYear: subject.$IdSchoolYear,
-      idTeacher:subject.$IdTeacher,
-      name: subject.$name
-      
+      idSubject: subject.idSubject,
+      idSchoolYear: subject.idSchoolYear,
+      idTeacher: subject.idTeacher,
+      name: subject.name
+
     });
   }
   //actualiza/modifica una asignatura
-  updateSubject(subject: Subject){
-    this.subjectList.update(subject.$IdSubject,{
-       idSubject: subject.$IdSubject,
-      idSchoolYear: subject.$IdSchoolYear,
-      idTeacher:subject.$IdTeacher,
-      name: subject.$name
+  updateSubject(subject: Subject) {
+    this.subjectList.update(subject.$key, {
+      idSubject: subject.idSubject,
+      idSchoolYear: subject.idSchoolYear,
+      idTeacher: subject.idTeacher,
+      name: subject.name
     })
 
   }
 
   //borra una asignatura
-  deleteSubject($IdSubject:string){
-    this.subjectList.remove($IdSubject);
+  deleteSubject($key: string) {
+    this.subjectList.remove($key);
   }
 
 

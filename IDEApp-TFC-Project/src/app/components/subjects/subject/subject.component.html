@@ -1,1 +1,63 @@
-<p>subject works!</p>
+
+<div class="card mt-5">
+    <div class="card-body">
+        <form #subjectForm="ngForm" (ngSubmit)="onSubmit(subjectForm)">
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="idSubject"
+                #idSubject="ngModel"
+                [(ngModel)]="subjectService.selectedSubject.idSubject"
+                placeholder="Id de la asignatura"
+                >
+
+            </div>
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="idSchoolYear"
+                #idSchoolYear="ngModel"
+                [(ngModel)]="subjectService.selectedSubject.idSchoolYear"
+                placeholder="Id del curso escolar"
+                >
+
+            </div>
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="idTeacher"
+                #idTeacher="ngModel"
+                [(ngModel)]="subjectService.selectedSubject.idTeacher"
+                placeholder="Id del profesor"
+                >
+
+            </div>
+
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="name"
+                #name="ngModel"
+                [(ngModel)]="subjectService.selectedSubject.name"
+                placeholder="Nombre de la asignatura"
+                >
+
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit"  >
+                    <i class="fas fa-plus-circle"></i> Añadir Asignatura
+                </button>
+                <!-- vacia los formularios-->
+                <button class="btn btn-secondary" type="reset" (click)="resetForm(subjectForm)">
+                    <i class="fas fa-sync-alt"></i>  Reset
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<router-outlet></router-outlet>

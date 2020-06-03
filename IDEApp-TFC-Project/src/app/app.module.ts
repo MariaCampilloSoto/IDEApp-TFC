@@ -34,7 +34,7 @@ import { YearsComponent } from './years/years.component'
 import { UsersComponent } from './users/users.component';
 
 //import asignaturas
-import {SubjectsComponentMain} from './components/subjects/subjectsmain.component';
+import { SubjectsComponentMain } from './components/subjects/subjectsmain.component';
 import { SubjectListComponent } from './components/subjects/subject-list/subject-list.component';
 import { SubjectComponent } from './components/subjects/subject/subject.component';
 
