@@ -16,9 +16,11 @@ export class SubjectService {
   subjectList: AngularFireList < any > ;
   //almacena temporalmente el dato seleccionado 
   //Al iniciar el servicio esta en blanco
-  selectedSubject: Subject = new Subject();
+  selectedSubject: Subject;
 
-  constructor(private firebase: AngularFireDatabase) { }
+  constructor(private firebase: AngularFireDatabase) { 
+    this.selectedSubject = new Subject();
+  }
 
   //obtiene el listado de asignaturas
   getSubjects() {

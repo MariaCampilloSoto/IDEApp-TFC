@@ -16,10 +16,10 @@ import{ Subject } from '../../../models/subject'
 export class SubjectComponent implements OnInit {
 
   
-   subjectService: SubjectService;
+  // subjectService: SubjectService;
   //subjectService lo hace private pero da error asi que public it is for ahora
   
-  constructor(subjectService: SubjectService) {  }
+  constructor(private subjectService: SubjectService) {  }
 
   ngOnInit(): void {
     this.subjectService.getSubjects();
