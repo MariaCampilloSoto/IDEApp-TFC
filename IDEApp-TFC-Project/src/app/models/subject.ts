@@ -1,12 +1,11 @@
 export class Subject {
+
     $key:string;
-   //idAsignatura
-    idSubject:string;
-    //idcurso
-    idSchoolYear:string;
-    //idProfesor
-    idTeacher:string;
-    //nombre
-    name:string;
+    //curso
+    schoolYear:string;
+    //Profesor
+    teacherName:string;
+    //nombre de la asignatura
+    subjectName:string;
 
 }

@@ -30,21 +30,20 @@ export class SubjectService {
   //crea una nueva asignatura
   insertSubject(subject: Subject) {
     this.subjectList.push({
-      idSubject: subject.idSubject,
-      idSchoolYear: subject.idSchoolYear,
-      idTeacher: subject.idTeacher,
-      name: subject.name
+      schoolYear: subject.schoolYear,
+      teacherName: subject.teacherName,
+      subjectName: subject.subjectName
 
     });
   }
   //actualiza/modifica una asignatura
   updateSubject(subject: Subject) {
     this.subjectList.update(subject.$key, {
-      idSubject: subject.idSubject,
-      idSchoolYear: subject.idSchoolYear,
-      idTeacher: subject.idTeacher,
-      name: subject.name
-    })
+      schoolYear: subject.schoolYear,
+      teacherName: subject.teacherName,
+      subjectName: subject.subjectName
+
+    });
 
   }
 

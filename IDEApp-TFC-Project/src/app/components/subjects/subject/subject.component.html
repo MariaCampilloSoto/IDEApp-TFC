@@ -6,47 +6,36 @@
                 <input
                 type="text"
                 class="form-control"
-                name="idSubject"
-                #idSubject="ngModel"
-                [(ngModel)]="subjectService.selectedSubject.idSubject"
-                placeholder="Id de la asignatura"
-                >
-
-            </div>
-            <div class="form-group">
-                <input
-                type="text"
-                class="form-control"
-                name="idSchoolYear"
-                #idSchoolYear="ngModel"
-                [(ngModel)]="subjectService.selectedSubject.idSchoolYear"
-                placeholder="Id del curso escolar"
-                >
-
-            </div>
-            <div class="form-group">
-                <input
-                type="text"
-                class="form-control"
-                name="idTeacher"
-                #idTeacher="ngModel"
-                [(ngModel)]="subjectService.selectedSubject.idTeacher"
-                placeholder="Id del profesor"
-                >
-
-            </div>
-
-            <div class="form-group">
-                <input
-                type="text"
-                class="form-control"
-                name="name"
-                #name="ngModel"
-                [(ngModel)]="subjectService.selectedSubject.name"
+                name="subjectName"
+                #subjectName="ngModel"
+                [(ngModel)]="subjectService.selectedSubject.subjectName"
                 placeholder="Nombre de la asignatura"
                 >
 
             </div>
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="schoolYear"
+                #schoolYear="ngModel"
+                [(ngModel)]="subjectService.selectedSubject.schoolYear"
+                placeholder="Curso escolar"
+                >
+
+            </div>
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="teacherName"
+                #teacherName="ngModel"
+                [(ngModel)]="subjectService.selectedSubject.teacherName"
+                placeholder="Nombre del profesor"
+                >
+
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-primary" type="submit"  >
                     <i class="fas fa-plus-circle"></i> Añadir Asignatura
