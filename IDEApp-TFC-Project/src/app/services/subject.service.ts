@@ -25,7 +25,8 @@ export class SubjectService {
   //obtiene el listado de asignaturas
   getSubjects() {
     //obtengo de firebase la lista con todas las asignaturas
-    this.subjectList = this.firebase.list('subjects');
+    return this.subjectList = this.firebase.list('subjects');
+    //soy boba y no pongo el return y me pregunto porque no me va
   }
   //crea una nueva asignatura
   insertSubject(subject: Subject) {

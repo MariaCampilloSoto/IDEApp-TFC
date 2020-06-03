@@ -31,7 +31,11 @@ export class SubjectComponent implements OnInit {
   }
 
   onSubmit (subjectForm: NgForm){
+    if(subjectForm.value.$key == null)
     this.subjectService.insertSubject(subjectForm.value);
+    else
+    this.subjectService.updateSubject(subjectForm.value);
+    
     this.resetForm(subjectForm);
   }
 

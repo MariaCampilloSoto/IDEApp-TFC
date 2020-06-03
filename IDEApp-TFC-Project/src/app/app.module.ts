@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import {FormsModule} from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
+//animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -31,6 +32,10 @@ import { SubjectComponent } from './components/subjects/subject/subject.componen
 
 //Services
 import { SubjectService } from './services/subject.service'
+
+//Toastr 
+import { ToastrModule } from 'ngx-toastr';
+ 
 
 
 
@@ -50,15 +55,17 @@ import { SubjectService } from './services/subject.service'
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     FormsModule,
-    BrowserAnimationsModule,
     CommonModule,
     BsDatepickerModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
    
   ],
   providers: [
     SubjectService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

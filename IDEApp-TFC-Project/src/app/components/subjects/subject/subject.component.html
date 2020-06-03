@@ -1,7 +1,12 @@
 
 <div class="card mt-5">
     <div class="card-body">
+
         <form #subjectForm="ngForm" (ngSubmit)="onSubmit(subjectForm)">
+            <!-- Input oculto sirve para reutilizar el formulario y usarlo para altas y modificaciones -->
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="subjectService.selectedSubject.$key">
+            <!-- si seleccionamos editar un objeto rellenara el campo con la key y no se creara un objeto nuevo-->
+
             <div class="form-group">
                 <input
                 type="text"
