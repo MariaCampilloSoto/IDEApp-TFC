@@ -14,9 +14,11 @@ export class DepartmentService {
   departmentList: AngularFireList<any>;
   // Almacena temporalmente el departamento seleccionado.
   // Al iniciar el servicio esta en blanco
-  selectedDepartment: Department = new Department();
+  selectedDepartment: Department;
 
-  constructor(private firebase: AngularFireDatabase) {}
+  constructor(private firebase: AngularFireDatabase) {
+    this.selectedDepartment = new Department();
+  }
 
   //Obtener los departamentos
   getDepartments() {
