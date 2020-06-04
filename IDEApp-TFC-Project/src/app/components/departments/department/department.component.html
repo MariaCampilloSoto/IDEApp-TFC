@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <form #departmentForm="ngForm" ([ngSubmit])='onSubmit(departmentForm)'>
+        <form #departmentForm="ngForm" (ngSubmit)='onSubmit(departmentForm)'>
             <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="departmentService.selectedDepartment.$key">
             <div class="form-group">
                 <input type="text" class="form-control" name="departmentName" #departmentName="ngModel"

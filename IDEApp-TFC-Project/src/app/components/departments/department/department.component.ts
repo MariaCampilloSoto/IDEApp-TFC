@@ -28,20 +28,20 @@ export class DepartmentComponent implements OnInit {
   }
 
   onSubmit(departmentForm: NgForm){
-    if(departmentForm.value.$key != null){
+    if(departmentForm.value.$key == null)
       this.departmentService.insertDepartment(departmentForm.value);
-    } else {
+     else 
       this.departmentService.updateDepartment(departmentForm.value);
-    }
+    
     this.resetForm(departmentForm);
     this.toastr.success('Successfull Operation')
   }
 
   resetForm(departmentForm?: NgForm){
-    if(departmentForm != null){
+    if(departmentForm != null)
       departmentForm.reset();
       this.departmentService.selectedDepartment = new Department();
-    }
+    
   }
 
 }
