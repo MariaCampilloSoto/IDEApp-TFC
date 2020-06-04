@@ -22,10 +22,15 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="documents" *ngIf="auth.user | async as user">Documentos</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="departments" *ngIf="auth.user | async as user">departments</a>
+        </li>
         
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Información varia</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            informacion varia
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item" href="departments">Departamento</a>
             <a class="dropdown-item" href="gruop">Grupo</a>
           </div>

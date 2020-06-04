@@ -19,10 +19,11 @@ export class SubjectListComponent implements OnInit {
   subjectList: Subject[];
   subjectService: SubjectService;
 
-   private toastr: ToastrService;
+  private toastr: ToastrService;
 
   constructor( subjectService: SubjectService, toastr: ToastrService) {
    this.subjectService= subjectService;
+   this.toastr = toastr;
    }
 
   ngOnInit(){
