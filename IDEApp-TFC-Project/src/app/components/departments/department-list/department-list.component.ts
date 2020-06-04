@@ -22,14 +22,15 @@ export class DepartmentListComponent implements OnInit {
     this.toastr = toastr;
   }
 
-  ngOnInit(): void {
-    this.departmentService.getDepartments().snapshotChanges().subscribe(item=>{
+  ngOnInit(){
+    this.departmentService.getDepartments().snapshotChanges()
+    .subscribe(item=>{
       this.departmentList = [];
-      item.forEach(element=>{
+      item.forEach(element => {
         let x = element.payload.toJSON();
         x["$key"] = element.key;
         this.departmentList.push(x as Department);
-      });
+      })
     });
   }
 

@@ -1,24 +1,34 @@
 <div class="card">
     <div class="card-body">
         <form #departmentForm="ngForm" (ngSubmit)='onSubmit(departmentForm)'>
+
             <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="departmentService.selectedDepartment.$key">
+            
             <div class="form-group">
                 <input type="text" class="form-control" name="departmentName" #departmentName="ngModel"
                     [(ngModel)]="departmentService.selectedDepartment.departmentName"
                     placeholder="Nombre del departamento">
             </div>
+
             <div class="form-group">
-                <input type="text" class="form-control" name="headDepartmenName" #headDepartmenName="ngModel"
-                    [(ngModel)]="departmentService.selectedDepartment.headDepartmenName"
-                    placeholder="Nombre del jefe de departamento">
+
+                <input 
+                type="text" 
+                class="form-control" 
+                name="headDepartmentName" 
+                #headDepartmenName="ngModel"
+                [(ngModel)]="departmentService.selectedDepartment.headDepartmentName"
+                placeholder="Nombre del jefe de departamento"
+                >
+
             </div>
 
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-plus-circle">Add department</i>
+                    <i class="fas fa-plus-circle"> Add department</i>
                 </button>
                 <button class="btn btn-secondary" type="reset" (click)="resetForm(departmentForm)">
-                    <i class="fas fa-sync-alt">Reset</i>
+                    <i class="fas fa-sync-alt"> Reset </i>
                 </button>
             </div>
         </form>
