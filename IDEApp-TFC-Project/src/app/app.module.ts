@@ -46,6 +46,9 @@ import { ProfileComponent } from './components/users/profile/profile.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { Page404Component } from './components/page404/page404.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DocumentsComponent } from './components/documents/documents.component';
+import { DocumentComponent } from './components/documents/document/document.component';
+import { DocumentListComponent } from './components/documents/document-list/document-list.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RegisterComponent,
     Page404Component,
     NavbarComponent,
+    DocumentsComponent,
+    DocumentComponent,
+    DocumentListComponent,
   ],
   imports: [
     BrowserModule,
