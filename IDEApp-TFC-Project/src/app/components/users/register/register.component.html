@@ -1,59 +1,126 @@
-<section id="register" class="mb-5 mt-5">
+<section id="register" class="mb-5">
+  <br>
   <div class="container">
-    <div class="row">
 
-      <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
-        <div class="card_register">
-          <div class="card">
-            <div class="card-body text-center">
-              <form #formRegister="ngForm" (ngSubmit)="onAddUser()">
-                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-                <!-- <div class="alert alert-danger" role="alert" *ngIf="isError">
-                    {{msgError}}
-                  </div> -->
-                <div class="form-group">
-                  <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="email" required
-                    minlength="8">
-                </div>
-                <!-- <div class="alert alert-danger" role="alert" *ngIf="email.touched && !email.valid">
-                    <div *ngIf="email.errors.required">Email is required</div>
-                    <div *ngIf="email.errors.minlength">Email must be at least 8 characters</div>
-                  </div>  -->
-                <div class="form-group">
-                  <input type="password" name="password" class="form-control" placeholder="Password"
-                    [(ngModel)]="password" required minlength="5" maxlength="10">
-                </div>
-                <!-- <div class="alert alert-danger" role="alert" *ngIf="password.touched && !password.valid">
-                    <div *ngIf="password.errors.required">Password is required</div>
-                    <div *ngIf="password.errors.minlength">Password must be at least 5 characters</div>
-                  </div> 
-                <hr> -->
-                <!-- <div class="form-group">
-                    <h5>Seleccionar image:</h5>
-                    <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
-                  </div> -->
-                <!-- <div class="progress">
-                    <div [style.visibility]="(uploadPercent == 0) ? 'hidden' : 'visible'" class="progress-bar progress-bar-striped bg-success"
-                      role="progressbar" [style.width]="(uploadPercent | async) +'%'">
+    <div class="card_register mt-5">
+      <div class="card">
+        <div class="card-body text-center">
+          <form #formRegister="ngForm" (ngSubmit)="onAddUser()">
+            <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
 
-                       <span class="progressText" *ngIf="urlImage | async">
-                        Ok!!</span> 
-                  </div>  
-            </div>-->
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" placeholder="Nombre" [(ngModel)]="name" required>
+              <input type="text" name="surname1" class="form-control" placeholder="Primer apellido"
+                [(ngModel)]="surname1" required>
+              <input type="text" name="surname2" class="form-control" placeholder="Segundo apellido"
+                [(ngModel)]="surname2">
+            </div>
+
+            <div class="form-group">
+              <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="email" required
+                minlength="8">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="password"
+                required minlength="5" maxlength="10">
+            </div>
+
+            <div class="form-group">
+              <h6>Cuidado con esos</h6>
+              <div class="form-check-inline">
+                <input class="form-check-input" type="radio" name="role" id="admin" value="admin"
+                  (change)="showContent($event)">
+                <label class="form-check-label" for="admin">
+                  Administrador
+                </label>
+              </div>
+
+              <div class="form-check-inline">
+                <input class="form-check-input" type="radio" name="role" id="editor" value="editor"
+                  (change)="showContent($event)">
+                <label class="form-check-label" for="editor">
+                  Editor
+                </label>
+              </div>
+              <br>
+              <br>
+
+              <div class="form-check-inline">
+                <input class="form-check-input" type="radio" name="role" id="teacher" value="teacher"
+                  (change)="showContent($event)">
+                <label class="form-check-label" for="teacher">
+                  Profesor
+                </label>
+              </div>
+
+              <div class="form-check-inline">
+                <input class="form-check-input" type="radio" name="role" id="student" value="student"
+                  (change)="showContent($event)">
+                <label class="form-check-label" for="student">
+                  Estudiante
+                </label>
+              </div>
+            </div>
+
+            <div class="container" id="studentForm" style="display: none;">
+              <div class="row">
+                <div class="col-sm">
+                  <div class="form-group">
+                    <input type="text" name="contact1.tutor" class="form-control"
+                      placeholder="Nombre y apellidos del tutor 1" [(ngModel)]="contact1.tutor" required>
+
+                    <input type="text" name="contact1.address" class="form-control" placeholder="Dirección del tutor 1"
+                      [(ngModel)]="contact1.address" required>
+
+                    <input type="tel" name="contact1.phone" class="form-control" placeholder="Teléfono del tutor 1"
+                      [(ngModel)]="contact1.phone" required>
+
+                    <input type="email" name="contact1.email" class="form-control" placeholder="Email del tutor 1"
+                      [(ngModel)]="contact1.email" required>
+                  </div>
+                </div>
+
+                <div class="col-sm">
+                  <div class="form-group">
+                    <input type="text" name="contact2.tutor" class="form-control"
+                      placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="contact2.tutor" required>
+
+                    <input type="text" name="contact2.address" class="form-control" placeholder="Dirección del tutor 2"
+                      [(ngModel)]="contact2.address" required>
+
+                    <input type="tel" name="contact2.phone" class="form-control" placeholder="Teléfono del tutor 2"
+                      [(ngModel)]="contact2.phone" required>
+
+                    <input type="email" name="contact2.email" class="form-control" placeholder="Email del tutor 2"
+                      [(ngModel)]="contact2.email" required>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group" id="teacherForm" style="display: none;">
+              <input type="text" name="dni" class="form-control" placeholder="DNI del profesor" [(ngModel)]="dni"
+                required>
+
+              <input type="text" name="address" class="form-control" placeholder="Dirección del profesor"
+                [(ngModel)]="address" required>
+
+              <input type="tel" name="phone" class="form-control" placeholder="Teléfono del profesor"
+                [(ngModel)]="phone" required>
+
+              <input type="text" name="departmentName" class="form-control"
+                placeholder="Nombre del departamento al que pertenece" [(ngModel)]="department.departmentName" required>
+            </div>
             <br>
-            <!-- <input #imageUser type="hidden"> -->
-            <button  type="submit"
-              class="btn btn-lg btn-primary btn-block">Register</button>
-            <!-- <ng-template #btnDisabled>
-              <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Register</button>
-            </ng-template> -->
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>
+            
 
-            </form>
+          </form>
 
-          </div>
         </div>
+
       </div>
     </div>
-  </div>
   </div>
 </section>

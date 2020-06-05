@@ -18,7 +18,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.auth
         .createUserWithEmailAndPassword(email, pass)
-        .then(userData => {
+        .then((userData) => {
           resolve(userData);
           this.updateuserData(userData.user);
         })
@@ -29,8 +29,8 @@ export class AuthService {
   loginEmailUser(email: string, pass: string) {
     return new Promise((resolve, reject) => {
       this.auth.signInWithEmailAndPassword(email, pass).then(
-        userData => resolve(userData),
-        err => reject(err)
+        (userData) => resolve(userData),
+        (err) => reject(err)
       );
     });
   }
@@ -45,22 +45,24 @@ export class AuthService {
 
   private updateuserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(
-      `users/${user.uid}`
+      `users/${user.$key}`
     );
-    // const data: UserInterface = {
-    //   $key: user.uid,
-    //   name: user.name,
-    //   password: user.password,
-    //   email: user.email,
-    //   role: {
-    //     editor: true,
-    //   },
-    // };
+    const data: UserInterface = {
+      $key: user.$key,
+      name: user.name,
+      surname1: user.surname1,
+      surname2: user.surname2,
+      password: user.password,
+      email: user.email,
+      role: {
+        
+      },
+    };
 
-    // return userRef.set(data, { merge: true });
+    return userRef.set(data, { merge: true });
   }
 
-  isUserAdmin(userUid) {
+  isUserRole(userUid) {
     return this.angularFirestore
       .doc<UserInterface>(`users/${userUid}`)
       .valueChanges();

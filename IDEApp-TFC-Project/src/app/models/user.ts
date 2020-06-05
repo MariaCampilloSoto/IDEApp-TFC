@@ -2,9 +2,9 @@ import { ContactInterface } from './contacto';
 import {Department} from './department';
 
 export interface Role {
-    editor?: boolean; // crear usuario, editar info de contacto
     admin?: boolean; // todos los permisos
-    teacher?: boolean;
+    editor?: boolean; // crear usuario, editar info de contacto
+    teacher?: boolean; // no puede crear user, ni crear tablas, solo ver ciertas funciones
     // si no tiene ninguno de estos es que es student
 }
 
@@ -12,7 +12,7 @@ export interface UserInterface {
     $key: string;
     name: string;
     surname1: string;
-    surname2: string;
+    surname2?: string;
     email: string;
     password: string;
     // strudent info
