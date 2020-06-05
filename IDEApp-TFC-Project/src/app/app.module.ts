@@ -1,12 +1,13 @@
 //firebase
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 //bbdd
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 //storage
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +23,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 
 //Components
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 
 //import asignaturas
 import { SubjectsComponentMain } from './components/subjects/subjectsmain.component';
@@ -40,6 +41,11 @@ import { DepartmentService } from './services/department.service';
 
 //Toastr
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './components/users/login/login.component';
+import { ProfileComponent } from './components/users/profile/profile.component';
+import { RegisterComponent } from './components/users/register/register.component';
+import { Page404Component } from './components/page404/page404.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +57,11 @@ import { ToastrModule } from 'ngx-toastr';
     DepartmentsComponent,
     DepartmentListComponent,
     DepartmentComponent,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent,
+    Page404Component,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,10 +76,14 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
   ],
   providers: [
     SubjectService,
-    DepartmentService
+    DepartmentService,
+    AngularFireAuth,
+    AngularFirestore
   ],
   bootstrap: [AppComponent],
 })

@@ -1,6 +1,5 @@
 import { Component} from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +9,8 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = environment.title;
 
-   constructor( public auth: AuthService) {
+   constructor() {
 
    }
-
-  signEmail() {
-    this.auth.login()
-    // .catch( error => {
-    //   if (error.code==='auth/wrong-password') {
-    //     this.toastr.error('Contraseña no válida', 'Error login')
-    //   } else if (error.code==='auth/invalid-email'){
-    //     this.toastr.error('Formato email no válido', 'Error login')
-    //   }
-    // })
-  }
-
-  
 
 }

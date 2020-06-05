@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ContactInformationComponent } from './contact-information/contact-information.component';
 import { SubjectsComponentMain } from './components/subjects/subjectsmain.component'
 import { DepartmentsComponent } from './components/departments/departments.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/users/login/login.component';
+import { RegisterComponent } from './components/users/register/register.component';
+import { ProfileComponent } from './components/users/profile/profile.component';
+import { Page404Component } from './components/page404/page404.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'contact-information', component: ContactInformationComponent},
   {path: 'subjects', component: SubjectsComponentMain},
-  {path: 'departments', component: DepartmentsComponent}
+  {path: 'departments', component: DepartmentsComponent}, // User profesores
+  //{path: 'book/:id', component: deteilsbookComponent } anotacion para mas adelante porque puede ser util
+  {path: 'user/login', component: LoginComponent},
+  {path: 'user/register', component: RegisterComponent}, // Usuarios admin
+  {path: 'user/profile', component: ProfileComponent},
+  {path: '**', component: Page404Component}
+
 ];
 
 @NgModule({
