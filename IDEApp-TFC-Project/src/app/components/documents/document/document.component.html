@@ -1,1 +1,73 @@
-<p>document works!</p>
+<div class="card mt-5">
+    <div class="card-body">
+
+        <form #documentForm="ngForm" (ngSubmit)="onSubmit(documentForm)">
+            <!-- Input oculto sirve para reutilizar el formulario y usarlo para altas y modificaciones -->
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="documentService.selectedDocument.$key">
+            <!-- si seleccionamos editar un objeto rellenara el campo con la key y no se creara un objeto nuevo-->
+           
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="documentName"
+                #documentName="ngModel"
+                [(ngModel)]="documentService.selectedDocument.documentName"
+                placeholder="Nombre del documento"
+                >
+            </div>
+
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="userName"
+                #documentName="ngModel"
+                [(ngModel)]="documentService.selectedDocument.userName"
+                placeholder="Nombre del usuario"
+                >
+            </div>
+
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                name="subjectName"
+                #subjectName="ngModel"
+                [(ngModel)]="documentService.selectedDocument.subjectName"
+                placeholder="Nombre de la asignatura"
+                >
+
+            </div>
+
+            <div class="form-group">
+                <h6>Seleccionar documento: </h6>
+              <input type="file" accept=".pdf, .odt, .docx" (change)="onUpload($event, documentForm)">  
+            </div>
+            <div class="progress mb-4">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width] ="(uploadPercent|async)+'%'">
+                </div>
+
+            </div>
+            <input type="hidden" [value]="urlFile | async" #fileUser >
+     
+            <div class="form-group">
+                <button *ngIf="urlFile | async; else btnDisabled"  class="btn btn-primary" type="submit"  >
+                    <i class="fas fa-plus-circle"></i> Subir documento
+                </button>
+                <ng-template #btnDisabled>
+                    <button class="btn btn-secondary" type="submit" disabled=true  >
+                        <i class="fas fa-plus-circle"></i> Subir documento
+                    </button>
+
+                </ng-template>
+                <!-- vacia los formularios-->
+                <button class="btn btn-secondary" type="reset" (click)="resetForm(documentForm)">
+                    <i class="fas fa-sync-alt"></i>  Reset
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!--<router-outlet></router-outlet>-->

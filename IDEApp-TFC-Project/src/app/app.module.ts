@@ -41,14 +41,20 @@ import { DepartmentService } from './services/department.service';
 
 //Toastr
 import { ToastrModule } from 'ngx-toastr';
+//
 import { LoginComponent } from './components/users/login/login.component';
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { RegisterComponent } from './components/users/register/register.component';
+//
 import { Page404Component } from './components/page404/page404.component';
+//
 import { NavbarComponent } from './components/navbar/navbar.component';
+//
 import { DocumentsComponent } from './components/documents/documents.component';
 import { DocumentComponent } from './components/documents/document/document.component';
 import { DocumentListComponent } from './components/documents/document-list/document-list.component';
+//
+
 
 @NgModule({
   declarations: [
@@ -82,8 +88,7 @@ import { DocumentListComponent } from './components/documents/document-list/docu
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    AngularFireDatabaseModule,
-    AngularFireStorageModule,
+   
   ],
   providers: [
     SubjectService,
