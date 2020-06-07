@@ -53,6 +53,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DocumentsComponent } from './components/documents/documents.component';
 import { DocumentComponent } from './components/documents/document/document.component';
 import { DocumentListComponent } from './components/documents/document-list/document-list.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { YearsComponent } from './components/years/years.component';
+import { GroupsComponent } from './components/groups/groups.component';
+import { EvaluationsComponent } from './components/evaluations/evaluations.component';
 //
 
 
@@ -74,6 +78,10 @@ import { DocumentListComponent } from './components/documents/document-list/docu
     DocumentsComponent,
     DocumentComponent,
     DocumentListComponent,
+    CoursesComponent,
+    YearsComponent,
+    GroupsComponent,
+    EvaluationsComponent,
   ],
   imports: [
     BrowserModule,
