@@ -1,6 +1,4 @@
-import { ContactInterface } from './contacto';
-
-export class Contacto implements ContactInterface{
+export class Contacto{
     $key: string;
     tutor: string;
     address: string;

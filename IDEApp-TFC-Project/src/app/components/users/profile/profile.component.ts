@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserInterface } from 'src/app/models/user';
+import { User } from 'src/app/models/userClass';
 
 @Component({
   selector: 'app-profile',
@@ -9,11 +9,13 @@ import { UserInterface } from 'src/app/models/user';
 })
 export class ProfileComponent implements OnInit {
 
-  user: UserInterface;
+  user: User;
 
   providerid: string = 'null';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+    this.user = new User();
+   }
 
   ngOnInit(): void {
     this.authService.isAuth().subscribe(user =>{

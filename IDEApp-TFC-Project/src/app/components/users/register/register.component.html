@@ -5,24 +5,26 @@
     <div class="card_register mt-5">
       <div class="card">
         <div class="card-body text-center">
-          <form #formRegister="ngForm" (ngSubmit)="onAddUser()">
+          <form #formRegister="ngForm" (ngSubmit)="onSubmit(formRegister)">
             <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="userService.selectedUser.$key">
 
             <div class="form-group">
-              <input type="text" name="name" class="form-control" placeholder="Nombre" [(ngModel)]="name" required>
+              <input type="text" name="name" class="form-control" placeholder="Nombre"
+                [(ngModel)]="userService.selectedUser.name" required>
               <input type="text" name="surname1" class="form-control" placeholder="Primer apellido"
-                [(ngModel)]="surname1" required>
+                [(ngModel)]="userService.selectedUser.surname1" required>
               <input type="text" name="surname2" class="form-control" placeholder="Segundo apellido"
-                [(ngModel)]="surname2">
+                [(ngModel)]="userService.selectedUser.surname2">
             </div>
 
             <div class="form-group">
-              <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="email" required
-                minlength="8">
+              <input type="email" name="email" class="form-control" placeholder="Email"
+                [(ngModel)]="userService.selectedUser.email" required minlength="8">
             </div>
             <div class="form-group">
-              <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="password"
-                required minlength="5" maxlength="10">
+              <input type="password" name="password" class="form-control" placeholder="Password"
+                [(ngModel)]="userService.selectedUser.password" required minlength="5" maxlength="10">
             </div>
 
             <div class="form-group">
@@ -40,7 +42,7 @@
                   (change)="showContent($event)">
                 <label class="form-check-label" for="editor">
                   Editor
-                </label>
+                </label>s
               </div>
               <br>
               <br>
@@ -67,32 +69,33 @@
                 <div class="col-sm">
                   <div class="form-group">
                     <input type="text" name="contact1.tutor" class="form-control"
-                      placeholder="Nombre y apellidos del tutor 1" [(ngModel)]="contact1.tutor" required>
+                      placeholder="Nombre y apellidos del tutor 1" [(ngModel)]="userService.contact1.tutor" required>
 
                     <input type="text" name="contact1.address" class="form-control" placeholder="Dirección del tutor 1"
-                      [(ngModel)]="contact1.address" required>
+                      [(ngModel)]="userService.contact1.address" required>
 
                     <input type="tel" name="contact1.phone" class="form-control" placeholder="Teléfono del tutor 1"
-                      [(ngModel)]="contact1.phone" required>
+                      [(ngModel)]="userService.contact1.phone" required>
 
                     <input type="email" name="contact1.email" class="form-control" placeholder="Email del tutor 1"
-                      [(ngModel)]="contact1.email" required>
+                      [(ngModel)]="userService.contact1.email" required>
                   </div>
                 </div>
 
                 <div class="col-sm">
                   <div class="form-group">
                     <input type="text" name="contact2.tutor" class="form-control"
-                      placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="contact2.tutor" required>
+                      placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="userService.contact2.tutor"
+                      required>
 
                     <input type="text" name="contact2.address" class="form-control" placeholder="Dirección del tutor 2"
-                      [(ngModel)]="contact2.address" required>
+                      [(ngModel)]="userService.contact2.address" required>
 
                     <input type="tel" name="contact2.phone" class="form-control" placeholder="Teléfono del tutor 2"
-                      [(ngModel)]="contact2.phone" required>
+                      [(ngModel)]="userService.contact2.phone" required>
 
                     <input type="email" name="contact2.email" class="form-control" placeholder="Email del tutor 2"
-                      [(ngModel)]="contact2.email" required>
+                      [(ngModel)]="userService.contact2.email" required>
                   </div>
                 </div>
               </div>
@@ -100,21 +103,22 @@
             </div>
 
             <div class="form-group" id="teacherForm" style="display: none;">
-              <input type="text" name="dni" class="form-control" placeholder="DNI del profesor" [(ngModel)]="dni"
-                required>
+              <input type="text" name="dni" class="form-control" placeholder="DNI del profesor"
+                [(ngModel)]="userService.selectedUser.dni" required>
 
               <input type="text" name="address" class="form-control" placeholder="Dirección del profesor"
-                [(ngModel)]="address" required>
+                [(ngModel)]="userService.selectedUser.address" required>
 
               <input type="tel" name="phone" class="form-control" placeholder="Teléfono del profesor"
-                [(ngModel)]="phone" required>
+                [(ngModel)]="userService.selectedUser.phone" required>
 
               <input type="text" name="departmentName" class="form-control"
-                placeholder="Nombre del departamento al que pertenece" [(ngModel)]="department.departmentName" required>
+                placeholder="Nombre del departamento al que pertenece"
+                [(ngModel)]="userService.department.departmentName" required>
             </div>
             <br>
             <button type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>
-            
+
 
           </form>
 

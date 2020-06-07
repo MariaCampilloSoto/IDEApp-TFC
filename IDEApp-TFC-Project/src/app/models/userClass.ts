@@ -1,17 +1,24 @@
-import { UserInterface } from './user';
-
-export class User implements UserInterface{
+import { Contacto } from './contactoClass';
+import { Department } from './department';
+export class Role {
+    admin?: boolean; // todos los permisos
+    editor?: boolean; // crear usuario, editar info de contacto
+    teacher?: boolean; // no puede crear user, ni crear tablas, solo ver ciertas funciones
+    // si no tiene ninguno de estos es que es student
+}
+export class User{
     $key: string;
     name: string;
     surname1: string;
     surname2?: string;
     email: string;
     password: string;
-    contactInformation?: import("./contacto").ContactInterface[];
+    contact1: Contacto;
+    contact2: Contacto;
     dni?: string;
     phone?: string;
     address?: string;
-    department?: import("./department").Department;
+    department?: Department;
     active?: boolean;
-    role: import("./user").Role;
+    role: Role;
 }

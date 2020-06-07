@@ -11,9 +11,9 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService, private auth: AngularFireAuth) { }
   public isLogged: boolean = false;
-  public isAdmin: any = null;
-  public isTeacher: any = null;
-  public isEditor: any = null;
+  public isAdmin: any = false;
+  public isTeacher: any = false;
+  public isEditor: any = false;
   public userUid: string = null;
 
   ngOnInit() {
@@ -25,12 +25,16 @@ export class NavbarComponent implements OnInit {
       if (auth) {
         console.log('user logged');
         this.userUid = auth.uid;
-        this.authService.isUserRole(this.userUid).subscribe(userRole => {
-          let role = Object.assign({}, userRole.role);
-          this.isAdmin = role.hasOwnProperty('admin');
-          this.isEditor = role.hasOwnProperty('editor');
-          this.isTeacher = role.hasOwnProperty('teacher');
-        })
+        console.log('auth: ', auth)
+        console.log('userUid: ', this.userUid)
+        // this.authService.isUserRole(this.userUid).subscribe(userRole => {
+        //   console.log(userRole)
+        //   console.log(userRole.role)
+        //   let role = Object.assign({}, userRole.role);
+        //   this.isAdmin = role.hasOwnProperty('admin');
+        //   this.isEditor = role.hasOwnProperty('editor');
+        //   this.isTeacher = role.hasOwnProperty('teacher');
+        // })
         this.isLogged = true;
       } else {
         console.log('NOT user logged');
