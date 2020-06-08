@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 import { DocumentsComponent } from './components/documents/documents.component';
+import { CourseComponent } from './components/course/course/course.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'user/login', component: LoginComponent},
   {path: 'user/register', component: RegisterComponent}, // Usuarios admin
   {path: 'user/profile', component: ProfileComponent},
+  {path: 'course/register', component: CourseComponent},
   {path: '**', component: Page404Component}
 
 ];

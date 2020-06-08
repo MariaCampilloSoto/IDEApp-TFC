@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from './user.service';
-import { User } from '../models/userClass';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

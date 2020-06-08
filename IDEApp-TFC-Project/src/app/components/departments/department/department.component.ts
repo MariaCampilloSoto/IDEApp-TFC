@@ -8,17 +8,18 @@ import { Department } from 'src/app/models/department';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
-  styleUrls: ['./department.component.css']
+  styleUrls: ['./department.component.css'],
 })
 export class DepartmentComponent implements OnInit {
-
   departmentService: DepartmentService;
 
-  constructor(departmentService : DepartmentService, private toastr: ToastrService) { 
+  constructor(
+    departmentService: DepartmentService,
+    private toastr: ToastrService
+  ) {
     this.departmentService = departmentService;
   }
 
@@ -27,21 +28,17 @@ export class DepartmentComponent implements OnInit {
     this.resetForm();
   }
 
-  onSubmit(departmentForm: NgForm){
-    if(departmentForm.value.$key == null)
+  onSubmit(departmentForm: NgForm) {
+    if (departmentForm.value.$key == null)
       this.departmentService.insertDepartment(departmentForm.value);
-     else 
-      this.departmentService.updateDepartment(departmentForm.value);
-    
+    else this.departmentService.updateDepartment(departmentForm.value);
+
     this.resetForm(departmentForm);
-    this.toastr.success('Successfull Operation')
+    this.toastr.success('Successfull Operation');
   }
 
-  resetForm(departmentForm?: NgForm){
-    if(departmentForm != null)
-      departmentForm.reset();
-      this.departmentService.selectedDepartment = new Department();
-    
+  resetForm(departmentForm?: NgForm) {
+    if (departmentForm != null) departmentForm.reset();
+    this.departmentService.selectedDepartment = new Department();
   }
-
 }

@@ -85,8 +85,7 @@
                 <div class="col-sm">
                   <div class="form-group">
                     <input type="text" name="contact2.tutor" class="form-control"
-                      placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="userService.contact2.tutor"
-                      required>
+                      placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="userService.contact2.tutor" required>
 
                     <input type="text" name="contact2.address" class="form-control" placeholder="Dirección del tutor 2"
                       [(ngModel)]="userService.contact2.address" required>
@@ -100,21 +99,67 @@
                 </div>
               </div>
 
+              <div class="row">
+                <div class="col-sm">
+                  <div class="form-group">
+                    <input type="text" name="course" class="form-control" placeholder="Curso: 1, 2, 3... SIN º Ó ª"
+                      [(ngModel)]="course.course" required>
+
+                    <input type="text" name="level" class="form-control"
+                      placeholder="Nivel del curso: ESO, BTO, FPB ..." [(ngModel)]="course.level" required>
+
+                    <input type="text" name="year" class="form-control" placeholder="Año: 2020/2021"
+                      [(ngModel)]="course.year" required>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
+
+
             <div class="form-group" id="teacherForm" style="display: none;">
-              <input type="text" name="dni" class="form-control" placeholder="DNI del profesor"
-                [(ngModel)]="userService.selectedUser.dni" required>
+              <div class="row">
+                <div class="col-sm">
 
-              <input type="text" name="address" class="form-control" placeholder="Dirección del profesor"
-                [(ngModel)]="userService.selectedUser.address" required>
+                  <input type="text" name="dni" class="form-control" placeholder="DNI del profesor"
+                    [(ngModel)]="userService.selectedUser.dni" required>
 
-              <input type="tel" name="phone" class="form-control" placeholder="Teléfono del profesor"
-                [(ngModel)]="userService.selectedUser.phone" required>
+                  <input type="text" name="address" class="form-control" placeholder="Dirección del profesor"
+                    [(ngModel)]="userService.selectedUser.address" required>
 
-              <input type="text" name="departmentName" class="form-control"
-                placeholder="Nombre del departamento al que pertenece"
-                [(ngModel)]="userService.department.departmentName" required>
+                  <input type="tel" name="phone" class="form-control" placeholder="Teléfono del profesor"
+                    [(ngModel)]="userService.selectedUser.phone" required>
+
+                  <input type="text" name="departmentName" class="form-control"
+                    placeholder="Nombre del departamento al que pertenece"
+                    [(ngModel)]="userService.department.departmentName" required>
+                </div>
+
+                <div class="col-sm">
+                  <div class="form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="teacherTutor" id="teacherTutor"
+                      value="teacherTutor" (change)="isTutor($event)">
+                    <label class="form-check-label" for="teacherTutor">
+                      ¿Es tutor de un grupo?
+                    </label>
+                  </div>
+
+                  <div class="container" id="teacherTutorForm" style="display: none;">
+
+                    <input type="text" name="course" class="form-control" placeholder="Curso: 1, 2, 3... SIN º Ó ª"
+                      [(ngModel)]="course.course" required>
+
+                    <input type="text" name="level" class="form-control"
+                      placeholder="Nivel del curso: ESO, BTO, FPB ..." [(ngModel)]="course.level" required>
+
+                    <input type="text" name="year" class="form-control" placeholder="Año: 2020/2021"
+                      [(ngModel)]="course.year" required>
+
+                  </div>
+                </div>
+              </div>
+
             </div>
             <br>
             <button type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>

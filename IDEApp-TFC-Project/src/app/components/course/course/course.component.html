@@ -1,0 +1,54 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-5">
+            <div class="card  mt-5">
+                <div class="card-body">
+                    <form #courseForm="ngForm" (ngSubmit)='onSubmit(courseForm)'>
+
+                        <input type="hidden" name="$key" #$key="ngModel"
+                            [(ngModel)]="courseService.selectedCourse.$key">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="course" #course="ngModel"
+                                [(ngModel)]="courseService.selectedCourse.course"
+                                placeholder="Curso: 1, 2, 3 ... SIN 'º'">
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" name="level" #level="ngModel"
+                                [(ngModel)]="courseService.selectedCourse.level"
+                                placeholder="Nivel del curso: ESO, BTO, FPB ...">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" name="year" #year="ngModel"
+                                [(ngModel)]="courseService.selectedCourse.year" placeholder="Año escolar 2020/2021">
+
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-plus-circle"> Añadir curso</i>
+                            </button>
+                            <button class="btn btn-secondary" type="reset" (click)="resetForm(courseForm)">
+                                <i class="fas fa-sync-alt"> Resetear formulario </i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-5 text-center">
+            <app-course-list>
+                
+            </app-course-list>
+        </div>
+    </div>
+</div>

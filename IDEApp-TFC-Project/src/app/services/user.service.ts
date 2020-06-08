@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/userClass';
+import { User } from '../models/user';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
-import { Contacto } from '../models/contactoClass';
+import { Contacto } from '../models/contacto';
 import { Department } from '../models/department';
 
 @Injectable({
@@ -33,18 +33,21 @@ export class UserService {
     let surname2 = user.surname2 || '';
     let email = user.email;
     let password = user.password;
-    console.log('user: ', user)
-    console.log('user.role: ', user.role)
+    console.log('user: ', user);
+    console.log('user.role: ', user.role);
     let role = user.role;
-    if(user.role.hasOwnProperty('admin') || user.role.hasOwnProperty('editor')){
+    if (
+      user.role.hasOwnProperty('admin') ||
+      user.role.hasOwnProperty('editor')
+    ) {
       this.userList.push({
         name,
         surname1,
         surname2,
         email,
         password,
-        role
-      })
+        role,
+      });
     } else if (user.role.hasOwnProperty('teacher')) {
       let department = Object.assign({}, this.department);
       this.userList.push({

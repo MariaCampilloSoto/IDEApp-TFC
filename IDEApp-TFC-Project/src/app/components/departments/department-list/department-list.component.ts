@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./department-list.component.css'],
 })
 export class DepartmentListComponent implements OnInit {
-
   departmentList: Department[];
 
   departmentService: DepartmentService;
@@ -22,24 +21,26 @@ export class DepartmentListComponent implements OnInit {
     this.toastr = toastr;
   }
 
-  ngOnInit(){
-    this.departmentService.getDepartments().snapshotChanges()
-    .subscribe(item=>{
-      this.departmentList = [];
-      item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        this.departmentList.push(x as Department);
-      })
-    });
+  ngOnInit() {
+    this.departmentService
+      .getDepartments()
+      .snapshotChanges()
+      .subscribe((item) => {
+        this.departmentList = [];
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          this.departmentList.push(x as Department);
+        });
+      });
   }
 
-  onEdit(department: Department){
+  onEdit(department: Department) {
     this.departmentService.selectedDepartment = Object.assign({}, department);
   }
 
-  onDelete($key){
-    if(confirm('Are you sure you want to delete it?')){
+  onDelete($key) {
+    if (confirm('Are you sure you want to delete it?')) {
       this.departmentService.deleteDepartment($key);
       this.toastr.success('succesfull Operation', 'Departamento eliminado');
     }

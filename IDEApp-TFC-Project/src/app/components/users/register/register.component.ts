@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { User, Role } from 'src/app/models/userClass';
+import { User, Role } from 'src/app/models/user';
+import { CourseService } from 'src/app/services/course.service';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-register',
@@ -11,15 +13,20 @@ import { User, Role } from 'src/app/models/userClass';
 })
 export class RegisterComponent implements OnInit {
   userService: UserService;
+  courseService: CourseService;
+  course: Course;
   private role: Role;
 
-  constructor(private authService: AuthService, userService: UserService) {
+  constructor(private authService: AuthService, userService: UserService, courseService: CourseService) {
     this.userService = userService;
+    this.courseService = courseService;
     this.role = new Role();
+    this.course = new Course();
   }
 
   ngOnInit(): void {
     this.userService.getAllUsers();
+    this.courseService.getCourses();
     this.resetForm();
   }
 
@@ -28,10 +35,13 @@ export class RegisterComponent implements OnInit {
     //   .registerUser(this.userService.selectedUser.email, this.userService.selectedUser.password)
     //   .then((res) => console.log(res))
     //   .catch((err) => console.log(err));
+    this.course.setFullInfo();
     registerForm.value.role = this.role;
     console.log('value form: ', registerForm.value)
     if(registerForm.value.$key == null){
       this.userService.insertUser(registerForm.value);
+      this.courseService.insertCourse(this.course);
+
     } else {
       this.userService.updateUser(registerForm.value);
     }
@@ -59,6 +69,15 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
+  
+  isTutor(event){
+    let isChecked = event.target.checked;
+    if(isChecked){
+      document.getElementById('teacherTutorForm').style.display = 'block';
+    } else {
+      document.getElementById('teacherTutorForm').style.display = 'none';
+    } 
+  }
 
   resetForm(registerForm?: NgForm){
     if(registerForm != null) registerForm.reset();
@@ -68,5 +87,6 @@ export class RegisterComponent implements OnInit {
   
   resetRole(){
     this.role = new Role();
+    this.course = new Course()
   }
 }

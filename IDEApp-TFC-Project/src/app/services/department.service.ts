@@ -29,20 +29,20 @@ export class DepartmentService {
   insertDepartment(department: Department) {
     this.departmentList.push({
       departmentName: department.departmentName,
-      headDepartmentName: department.headDepartmentName
+      headDepartmentName: department.headDepartmentName,
     });
   }
-  
+
   //Actualizar o modificar la info del departamento
-  updateDepartment(department: Department){
+  updateDepartment(department: Department) {
     this.departmentList.update(department.$key, {
       departmentName: department.departmentName,
-      headDepartmentName: department.headDepartmentName
+      headDepartmentName: department.headDepartmentName,
     });
   }
 
   // Eliminar un departamento
-  deleteDepartment($key: string){
+  deleteDepartment($key: string) {
     this.departmentList.remove($key);
   }
 }
