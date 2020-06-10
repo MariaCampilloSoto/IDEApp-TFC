@@ -55,6 +55,7 @@ import { DocumentComponent } from './components/documents/document/document.comp
 import { DocumentListComponent } from './components/documents/document-list/document-list.component';
 import { CourseListComponent } from './components/course/course-list/course-list.component';
 import { CourseComponent } from './components/course/course/course.component';
+import { EvaluationComponent } from './components/course/evaluation/evaluation.component';
 
 //
 
@@ -79,6 +80,7 @@ import { CourseComponent } from './components/course/course/course.component';
     DocumentListComponent,
     CourseListComponent,
     CourseComponent,
+    EvaluationComponent,
   ],
   imports: [
     BrowserModule,

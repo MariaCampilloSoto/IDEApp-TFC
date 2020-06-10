@@ -1,41 +1,45 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Injectable, OnInit } from '@angular/core';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from './user.service';
 import { User } from '../models/user';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireModule } from '@angular/fire';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  
   constructor(
     private auth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
-    private userService: UserService
+    private userService: UserService,
+    private angularFire: AngularFireModule
   ) {}
 
   registerUser(email: string, pass: string) {
-    return new Promise((resolve, reject) => {
-      this.auth
-        .createUserWithEmailAndPassword(email, pass)
-        // Los datos del usuario -> userData
-        .then((userData) => {
-          resolve(userData);
+    this.auth.createUserWithEmailAndPassword(email, pass);
+    this.auth.signOut();
+    // return new Promise((resolve, reject) => {
+    //   this.auth
+    //     .createUserWithEmailAndPassword(email, pass)
+    //     // Los datos del usuario -> userData
+    //     .then((userData) => {
+    //       resolve(userData);
 
-          //this.updateuserData(userData.user);
-        })
-        .catch((err) => console.log('error: ', err));
-    });
-
-    
+    //       //this.updateuserData(userData.user);
+    //     })
+    //     .catch((err) => console.log('error: ', err));
+    // });
   }
 
   loginEmailUser(email: string, pass: string) {
     return new Promise((resolve, reject) => {
       this.auth.signInWithEmailAndPassword(email, pass).then(
         (userData) => resolve(userData),
-        (err) => reject(err) 
+        (err) => reject(err)
       );
     });
   }

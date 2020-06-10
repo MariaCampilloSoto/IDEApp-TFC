@@ -85,16 +85,16 @@
                 <div class="col-sm">
                   <div class="form-group">
                     <input type="text" name="contact2.tutor" class="form-control"
-                      placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="userService.contact2.tutor" required>
+                      placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="userService.contact2.tutor">
 
                     <input type="text" name="contact2.address" class="form-control" placeholder="Dirección del tutor 2"
-                      [(ngModel)]="userService.contact2.address" required>
+                      [(ngModel)]="userService.contact2.address">
 
                     <input type="tel" name="contact2.phone" class="form-control" placeholder="Teléfono del tutor 2"
-                      [(ngModel)]="userService.contact2.phone" required>
+                      [(ngModel)]="userService.contact2.phone">
 
                     <input type="email" name="contact2.email" class="form-control" placeholder="Email del tutor 2"
-                      [(ngModel)]="userService.contact2.email" required>
+                      [(ngModel)]="userService.contact2.email">
                   </div>
                 </div>
               </div>
@@ -113,6 +113,16 @@
                   </div>
                 </div>
                 <div class="col-sm">
+                  <div class="container text-left bg-white">
+                    <h5>Asignaturas a matricularse</h5>
+                    <label for="automatricula"><input class="mr-2" type="checkbox" name="automatricula" id="automatricula" (change)="subjectSignUp($event)">Seleccionar todos</label>
+                    <div class="container" style="overflow-y: scroll; max-height: 10em;">
+
+                      <div class="container" *ngFor="let subject of subjectList">
+                        <label for="{{subject.$key}}"><input class="mr-2" type="checkbox" name="{{subject.subjectName}}" id="{{subject.$key}}" (change)="subjectSignUp($event)">{{subject.subjectName}}</label>
+                      </div>
+                    </div>
+                  </div>
                   <!-- Aqui pondre un listado de asignaturas que correspondan con 1 ESO 2020/2021 -->
                 </div>
               </div>

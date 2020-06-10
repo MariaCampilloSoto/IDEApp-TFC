@@ -5,6 +5,8 @@ import { UserService } from 'src/app/services/user.service';
 import { User, Role } from 'src/app/models/user';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/app/models/course';
+import { SubjectService } from 'src/app/services/subject.service';
+import { Subject } from '../../../models/subject';
 
 @Component({
   selector: 'app-register',
@@ -14,20 +16,45 @@ import { Course } from 'src/app/models/course';
 export class RegisterComponent implements OnInit {
   userService: UserService;
   courseService: CourseService;
+  subjectService: SubjectService;
+
+  subjectList: Subject[];
+  subjectSignUpList: string[];
+
   course: Course;
   private role: Role;
 
-  constructor(private authService: AuthService, userService: UserService, courseService: CourseService) {
+  constructor(
+    private authService: AuthService,
+    userService: UserService,
+    courseService: CourseService,
+    subjectService: SubjectService
+  ) {
     this.userService = userService;
     this.courseService = courseService;
+    this.subjectService = subjectService;
     this.role = new Role();
     this.course = new Course();
+    this.subjectSignUpList = [];
   }
 
   ngOnInit(): void {
     this.userService.getAllUsers();
     this.courseService.getCourses();
+    this.subjectService.getSubjects();
     this.resetForm();
+
+    this.subjectService
+      .getSubjects()
+      .snapshotChanges()
+      .subscribe((item) => {
+        this.subjectList = [];
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          this.subjectList.push(x as Subject);
+        });
+      });
   }
 
   onSubmit(registerForm: NgForm) {
@@ -37,11 +64,18 @@ export class RegisterComponent implements OnInit {
     //   .catch((err) => console.log(err));
     this.course.setFullInfo();
     registerForm.value.role = this.role;
-    console.log('value form: ', registerForm.value)
-    if(registerForm.value.$key == null){
-      this.userService.insertUser(registerForm.value);
-      this.courseService.insertCourse(this.course);
-
+    console.log('value form: ', registerForm.value);
+    if (registerForm.value.$key == null) {
+      this.userService.insertUserInSubjects(
+        registerForm.value,
+        this.subjectSignUpList
+      ); //hey esto hay que cambiarlo
+      if (
+        !this.role.hasOwnProperty('admin') ||
+        !this.role.hasOwnProperty('editor')
+      ) {
+        this.courseService.insertCourse(this.course);
+      }
     } else {
       this.userService.updateUser(registerForm.value);
     }
@@ -49,10 +83,10 @@ export class RegisterComponent implements OnInit {
     this.resetForm(registerForm);
   }
 
-  showContent(event){
+  showContent(event) {
     let value = event.target.defaultValue;
     this.resetRole();
-    if(value === 'student'){
+    if (value === 'student') {
       document.getElementById('studentForm').style.display = 'block';
       document.getElementById('teacherForm').style.display = 'none';
     } else if (value === 'teacher') {
@@ -62,31 +96,62 @@ export class RegisterComponent implements OnInit {
     } else {
       document.getElementById('studentForm').style.display = 'none';
       document.getElementById('teacherForm').style.display = 'none';
-      if(value === 'admin'){
+      if (value === 'admin') {
         this.role.admin = true;
       } else {
         this.role.editor = true;
       }
     }
   }
-  
-  isTutor(event){
+
+  isTutor(event) {
     let isChecked = event.target.checked;
-    if(isChecked){
+    if (isChecked) {
       document.getElementById('teacherTutorForm').style.display = 'block';
     } else {
       document.getElementById('teacherTutorForm').style.display = 'none';
-    } 
+    }
   }
 
-  resetForm(registerForm?: NgForm){
-    if(registerForm != null) registerForm.reset();
+  subjectSignUp(event) {
+    let isChecked = event.target.checked;
+    let id = event.target.id;
+    this.subjectList.forEach((subject) => {
+      if (subject.$key === id) {
+        if (isChecked) {
+          this.subjectSignUpList.push(id);
+        } else {
+          this.subjectSignUpList = this.subjectSignUpList.filter(
+            (subjectId) => subjectId !== id
+          );
+        }
+      }
+    });
+    console.log(event);
+    console.log(this.subjectSignUpList);
+  }
+
+  resetForm(registerForm?: NgForm) {
+    console.log(registerForm);
+    if (registerForm != null) registerForm.reset();
     this.userService.selectedUser = new User();
     this.resetRole();
+    let inputs = document.getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i++) {
+      if (
+        inputs[i].type.toLocaleLowerCase() === 'checkbox' ||
+        inputs[i].type.toLocaleLowerCase() === 'radio'
+      ) {
+        inputs[i].checked = false;
+      }
+    }
+    document.getElementById('studentForm').style.display = 'none';
+    document.getElementById('teacherForm').style.display = 'none';
+    document.getElementById('teacherTutorForm').style.display = 'none';
   }
-  
-  resetRole(){
+
+  resetRole() {
     this.role = new Role();
-    this.course = new Course()
+    this.course = new Course();
   }
 }

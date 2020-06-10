@@ -3,6 +3,8 @@ import { User } from '../models/user';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import { Contacto } from '../models/contacto';
 import { Department } from '../models/department';
+import { SubjectStudentService } from './subject-student.service';
+import { Subject } from '../models/subject';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +18,25 @@ export class UserService {
   contact2: Contacto;
   department: Department;
 
-  constructor(private firebase: AngularFireDatabase) {
+  subjectStudentService: SubjectStudentService;
+
+  constructor(
+    private firebase: AngularFireDatabase,
+    subjectStudentService: SubjectStudentService
+  ) {
     this.selectedUser = new User();
     this.contact1 = new Contacto();
     this.contact2 = new Contacto();
     this.department = new Department();
+
+    this.subjectStudentService = subjectStudentService;
   }
 
   getAllUsers() {
     return (this.userList = this.firebase.list('users'));
   }
 
-  insertUser(user: User) {
+  insertUserInSubjects(user: User, subjectList: string[]) {
     let name = user.name;
     let surname1 = user.surname1;
     let surname2 = user.surname2 || '';
@@ -36,27 +45,17 @@ export class UserService {
     console.log('user: ', user);
     console.log('user.role: ', user.role);
     let role = user.role;
-    if (
-      user.role.hasOwnProperty('admin') ||
-      user.role.hasOwnProperty('editor')
-    ) {
-      this.userList.push({
-        name,
-        surname1,
-        surname2,
-        email,
-        password,
-        role,
-      });
-    } else if (user.role.hasOwnProperty('teacher')) {
+    let newKey = this.userList.push({
+      name,
+      surname1,
+      surname2,
+      email,
+      password,
+      role,
+    }).key;
+    if (user.role.hasOwnProperty('teacher')) {
       let department = Object.assign({}, this.department);
-      this.userList.push({
-        name,
-        surname1,
-        surname2,
-        email,
-        password,
-        role,
+      this.userList.update(newKey, {
         dni: user.dni,
         phone: user.phone,
         address: user.address,
@@ -70,16 +69,16 @@ export class UserService {
     ) {
       let contact1 = Object.assign({}, this.contact1);
       let contact2 = Object.assign({}, this.contact2);
-      this.userList.push({
-        name,
-        surname1,
-        surname2,
-        email,
-        password,
-        role,
+      this.userList.update(newKey, {
         contact1,
         contact2,
       });
+
+      this.subjectStudentService.insertStudentInSubject(
+        newKey,
+        user,
+        subjectList
+      );
     }
   }
 
@@ -90,6 +89,15 @@ export class UserService {
     let email = user.email;
     let password = user.password;
     let role = user.role;
+    this.userList.update(user.$key, {
+      name,
+      surname1,
+      surname2,
+      email,
+      password,
+      role,
+    });
+
     if (user.role.hasOwnProperty('teacher')) {
       let department = Object.assign({}, this.department);
       this.userList.update(user.$key, {
