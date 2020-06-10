@@ -11,20 +11,12 @@ export class SubjectStudentService {
   studentsListBySubject: AngularFireList<any>; // Lista de estudiantes
   subjectStudentsList: AngularFireList<any>; // Lista de asignatura->estudiantes
 
-  // selectedSubject: Subject;
-  // selectedStrudent: User;
-  // selectedSubjectStudents;  //A lo mejor no es necesario
-
   constructor(private firebase: AngularFireDatabase) {
-    // this.selectedStrudent = new User();
-    // this.selectedSubject = new Subject();
   }
 
   getSubjects() {
     return (this.subjectsList = this.firebase.list('sing-up'));
   }
-
-  setSubjects() {}
 
   getStudentsBySubject(subject: Subject) {
     return this.firebase.list(`sing-up/${subject.$key}`);
@@ -41,7 +33,7 @@ export class SubjectStudentService {
   ) {
     subjectKeys.forEach((key) => {
       this.subjectsList.update(key, {
-        [studentKey]: true,
+        [studentKey]: {},
       });
     });
   }

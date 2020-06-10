@@ -4,24 +4,57 @@ import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from './user.service';
 import { User } from '../models/user';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
+import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  
+  userList: AngularFireList<any>;
+
   constructor(
     private auth: AngularFireAuth,
+    private firebase: AngularFireDatabase,
     private angularFirestore: AngularFirestore,
     private userService: UserService,
     private angularFire: AngularFireModule
   ) {}
 
-  registerUser(email: string, pass: string) {
-    this.auth.createUserWithEmailAndPassword(email, pass);
-    this.auth.signOut();
+  getUsers() {
+    return (this.userList = this.firebase.list('users'));
+  }
+
+  // getUserList(){
+  //   let userList = [];
+  //   this.getUsers().snapshotChanges().subscribe(item => {
+  //     item.forEach(element => {
+  //       let x = element.payload.toJSON();
+  //       x['$key'] = element.key;
+  //       userList.push(x as User);
+  //     })
+  //   })
+
+  //   return userList;
+  // }
+
+  // isUserWithEmail(email: string){
+  //   let userList = this.getUserList();
+  //   return userList.find(user => user.email === email) ? true : false;
+  // }
+
+  loginRegisterUser(email: string, pass: string) {
+    return new Promise((resolve, reject) => {
+      this.auth
+        .createUserWithEmailAndPassword(email, pass)
+        .then((userData) => resolve(userData))
+        .catch((err) => this.auth.signInWithEmailAndPassword(email, pass))
+        .catch((err) => {
+          alert(`Error:  ${err.message}`);
+          reject(err);
+        });
+    });
     // return new Promise((resolve, reject) => {
     //   this.auth
     //     .createUserWithEmailAndPassword(email, pass)
@@ -35,14 +68,15 @@ export class AuthService {
     // });
   }
 
-  loginEmailUser(email: string, pass: string) {
-    return new Promise((resolve, reject) => {
-      this.auth.signInWithEmailAndPassword(email, pass).then(
-        (userData) => resolve(userData),
-        (err) => reject(err)
-      );
-    });
-  }
+  // loginEmailUser(email: string, pass: string) {
+
+  //   return new Promise((resolve, reject) => {
+  //     this.auth.signInWithEmailAndPassword(email, pass).then(
+  //       (userData) => resolve(userData),
+  //       (err) => reject(err)
+  //     );
+  //   });
+  // }
 
   logoutUser() {
     return this.auth.signOut();

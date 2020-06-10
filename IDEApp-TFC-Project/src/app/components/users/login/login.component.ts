@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    this.authService.loginEmailUser(this.email, this.password)
+    this.authService.loginRegisterUser(this.email, this.password)
     .then((res) => {
       this.router.navigate([''])
     })

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User, Role } from 'src/app/models/user';
@@ -25,7 +24,6 @@ export class RegisterComponent implements OnInit {
   private role: Role;
 
   constructor(
-    private authService: AuthService,
     userService: UserService,
     courseService: CourseService,
     subjectService: SubjectService
@@ -58,10 +56,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(registerForm: NgForm) {
-    // this.authService
-    //   .registerUser(this.userService.selectedUser.email, this.userService.selectedUser.password)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
     this.course.setFullInfo();
     registerForm.value.role = this.role;
     console.log('value form: ', registerForm.value);
@@ -69,7 +63,7 @@ export class RegisterComponent implements OnInit {
       this.userService.insertUserInSubjects(
         registerForm.value,
         this.subjectSignUpList
-      ); //hey esto hay que cambiarlo
+      );
       if (
         !this.role.hasOwnProperty('admin') ||
         !this.role.hasOwnProperty('editor')
