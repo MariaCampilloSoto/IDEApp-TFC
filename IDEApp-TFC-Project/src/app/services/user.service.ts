@@ -76,7 +76,6 @@ export class UserService {
 
       this.subjectStudentService.insertStudentInSubject(
         newKey,
-        user,
         subjectList
       );
     }

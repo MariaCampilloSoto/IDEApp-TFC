@@ -25,8 +25,8 @@ export class NavbarComponent implements OnInit {
       if (auth) {
         console.log('user logged');
         this.userUid = auth.uid;
-        console.log('auth: ', auth)
-        console.log('userUid: ', this.userUid)
+        // console.log('auth: ', auth)
+        // console.log('userUid: ', this.userUid)
         // this.authService.isUserRole(this.userUid).subscribe(userRole => {
         //   console.log(userRole)
         //   console.log(userRole.role)

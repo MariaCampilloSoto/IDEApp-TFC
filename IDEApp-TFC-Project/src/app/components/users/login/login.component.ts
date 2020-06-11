@@ -20,11 +20,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    this.authService.loginRegisterUser(this.email, this.password)
-    .then((res) => {
-      this.router.navigate([''])
-    })
-    .catch(err => console.log('err: ', err.message));
+    this.authService.loginRegisterUser(this.email, this.password);
+    this.router.navigate([''])
   }
 
   onLogout(){

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
-import { User } from '../models/user';
 import { Subject } from '../models/subject';
 
 @Injectable({
@@ -28,7 +27,6 @@ export class SubjectStudentService {
 
   insertStudentInSubject(
     studentKey: string,
-    student: User,
     subjectKeys: string[]
   ) {
     subjectKeys.forEach((key) => {
