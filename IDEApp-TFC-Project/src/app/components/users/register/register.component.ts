@@ -68,7 +68,8 @@ export class RegisterComponent implements OnInit {
         !this.role.hasOwnProperty('admin') ||
         !this.role.hasOwnProperty('editor')
       ) {
-        this.courseService.insertCourse(this.course);
+        if (typeof this.course === 'undefined') {
+          this.courseService.insertCourse(this.course);}
       }
     } else {
       this.userService.updateUser(registerForm.value);
@@ -108,8 +109,21 @@ export class RegisterComponent implements OnInit {
   }
 
   subjectSignUp(event) {
+    console.log(event);
     let isChecked = event.target.checked;
     let id = event.target.id;
+    // if (id === 'automatricula') {
+    //   this.subjectList.forEach((subject) => {
+    //     if (isChecked) {
+    //       this.subjectSignUpList.push(subject.$key);
+    //     } else {
+    //       console.log('whyyyy');
+    //       this.subjectSignUpList = this.subjectSignUpList.filter(
+    //         (subjectId) => subjectId !== id
+    //       );
+    //     }
+    //   });
+    // } else if (id !== 'automatricula') {
     this.subjectList.forEach((subject) => {
       if (subject.$key === id) {
         if (isChecked) {
@@ -121,8 +135,7 @@ export class RegisterComponent implements OnInit {
         }
       }
     });
-    console.log(event);
-    console.log(this.subjectSignUpList);
+    //}
   }
 
   resetForm(registerForm?: NgForm) {

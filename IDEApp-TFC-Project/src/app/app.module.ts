@@ -58,7 +58,7 @@ import { CourseComponent } from './components/course/course/course.component';
 import { EvaluationComponent } from './components/course/evaluation/evaluation.component';
 
 //
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -95,13 +95,13 @@ import { EvaluationComponent } from './components/course/evaluation/evaluation.c
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-   
+    NgbModule,
   ],
   providers: [
     SubjectService,
     DepartmentService,
     AngularFireAuth,
-    AngularFirestore
+    AngularFirestore,
   ],
   bootstrap: [AppComponent],
 })

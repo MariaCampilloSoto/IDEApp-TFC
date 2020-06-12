@@ -1,12 +1,17 @@
-
-
-<div class="container">
-    <div class="row">
-      <div class="col-md-5">
-          <app-subject-comp></app-subject-comp>
-      </div>
-      <div class="col-md-5 text-center">
-          <app-subject-list></app-subject-list>
-      </div>
+<div class="container mt-5">
+  <br>
+  <br>
+  <div class="row text-center justify-content-center" *ngIf="isAdmin || isEditor">
+    <div class="col-md-5">
+      <h3>Añadir asignaturas</h3>
+      <app-subject-comp></app-subject-comp>
     </div>
   </div>
+  <div class="container mt-5"></div>
+  <div class="row text-center justify-content-center mt-auto">
+    <div class="col">
+      <h3>Listado de asignaturas</h3>
+      <app-subject-list></app-subject-list>
+    </div>
+  </div>
+</div>

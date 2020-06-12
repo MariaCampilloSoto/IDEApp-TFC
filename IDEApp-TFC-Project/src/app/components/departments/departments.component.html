@@ -1,16 +1,17 @@
-
-
-<div class="container">
-    <div class="row">
+<div class="container mt-5">
+    <br>
+    <br>
+    <div class="row text-center justify-content-center" *ngIf="isAdmin || isEditor">
         <div class="col-md-5">
-            <app-department>
-
-            </app-department>
+            <h3>Añadir Departamentos</h3>
+            <app-department></app-department>
         </div>
-        <div class="col-md-5 text-center">
-            <app-department-list>
-
-            </app-department-list>
+    </div>
+    <div class="container mt-5"></div>
+    <div class="row text-center justify-content-center mt-auto">
+        <div class="col">
+            <h3>Listado de departamentos</h3>
+            <app-department-list></app-department-list>
         </div>
     </div>
 </div>

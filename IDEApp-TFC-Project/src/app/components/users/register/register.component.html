@@ -112,20 +112,20 @@
                       [(ngModel)]="course.year" required>
                   </div>
                 </div>
+
                 <div class="col-sm">
                   <div class="container text-left bg-white">
-                    <h5>Asignaturas a matricularse</h5>
-                    <label for="automatricula"><input class="mr-2" type="checkbox" name="automatricula"
-                        id="automatricula" (change)="subjectSignUp($event)">Seleccionar todos</label>
+                    <h5>Asignaturas a matricularse</h5> 
                     <div class="container" style="overflow-y: scroll; max-height: 10em;">
-
                       <div class="container" *ngFor="let subject of subjectList">
                         <label for="{{subject.$key}}"><input class="mr-2" type="checkbox" name="{{subject.subjectName}}"
                             id="{{subject.$key}}" (change)="subjectSignUp($event)">{{subject.subjectName}}</label>
                       </div>
                     </div>
+
                   </div>
                 </div>
+
               </div>
 
             </div>

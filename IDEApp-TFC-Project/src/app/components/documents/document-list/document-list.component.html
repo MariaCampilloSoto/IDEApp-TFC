@@ -1,1 +1,21 @@
-<p>document-list works!</p>
+<div class="card  mt-5">
+    <div class="card-body">
+        <h6 class="text-center">Lista de documentos</h6>
+        <table class="table table-sm table-hover">
+            <tbody>
+                <tr *ngFor="let document of documentList">
+                    <td> {{document.documentName}} </td>
+                    
+                    <td>
+                        <!-- <a class="btn btn-secondary text-white" (click)="onEdit(document)">
+                            <i class="fas fa-edit"></i>
+                        </a> -->
+                        <a class="btn btn-danger text-white" (click)="onDelete(document.$key)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

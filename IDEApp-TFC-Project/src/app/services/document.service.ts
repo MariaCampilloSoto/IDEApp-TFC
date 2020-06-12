@@ -3,6 +3,11 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 import { Document } from '../models/document';
+import { UserService } from './user.service';
+import { SubjectService } from './subject.service';
+import { Subject } from '../models/subject';
+import { User } from '../models/user';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -11,19 +16,153 @@ export class DocumentService {
   documentList: AngularFireList<any>;
   selectedDocument: Document;
 
-  constructor(private firebase: AngularFireDatabase) {
+  userService: UserService;
+  subjectService: SubjectService;
+
+  constructor(
+    private firebase: AngularFireDatabase,
+    private firestore: AngularFirestore,
+    userService: UserService,
+    subjectService: SubjectService
+  ) {
     this.selectedDocument = new Document();
+    this.userService = userService;
+    this.subjectService = subjectService;
   }
 
   getDocuments() {
-    return (this.documentList = this.firebase.list('documents'));
+    let subjectList: Subject[] = [];
+    let userList: User[] = [];
+    let documentList: Document[] = [];
+
+    this.subjectService
+      .getSubjects()
+      .snapshotChanges()
+      .subscribe((item) => {
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          subjectList.push(x as Subject);
+        });
+      });
+
+    this.userService
+      .getAllUsers()
+      .snapshotChanges()
+      .subscribe((item) => {
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          userList.push(x as User);
+        });
+      });
+
+    for (let subject of subjectList) {
+      for (let user of userList) {
+        this.firebase
+          .list(`documents/${subject.$key}/${user.$key}`)
+          .snapshotChanges()
+          .subscribe((item) => {
+            item.forEach((element) => {
+              let x = element.payload.toJSON();
+              x['$key'] = element.key;
+              documentList.push(x as Document);
+            });
+          });
+      }
+    }
+
+    this.firestore
+      .collection(subjectList[0].$key)
+      .doc()
+      .ref.get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log('docdata: ', doc.data());
+        } else {
+          console.log('hey, estoy en un mal sitio');
+        }
+      });
+
+    return documentList;
   }
 
-  getDocumentsBySubject() {}
+  getDocumentsBySubject(subjectKey: string) {
+    let userList: User[] = [];
+    let documentList: Document[] = [];
 
-  getDocumentsByStudent() {}
+    this.userService
+      .getAllUsers()
+      .snapshotChanges()
+      .subscribe((item) => {
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          userList.push(x as User);
+        });
+      });
 
-  getDocumentsBySubjectAndStudent() {}
+    for (let user of userList) {
+      this.firebase
+        .list(`documents/${subjectKey}/${user.$key}`)
+        .snapshotChanges()
+        .subscribe((item) => {
+          item.forEach((element) => {
+            let x = element.payload.toJSON();
+            x['$key'] = element.key;
+            documentList.push(x as Document);
+          });
+        });
+    }
+
+    return documentList;
+  }
+
+  getDocumentsByUser(userKey: string) {
+    let subjectList: Subject[] = [];
+    let documentList: Document[] = [];
+
+    this.subjectService
+      .getSubjects()
+      .snapshotChanges()
+      .subscribe((item) => {
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          subjectList.push(x as Subject);
+        });
+      });
+
+    for (let subject of subjectList) {
+      this.firebase
+        .list(`documents/${subject.$key}/${userKey}`)
+        .snapshotChanges()
+        .subscribe((item) => {
+          item.forEach((element) => {
+            let x = element.payload.toJSON();
+            x['$key'] = element.key;
+            documentList.push(x as Document);
+          });
+        });
+    }
+
+    return documentList;
+  }
+
+  getDocumentsBySubjectAndUser(subjectkey: string, userKey: string) {
+    //let documentList: Document[] = [];
+    return this.firebase.list(`documents/${subjectkey}/${userKey}`);
+    // .snapshotChanges()
+    // .subscribe((item) => {
+    //   item.forEach((element) => {
+    //     let x = element.payload.toJSON();
+    //     x['$key'] = element.key;
+    //     documentList.push(x as Document);
+    //   });
+    // });
+
+    //return documentList;
+  }
 
   insertDocument(subjectkey: string, userKey: string, document: Document) {
     let newDocumentKey = this.firebase.database
@@ -34,9 +173,7 @@ export class DocumentService {
     update[
       'documents/' + subjectkey + '/' + userKey + '/' + newDocumentKey
     ] = document;
-    this.firebase.database
-      .ref()
-      .update(update);
+    this.firebase.database.ref().update(update);
   }
 
   updateDocument(document: Document) {
@@ -48,6 +185,12 @@ export class DocumentService {
   }
 
   deleteDocument($key: string) {
-    this.documentList.remove($key);
+    // this.getDocuments().remove($key);
+    // let document = this.getDocuments().find(
+    //   (document) => document.$key === $key
+    // );
+    // this.firebase
+    //   .list(`documents/${document.subjectName}/${document.userName}`)
+    //   .remove($key);
   }
 }

@@ -1,22 +1,30 @@
-<div class="card  mt-5">
+<div class="card mt-1">
     <div class="card-body">
-        <h6 class="text-center">Lista de departamentos</h6>
         <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre del departamento</th>
+                    <th scope="col">Jefe/a de departamento</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
             <tbody>
                 <tr *ngFor="let department of departmentList">
                     <td> {{department.departmentName}} </td>
                     <td> {{department.headDepartmentName}} </td>
-                    
+
                     <td>
-                        <a class="btn btn-secondary text-white" (click)="onEdit(department)">
+                        <a class="btn btn-secondary text-white" *ngIf="!isTeacher" (click)="onEdit(department)">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a class="btn btn-danger text-white" (click)="onDelete(department.$key)">
+                        <a class="btn btn-danger text-white" *ngIf="!isTeacher" (click)="onDelete(department.$key)">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>
             </tbody>
+
         </table>
     </div>
+
 </div>

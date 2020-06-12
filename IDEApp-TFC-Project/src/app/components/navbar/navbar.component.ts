@@ -1,40 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from 'src/app/models/user';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  isCollapsed = true;
 
-  constructor(private authService: AuthService, private auth: AngularFireAuth) { }
-  public isLogged: boolean = false;
-  public isAdmin: any = false;
-  public isTeacher: any = false;
-  public isEditor: any = false;
-  public userUid: string = null;
-
+  isLogged: boolean = false;
+  isAdmin: any = false;
+  isTeacher: any = false;
+  isEditor: any = false;
+  
+  constructor(
+    private authService: AuthService,
+    private auth: AngularFireAuth,
+    private router: Router
+  ) {}
+  
   ngOnInit() {
     this.getCurrentUser();
   }
 
   getCurrentUser() {
-    this.authService.isAuth().subscribe(auth => {
+    this.authService.isAuth().subscribe((auth) => {
       if (auth) {
         console.log('user logged');
-        this.userUid = auth.uid;
-        // console.log('auth: ', auth)
-        // console.log('userUid: ', this.userUid)
-        // this.authService.isUserRole(this.userUid).subscribe(userRole => {
-        //   console.log(userRole)
-        //   console.log(userRole.role)
-        //   let role = Object.assign({}, userRole.role);
-        //   this.isAdmin = role.hasOwnProperty('admin');
-        //   this.isEditor = role.hasOwnProperty('editor');
-        //   this.isTeacher = role.hasOwnProperty('teacher');
-        // })
+        this.authService
+          .getUsers()
+          .snapshotChanges()
+          .subscribe((item) => {
+            item.forEach((element) => {
+              let user = element.payload.toJSON();
+              user['$key'] = element.key;
+              if ((user as User).email === auth.email) {
+                let role = Object.assign({}, (user as User).role);
+                this.isAdmin = role.hasOwnProperty('admin');
+                this.isEditor = role.hasOwnProperty('editor');
+                this.isTeacher = role.hasOwnProperty('teacher');
+                console.log('role: ', role);
+                console.log('isAdmin: ', this.isAdmin);
+                console.log('isEditor: ', this.isEditor);
+                console.log('isTeacher: ', this.isTeacher);
+              }
+            });
+          });
+
         this.isLogged = true;
       } else {
         console.log('NOT user logged');
@@ -45,7 +61,6 @@ export class NavbarComponent implements OnInit {
 
   onLogout() {
     this.auth.signOut();
+    this.router.navigate(['/']);
   }
-
-
 }

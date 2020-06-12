@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(
     private auth: AngularFireAuth,
-    private firebase: AngularFireDatabase
+    private firebase: AngularFireDatabase,
   ) {}
 
   getUsers() {
@@ -28,6 +28,7 @@ export class AuthService {
           reject(err);
         });
     });
+    
   }
 
   logoutUser() {
@@ -37,4 +38,5 @@ export class AuthService {
   isAuth() {
     return this.auth.authState.pipe(map((auth) => auth));
   }
+
 }

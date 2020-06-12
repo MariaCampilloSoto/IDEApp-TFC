@@ -13,8 +13,8 @@ export class User {
   surname2?: string;
   email: string;
   password: string;
-  contact1: Contacto;
-  contact2: Contacto;
+  contact1?: Contacto;
+  contact2?: Contacto;
   dni?: string;
   phone?: string;
   address?: string;

@@ -1,20 +1,28 @@
-<div class="card mt-5">
+<div class="card mt-1">
   <div class="card-body">
-    <h6 class="text-center">Lista de Asignaturas</h6>
-    <table class=".table table-sm table-hover">
-
+    <!-- <h6 class="text-center">Lista de Asignaturas</h6> -->
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Profesor</th>
+          <th scope="col">Curso</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
       <tbody>
           <tr *ngFor="let subject of subjectList">
-              <td>{{subject.subjectName}}</td>
-              <td>{{subject.teacherName}}</td>
-              <td>{{subject.schoolYear}}</td>
+              <td scope="row">{{subject.subjectName}}</td>
+              <td scope="row">{{subject.teacherName}}</td>
+              <td scope="row">{{subject.schoolYear}}</td>
               <td>
-                  <a class="btn btn-secondary text-white" (click)="onEdit(subject)">
+                  <button class="btn btn-secondary text-white" *ngIf="!isTeacher" (click)="onEdit(subject)">
                       <i class="far fa-edit"></i>
-                  </a>
-                  <a class="btn btn-danger text-white"(click)="onDelete(subject.$key)">
+                  </button>
+                  <button class="btn btn-danger text-white" *ngIf="!isTeacher" (click)="onDelete(subject.$key)">
                     <i class="far fa-trash-alt"></i>
-                </a>
+                </button>
+               
               </td>
           </tr>
       </tbody>

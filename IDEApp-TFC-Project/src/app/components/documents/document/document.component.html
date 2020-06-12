@@ -1,4 +1,4 @@
-<div class="card mt-5">
+<div class="card">
     <div class="card-body">
 
         <form #documentForm="ngForm" (ngSubmit)="onSubmit(documentForm)">
@@ -8,13 +8,12 @@
 
             <div class="form-group">
                 <!-- id="documentName" name="documentName" #documentName="ngModel" -->
-                <input type="text" class="form-control" name="documentName"
-                    [(ngModel)]="documentName" placeholder="Nombre del documento">
+                <input type="text" class="form-control" name="documentName" [(ngModel)]="documentName"
+                    placeholder="Nombre del documento">
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="userName" [(ngModel)]="fullNameUser"
-                    readonly>
+                <input type="text" class="form-control" name="userName" [(ngModel)]="fullNameUser" readonly>
             </div>
 
             <div class="form-group">
@@ -22,11 +21,12 @@
                     <option *ngFor="let subject of subjectList" value="{{subject.$key}}">{{subject.subjectName}}
                     </option>
                 </select>
-            </div> 
+            </div>
 
             <div class="form-group">
-                <h6>Seleccionar documento: </h6>
-                <input type="file" accept=".pdf, .odt, .docx, .doc" (change)="onUpload($event)">
+                <h6>Seleccionar archivo: </h6>
+                <p>Puede ser PDF o documento de texto</p>
+                <input type="file" class="form-control-file" accept=".pdf, .odt, .docx, .doc" (change)="onUpload($event)">
             </div>
             <div class="progress mb-4">
                 <div class="progress-bar progress-bar-striped bg-success" role="progressbar"

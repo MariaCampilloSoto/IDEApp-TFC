@@ -17,7 +17,6 @@ const routes: Routes = [
   {path: 'subjects', component: SubjectsComponentMain},
   {path: 'departments', component: DepartmentsComponent}, // User profesores
   {path: 'documents', component: DocumentsComponent},
-  //{path: 'book/:id', component: deteilsbookComponent } anotacion para mas adelante porque puede ser util
   {path: 'user/login', component: LoginComponent},
   {path: 'user/register', component: RegisterComponent}, // Usuarios admin
   {path: 'user/profile', component: ProfileComponent},

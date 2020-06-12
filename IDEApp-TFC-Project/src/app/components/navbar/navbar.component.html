@@ -1,17 +1,18 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light mb-5">
+
   <a class="navbar-brand" routerLink="/"><img width="100rem" src="../assets/logo-IDEAPP.png" alt="logo"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
-    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+
+  <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="mainNavbar" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="mainNavbar">
+  <div class="collapse navbar-collapse" id="mainNavbar" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" *ngIf="isLogged">
         <a class="nav-link" routerLink="/subjects">Asignaturas
         </a>
       </li>
-      <li class="nav-item" *ngIf="isLogged">
+      <li class="nav-item" *ngIf="isLogged && (isAdmin || isEditor || isTeacher)">
         <a class="nav-link" routerLink="/departments">Departamentos
         </a>
       </li>
@@ -25,15 +26,11 @@
         <a class="nav-link" routerLink="/user/profile">Pefil</a>
       </li>
       <li class="nav-item" *ngIf="!isLogged">
-        <a class="nav-link" routerLink="/user/register">Registro
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="!isLogged">
         <a class="nav-link" routerLink="/user/login">Login
         </a>
       </li>
       <li class="nav-item" *ngIf="isLogged">
-        <a href="#" class="nav-link" (click)="onLogout()">Cerrar sesión
+        <a class="nav-link" (click)="onLogout()">Cerrar sesión
         </a>
       </li>
     </ul>

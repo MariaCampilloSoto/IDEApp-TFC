@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/services/department.service';
 import { Department } from 'src/app/models/department';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-department-list',
@@ -16,12 +18,17 @@ export class DepartmentListComponent implements OnInit {
   departmentService: DepartmentService;
   private toastr: ToastrService;
 
-  constructor(departmentService: DepartmentService, toastr: ToastrService) {
+  isAdmin: any = false;
+  isTeacher: any = false;
+  isEditor: any = false;
+
+  constructor(departmentService: DepartmentService, toastr: ToastrService, private authService: AuthService) {
     this.departmentService = departmentService;
     this.toastr = toastr;
   }
 
   ngOnInit() {
+    this.getCurrentUser();
     this.departmentService
       .getDepartments()
       .snapshotChanges()
@@ -44,5 +51,35 @@ export class DepartmentListComponent implements OnInit {
       this.departmentService.deleteDepartment($key);
       this.toastr.success('succesfull Operation', 'Departamento eliminado');
     }
+  }
+
+
+  getCurrentUser() {
+    this.authService.isAuth().subscribe((auth) => {
+      if (auth) {
+        this.authService
+          .getUsers()
+          .snapshotChanges()
+          .subscribe((item) => {
+            item.forEach((element) => {
+              let user = element.payload.toJSON();
+              user['$key'] = element.key;
+              if ((user as User).email === auth.email) {
+                let role = Object.assign({}, (user as User).role);
+                this.isAdmin = role.hasOwnProperty('admin');
+                this.isEditor = role.hasOwnProperty('editor');
+                this.isTeacher = role.hasOwnProperty('teacher');
+                
+                console.log('role: ', role);
+                console.log('isAdmin: ', this.isAdmin);
+                console.log('isEditor: ', this.isEditor);
+                console.log('isTeacher: ', this.isTeacher);
+              }
+            });
+          });
+      } else {
+        console.log('NOT user logged --> problem');
+      }
+    });
   }
 }

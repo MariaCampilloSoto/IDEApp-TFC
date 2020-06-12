@@ -98,7 +98,7 @@ export class DocumentComponent implements OnInit {
     let document = {
       documentName: this.documentName,
       subjectName: this.subjectOption,
-      userName: this.fullNameUser
+      userName: this.userKey //this.fullNameUser
     }
     this.documentService.insertDocument(this.subjectOption, this.userKey, document)
 
