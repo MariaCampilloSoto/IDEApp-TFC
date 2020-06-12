@@ -15,7 +15,7 @@ export class SubjectService {
   //almacena temporalmente el dato seleccionado
   //Al iniciar el servicio esta en blanco
   selectedSubject: Subject;
-
+  // Servicio necesario para instertar las asignaturas en sign-up
   subjectStudentService: SubjectStudentService;
 
   constructor(
@@ -26,10 +26,11 @@ export class SubjectService {
     this.subjectStudentService = subjectStudentService;
   }
 
-  //obtiene el listado de asignaturas
+  // Retorna un listado de asignaturas
   getSubjects() {
-    //obtengo de firebase la lista con todas las asignaturas
+    // Obtengo de firebase la lista con todas las asignaturas
     this.subjectList = this.firebase.list('subjects');
+    // Y las inserto en la coleccion de Firebase 'sign-up'
     this.subjectStudentService.getSubjects();
     this.subjectList.snapshotChanges().subscribe((item) => {
       item.forEach((element) => {
@@ -37,9 +38,9 @@ export class SubjectService {
       });
     });
     return this.subjectList;
-    //soy boba y no pongo el return y me pregunto porque no me va
   }
-  //crea una nueva asignatura
+
+  //Inserta una nueva asignatura
   insertSubject(subject: Subject) {
     let subjectKey = this.subjectList.push({}).key;
     this.subjectList.update(subjectKey, {

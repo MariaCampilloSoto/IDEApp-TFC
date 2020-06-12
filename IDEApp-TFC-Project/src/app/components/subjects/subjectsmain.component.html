@@ -1,23 +1,36 @@
-<div class="jumbotron jumbotron-fluid mt-5 px-0" style="background-image: url(../../../assets/subjectImage.png); background-position: center top;">
+<!-- Jumbotron, imagen de inicion -->
+<div class="jumbotron jumbotron-fluid mt-5 px-0"
+  style="background-image: url(../../../assets/subjectImage.png); background-position: center top;">
   <div class="container text-light">
     <h1>Asignaturas</h1>
     <p>Aquí encontrarás todas las asignaturas disponibles.</p>
     <p></p>
   </div>
 </div>
+<!-- Jumbotron -->
 
+<!-- Cuerpo de la página -->
 <div class="container mt-2">
+
+  <!-- Formulario de las asignaturas -->
   <div class="row text-center justify-content-center" *ngIf="isAdmin || isEditor">
     <div class="col-md-6">
       <h3>Añadir asignaturas</h3>
+      <!-- Componente -->
       <app-subject-comp></app-subject-comp>
     </div>
   </div>
+  <!-- Formulario -->
+
+  <!-- Lista de las asingatuas -->
   <div class="container mt-5"></div>
   <div class="row text-center justify-content-center mt-auto">
     <div class="col">
       <h3>Listado de asignaturas</h3>
+      <!-- Componente -->
       <app-subject-list></app-subject-list>
     </div>
   </div>
+  <!-- Lista -->
+
 </div>

@@ -18,7 +18,7 @@ import { User } from 'src/app/models/user';
 })
 export class SubjectListComponent implements OnInit {
   subjectList: Subject[];
-  subjectService: SubjectService;
+  subjectService: SubjectService; // Declaracion del servicio
 
   private toastr: ToastrService;
 
@@ -36,8 +36,11 @@ export class SubjectListComponent implements OnInit {
     this.toastr = toastr;
   }
 
+  // Método llamado cuando se inicia el componente
   ngOnInit() {
+    // Llama al metodo para obtener el role del usuario
     this.getCurrentUser();
+    // Obtener la lista de asignaturas
     this.subjectService
       .getSubjects()
       .snapshotChanges()
@@ -46,17 +49,20 @@ export class SubjectListComponent implements OnInit {
         item.forEach((element) => {
           let x = element.payload.toJSON();
           x['$key'] = element.key;
+          // Añadirlas al array, interpolacion -> Data binding con HTML
           this.subjectList.push(x as Subject);
         });
       });
   }
 
+  // Editar una asignatura dada
   onEdit(subjet: Subject) {
     //assign para no crear un doble enlace de datos
     this.subjectService.selectedSubject = Object.assign({}, subjet);
     //se crea una copia del producto
   }
 
+  // Eliminar una asignatura en concreo
   onDelete($key: string) {
     if (confirm('¿Seguro que desea eliminar la asignatura?')) {
       this.subjectService.deleteSubject($key);
@@ -68,6 +74,7 @@ export class SubjectListComponent implements OnInit {
     }
   }
 
+  // Obtener el usuario actual y comprobar su role
   getCurrentUser() {
     this.authService.isAuth().subscribe((auth) => {
       if (auth) {
