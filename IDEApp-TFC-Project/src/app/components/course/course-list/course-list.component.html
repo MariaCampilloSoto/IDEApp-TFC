@@ -1,7 +1,14 @@
-<div class="card  mt-5">
+<div class="card mt-1">
     <div class="card-body">
-        <h6 class="text-center">Lista de cursos</h6>
         <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nº</th>
+                    <th scope="col">Curso</th>
+                    <th scope="col">Año</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
             <tbody>
                 <tr *ngFor="let course of courseList">
                     <td> {{course.course}} </td>
@@ -9,15 +16,18 @@
                     <td> {{course.year}} </td>
                     
                     <td>
-                        <a class="btn btn-secondary text-white" (click)="onEdit(course)">
+                        <a class="btn btn-secondary text-white mr-1 px-3" (click)="onEdit(course)">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a class="btn btn-danger text-white" (click)="onDelete(course.$key)">
+                        <a class="btn btn-danger text-white px-3" (click)="onDelete(course.$key)">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>
             </tbody>
+
         </table>
     </div>
+
 </div>
+

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mt-1">
     <div class="card-body">
 
         <form #documentForm="ngForm" (ngSubmit)="onSubmit(documentForm)">
@@ -41,13 +41,13 @@
                     <i class="fas fa-plus-circle"></i> Subir documento
                 </button>
                 <ng-template #btnDisabled>
-                    <button class="btn btn-secondary" type="submit" disabled=true>
+                    <button class="btn btn-secondary mr-3 px-4" type="submit" disabled=true>
                         <i class="fas fa-plus-circle"></i> Subir documento
                     </button>
 
                 </ng-template>
                 <!-- vacia los formularios-->
-                <button class="btn btn-secondary" type="reset" (click)="resetForm(documentForm)">
+                <button class="btn btn-secondary px-4" type="reset" (click)="resetForm(documentForm)">
                     <i class="fas fa-sync-alt"></i> Vaciar formulario
                 </button>
             </div>

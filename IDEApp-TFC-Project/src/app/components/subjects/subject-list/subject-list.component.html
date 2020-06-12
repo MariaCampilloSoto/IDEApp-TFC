@@ -16,10 +16,10 @@
               <td scope="row">{{subject.teacherName}}</td>
               <td scope="row">{{subject.schoolYear}}</td>
               <td>
-                  <button class="btn btn-secondary text-white" *ngIf="isAdmin || isEditor" (click)="onEdit(subject)">
+                  <button class="btn btn-secondary text-white mx-1 px-3" *ngIf="isAdmin || isEditor" (click)="onEdit(subject)">
                       <i class="far fa-edit"></i>
                   </button>
-                  <button class="btn btn-danger text-white" *ngIf="isAdmin || isEditor" (click)="onDelete(subject.$key)">
+                  <button class="btn btn-danger text-white mx-1 px-3" *ngIf="isAdmin || isEditor" (click)="onDelete(subject.$key)">
                     <i class="far fa-trash-alt"></i>
                 </button>
                

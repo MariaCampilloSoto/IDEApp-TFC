@@ -14,11 +14,11 @@ export class SubjectStudentService {
   }
 
   getSubjects() {
-    return (this.subjectsList = this.firebase.list('sing-up'));
+    return (this.subjectsList = this.firebase.list('sign-up'));
   }
 
   getStudentsBySubject(subject: Subject) {
-    return this.firebase.list(`sing-up/${subject.$key}`);
+    return this.firebase.list(`sign-up/${subject.$key}`);
   }
 
   insertSubject(subjectKey: string) {

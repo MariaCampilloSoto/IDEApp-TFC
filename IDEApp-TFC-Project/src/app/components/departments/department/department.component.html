@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mt-1">
     <div class="card-body">
         <form #departmentForm="ngForm" (ngSubmit)='onSubmit(departmentForm)'>
 
@@ -24,11 +24,11 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-plus-circle"> Add department</i>
+                <button class="btn btn-primary mr-3 px-4" type="submit">
+                    <i class="fas fa-plus-circle"> Añadir departamento</i>
                 </button>
-                <button class="btn btn-secondary" type="reset" (click)="resetForm(departmentForm)">
-                    <i class="fas fa-sync-alt"> Reset </i>
+                <button class="btn btn-secondary px-4" type="reset" (click)="resetForm(departmentForm)">
+                    <i class="fas fa-sync-alt"> Vaciar formulario </i>
                 </button>
             </div>
         </form>

@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { SubjectService } from 'src/app/services/subject.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { element } from 'protractor';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-document-list',
@@ -36,8 +36,12 @@ export class DocumentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.documentList = this.getDocuments();
+    this.getMarker().then(res=> console.log(res))
   }
+      async getMarker() {
+        const snapshot = await this.firestore.collection('uploads').get()
+        return snapshot.pipe(map(doc => doc));
+    }
 
   onDelete($key) {
     if (confirm('Are you sure you want to delete it?')) {
@@ -49,7 +53,6 @@ export class DocumentListComponent implements OnInit {
   getDocuments() {
     let subjectList: Subject[] = [];
     let userList: User[] = [];
-    let documentList: Document[] = [];
 
     this.subjectService
       .getSubjects()
@@ -82,16 +85,12 @@ export class DocumentListComponent implements OnInit {
             item.forEach((element) => {
               let x = element.payload.toJSON();
               x['$key'] = element.key;
-              documentList.push(x as Document);
+              this.documentList.push(x as Document);
             });
           });
       }
     }
-    
 
-           
-
-      
-    return documentList;
+    console.log(this.documentList);
   }
 }

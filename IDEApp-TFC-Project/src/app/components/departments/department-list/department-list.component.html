@@ -14,10 +14,10 @@
                     <td> {{department.headDepartmentName}} </td>
 
                     <td>
-                        <a class="btn btn-secondary text-white" *ngIf="!isTeacher" (click)="onEdit(department)">
+                        <a class="btn btn-secondary text-white mr-1 px-3" *ngIf="!isTeacher" (click)="onEdit(department)">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a class="btn btn-danger text-white" *ngIf="!isTeacher" (click)="onDelete(department.$key)">
+                        <a class="btn btn-danger text-white mr-1 px-3" *ngIf="!isTeacher" (click)="onDelete(department.$key)">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>

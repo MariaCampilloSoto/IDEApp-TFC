@@ -10,11 +10,11 @@
             <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="userService.selectedUser.$key">
 
             <div class="form-group">
-              <input type="text" name="name" class="form-control" placeholder="Nombre"
+              <input type="text" name="name" class="form-control my-1" placeholder="Nombre"
                 [(ngModel)]="userService.selectedUser.name" required>
-              <input type="text" name="surname1" class="form-control" placeholder="Primer apellido"
+              <input type="text" name="surname1" class="form-control my-1" placeholder="Primer apellido"
                 [(ngModel)]="userService.selectedUser.surname1" required>
-              <input type="text" name="surname2" class="form-control" placeholder="Segundo apellido"
+              <input type="text" name="surname2" class="form-control my-1" placeholder="Segundo apellido"
                 [(ngModel)]="userService.selectedUser.surname2">
             </div>
 
@@ -28,7 +28,6 @@
             </div>
 
             <div class="form-group">
-              <h6>Cuidado con esos</h6>
               <div class="form-check-inline">
                 <input class="form-check-input" type="radio" name="role" id="admin" value="admin"
                   (change)="showContent($event)">
@@ -42,7 +41,7 @@
                   (change)="showContent($event)">
                 <label class="form-check-label" for="editor">
                   Editor
-                </label>s
+                </label>
               </div>
               <br>
               <br>
@@ -68,32 +67,32 @@
               <div class="row">
                 <div class="col-sm">
                   <div class="form-group">
-                    <input type="text" name="contact1.tutor" class="form-control"
+                    <input type="text" name="contact1.tutor" class="form-control my-1"
                       placeholder="Nombre y apellidos del tutor 1" [(ngModel)]="userService.contact1.tutor" required>
 
-                    <input type="text" name="contact1.address" class="form-control" placeholder="Dirección del tutor 1"
+                    <input type="text" name="contact1.address" class="form-control my-1" placeholder="Dirección del tutor 1"
                       [(ngModel)]="userService.contact1.address" required>
 
-                    <input type="tel" name="contact1.phone" class="form-control" placeholder="Teléfono del tutor 1"
+                    <input type="tel" name="contact1.phone" class="form-control my-1" placeholder="Teléfono del tutor 1"
                       [(ngModel)]="userService.contact1.phone" required>
 
-                    <input type="email" name="contact1.email" class="form-control" placeholder="Email del tutor 1"
+                    <input type="email" name="contact1.email" class="form-control my-1" placeholder="Email del tutor 1"
                       [(ngModel)]="userService.contact1.email" required>
                   </div>
                 </div>
 
                 <div class="col-sm">
                   <div class="form-group">
-                    <input type="text" name="contact2.tutor" class="form-control"
+                    <input type="text" name="contact2.tutor" class="form-control my-1"
                       placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="userService.contact2.tutor">
 
-                    <input type="text" name="contact2.address" class="form-control" placeholder="Dirección del tutor 2"
+                    <input type="text" name="contact2.address" class="form-control my-1" placeholder="Dirección del tutor 2"
                       [(ngModel)]="userService.contact2.address">
 
-                    <input type="tel" name="contact2.phone" class="form-control" placeholder="Teléfono del tutor 2"
+                    <input type="tel" name="contact2.phone" class="form-control my-1" placeholder="Teléfono del tutor 2"
                       [(ngModel)]="userService.contact2.phone">
 
-                    <input type="email" name="contact2.email" class="form-control" placeholder="Email del tutor 2"
+                    <input type="email" name="contact2.email" class="form-control my-1" placeholder="Email del tutor 2"
                       [(ngModel)]="userService.contact2.email">
                   </div>
                 </div>
@@ -102,13 +101,13 @@
               <div class="row">
                 <div class="col-sm">
                   <div class="form-group">
-                    <input type="text" name="course" class="form-control" placeholder="Curso: 1, 2, 3... SIN º Ó ª"
+                    <input type="text" name="course" class="form-control my-1" placeholder="Curso: 1, 2, 3... SIN º Ó ª"
                       [(ngModel)]="course.course" required>
 
-                    <input type="text" name="level" class="form-control"
+                    <input type="text" name="level" class="form-control my-1"
                       placeholder="Nivel del curso: ESO, BTO, FPB ..." [(ngModel)]="course.level" required>
 
-                    <input type="text" name="year" class="form-control" placeholder="Año: 2020/2021"
+                    <input type="text" name="year" class="form-control my-1" placeholder="Año: 2020/2021"
                       [(ngModel)]="course.year" required>
                   </div>
                 </div>
@@ -119,7 +118,7 @@
                     <div class="container" style="overflow-y: scroll; max-height: 10em;">
                       <div class="container" *ngFor="let subject of subjectList">
                         <label for="{{subject.$key}}"><input class="mr-2" type="checkbox" name="{{subject.subjectName}}"
-                            id="{{subject.$key}}" (change)="subjectSignUp($event)">{{subject.subjectName}}</label>
+                            id="{{subject.$key}}" (change)="subjectSignUp($event)">{{subject.subjectName}} {{subject.schoolYear}}</label>
                       </div>
                     </div>
 
@@ -136,16 +135,16 @@
               <div class="row">
                 <div class="col-sm">
 
-                  <input type="text" name="dni" class="form-control" placeholder="DNI del profesor"
+                  <input type="text" name="dni" class="form-control  my-1" placeholder="DNI del profesor"
                     [(ngModel)]="userService.selectedUser.dni" required>
 
-                  <input type="text" name="address" class="form-control" placeholder="Dirección del profesor"
+                  <input type="text" name="address" class="form-control my-1" placeholder="Dirección del profesor"
                     [(ngModel)]="userService.selectedUser.address" required>
 
-                  <input type="tel" name="phone" class="form-control" placeholder="Teléfono del profesor"
+                  <input type="tel" name="phone" class="form-control my-1" placeholder="Teléfono del profesor"
                     [(ngModel)]="userService.selectedUser.phone" required>
 
-                  <input type="text" name="departmentName" class="form-control"
+                  <input type="text" name="departmentName" class="form-control my-1"
                     placeholder="Nombre del departamento al que pertenece"
                     [(ngModel)]="userService.department.departmentName" required>
                 </div>
@@ -161,13 +160,13 @@
 
                   <div class="container" id="teacherTutorForm" style="display: none;">
 
-                    <input type="text" name="course" class="form-control" placeholder="Curso: 1, 2, 3... SIN º Ó ª"
+                    <input type="text" name="course" class="form-control my-1" placeholder="Curso: 1, 2, 3... SIN º Ó ª"
                       [(ngModel)]="course.course" required>
 
-                    <input type="text" name="level" class="form-control"
+                    <input type="text" name="level" class="form-control my-1"
                       placeholder="Nivel del curso: ESO, BTO, FPB ..." [(ngModel)]="course.level" required>
 
-                    <input type="text" name="year" class="form-control" placeholder="Año: 2020/2021"
+                    <input type="text" name="year" class="form-control my-1" placeholder="Año: 2020/2021"
                       [(ngModel)]="course.year" required>
 
                   </div>

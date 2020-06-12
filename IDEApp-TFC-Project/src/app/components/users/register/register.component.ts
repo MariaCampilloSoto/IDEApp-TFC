@@ -92,8 +92,10 @@ export class RegisterComponent implements OnInit {
       document.getElementById('studentForm').style.display = 'none';
       document.getElementById('teacherForm').style.display = 'none';
       if (value === 'admin') {
+        alert('Vas a crear un nuevo administrador')
         this.role.admin = true;
       } else {
+        alert('Vas a crear un nuevo editor')
         this.role.editor = true;
       }
     }
@@ -112,18 +114,6 @@ export class RegisterComponent implements OnInit {
     console.log(event);
     let isChecked = event.target.checked;
     let id = event.target.id;
-    // if (id === 'automatricula') {
-    //   this.subjectList.forEach((subject) => {
-    //     if (isChecked) {
-    //       this.subjectSignUpList.push(subject.$key);
-    //     } else {
-    //       console.log('whyyyy');
-    //       this.subjectSignUpList = this.subjectSignUpList.filter(
-    //         (subjectId) => subjectId !== id
-    //       );
-    //     }
-    //   });
-    // } else if (id !== 'automatricula') {
     this.subjectList.forEach((subject) => {
       if (subject.$key === id) {
         if (isChecked) {

@@ -1,8 +1,14 @@
-<div class="container mt-5">
-  <br>
-  <br>
+<div class="jumbotron jumbotron-fluid mt-5 px-0" style="background-image: url(../../../assets/subjectImage.png); background-position: center top;">
+  <div class="container text-light">
+    <h1>Asignaturas</h1>
+    <p>Aquí encontrarás todas las asignaturas disponibles.</p>
+    <p></p>
+  </div>
+</div>
+
+<div class="container mt-2">
   <div class="row text-center justify-content-center" *ngIf="isAdmin || isEditor">
-    <div class="col-md-5">
+    <div class="col-md-6">
       <h3>Añadir asignaturas</h3>
       <app-subject-comp></app-subject-comp>
     </div>
