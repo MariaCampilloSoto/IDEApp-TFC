@@ -38,9 +38,9 @@ export class CourseListComponent implements OnInit {
   }
 
   onDelete($key){
-    if (confirm('Are you sure you want to delete it?')) {
+    if (confirm('¿Seguro que desea eliminar el curso?')) {
       this.courseService.deleteCourse($key);
-      this.toastr.success('succesfull Operation', 'Curso eliminado');
+      this.toastr.success('Eliminación completada', 'Has eliminado el curso.');
     }
   }
 }

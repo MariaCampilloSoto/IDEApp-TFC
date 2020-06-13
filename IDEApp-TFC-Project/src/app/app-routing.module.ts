@@ -10,18 +10,19 @@ import { Page404Component } from './components/page404/page404.component';
 import { DocumentsComponent } from './components/documents/documents.component';
 import { CourseComponent } from './components/course/course/course.component';
 import { EvaluationComponent } from './components/course/evaluation/evaluation.component';
+import { AuthGuard } from './guards/auth.guard'
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'subjects', component: SubjectsComponentMain},
-  {path: 'departments', component: DepartmentsComponent}, // User profesores
-  {path: 'documents', component: DocumentsComponent},
+  {path: 'subjects', component: SubjectsComponentMain, canActivate: [AuthGuard]},
+  {path: 'departments', component: DepartmentsComponent, canActivate: [AuthGuard]}, // User profesores
+  {path: 'documents', component: DocumentsComponent, canActivate: [AuthGuard]},
   {path: 'user/login', component: LoginComponent},
-  {path: 'user/register', component: RegisterComponent}, // Usuarios admin
-  {path: 'user/profile', component: ProfileComponent},
-  {path: 'course/register', component: CourseComponent},
-  {path: 'evaluation', component: EvaluationComponent},
+  {path: 'user/register', component: RegisterComponent, canActivate: [AuthGuard]}, // Usuarios admin
+  {path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'course/register', component: CourseComponent, canActivate: [AuthGuard]},
+  {path: 'evaluation', component: EvaluationComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component}
 
 ];

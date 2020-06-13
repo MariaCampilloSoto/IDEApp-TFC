@@ -1,15 +1,25 @@
 <div class="card  mt-1">
     <div class="card-body">
         <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre del documento</th>
+                    <th scope="col">Nombre de la asignatura</th>
+                    <th scope="col">Nombre del propietario/a</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
             <tbody>
                 <tr *ngFor="let document of documentList">
                     <td> {{document.documentName}} </td>
+                    <td> {{document.subjectName}} </td>
+                    <td> {{document.userName}} </td>
                     
                     <td>
                         <!-- <a class="btn btn-secondary text-white" (click)="onEdit(document)">
                             <i class="fas fa-edit"></i>
                         </a> -->
-                        <a class="btn btn-danger text-white px-4" (click)="onDelete(document.$key)">
+                        <a class="btn btn-danger text-white px-4" *ngIf="isAdmin || isEditor || isTeacher || ( !isAdmin && !isEditor && !isTeacher && userKey === document.userName)" (click)="onDelete(document)">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>

@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Subject } from 'src/app/models/subject';
 import { User } from 'src/app/models/user';
 import { DocumentService } from 'src/app/services/document.service';
+import { Document } from 'src/app/models/document';
 
 @Component({
   selector: 'app-document',
@@ -27,13 +28,11 @@ export class DocumentComponent implements OnInit {
   authService: AuthService;
   documentService: DocumentService;
 
-  documentName: string = '';
+  // this.subjectOption era util para poner en vacio lo de la asignatura
 
   subjectList: Subject[];
   currentUser: User;
-  fullNameUser: string = '';
-  userKey: string;
-  subjectOption: string = '';
+  document: Document;
 
   uploadPercent: Observable<number>;
   urlFile: Observable<string>;
@@ -50,9 +49,9 @@ export class DocumentComponent implements OnInit {
     this.authService = authService;
     this.documentService = documentService;
 
-
     this.subjectList = [];
     this.currentUser = new User();
+    this.document = new Document();
   }
 
   ngOnInit(): void {
@@ -86,8 +85,7 @@ export class DocumentComponent implements OnInit {
             user['$key'] = element.key;
             if ((user as User).email === auth.email) {
               this.currentUser = Object.assign({}, user as User);
-              this.fullNameUser = `${this.currentUser.name} ${this.currentUser.surname1} ${this.currentUser.surname2}`;
-              this.userKey = this.currentUser.$key;
+              this.document.userName = `${this.currentUser.name} ${this.currentUser.surname1} ${this.currentUser.surname2}`;
             }
           });
         });
@@ -95,20 +93,15 @@ export class DocumentComponent implements OnInit {
   }
 
   onSubmit(documentForm: NgForm) {
-    let document = {
-      documentName: this.documentName,
-      subjectName: this.subjectOption,
-      userName: this.userKey //this.fullNameUser
-    }
-    this.documentService.insertDocument(this.subjectOption, this.userKey, document)
+    this.document.url = `${this.document.subjectName}/${this.currentUser.$key}`;
+    this.documentService.insertDocument(this.document);
 
     this.resetForm(documentForm);
-    console.log(this.currentUser);
   }
 
   onUpload(event) {
     const file = event.target.files[0];
-    const filePath = `${this.subjectOption}/${this.documentName}`;
+    const filePath = `${this.document.subjectName}/${this.currentUser.$key}/${this.document.documentName}`;
     const ref = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
     this.uploadPercent = task.percentageChanges();
@@ -119,9 +112,7 @@ export class DocumentComponent implements OnInit {
   }
 
   resetForm(subjectForm?: NgForm) {
-    console.log(this.currentUser);
-    this.documentName='';
-    this.subjectOption='';
     this.getCurrentUser();
+    this.document = new Document();
   }
 }

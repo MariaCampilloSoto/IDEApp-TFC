@@ -3,21 +3,21 @@
 
         <form #documentForm="ngForm" (ngSubmit)="onSubmit(documentForm)">
             <!-- Input oculto sirve para reutilizar el formulario y usarlo para altas y modificaciones -->
-            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="userKey">
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="this.currentUser.$key">
             <!-- si seleccionamos editar un objeto rellenara el campo con la key y no se creara un objeto nuevo-->
 
             <div class="form-group">
                 <!-- id="documentName" name="documentName" #documentName="ngModel" -->
-                <input type="text" class="form-control" name="documentName" [(ngModel)]="documentName"
-                    placeholder="Nombre del documento">
+                <input type="text" class="form-control" name="documentName" [(ngModel)]="document.documentName"
+                    placeholder="Nombre del documento" required>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="userName" [(ngModel)]="fullNameUser" readonly>
+                <input type="text" class="form-control" name="userName" [(ngModel)]="document.userName" readonly>
             </div>
 
             <div class="form-group">
-                <select class="form-control" [(ngModel)]="subjectOption" name="selectionSubject">
+                <select class="form-control" [(ngModel)]="document.subjectName" name="selectionSubject">
                     <option *ngFor="let subject of subjectList" value="{{subject.$key}}">{{subject.subjectName}}
                     </option>
                 </select>
@@ -37,7 +37,7 @@
             <input type="hidden" [value]="urlFile | async" #fileUser>
 
             <div class="form-group">
-                <button *ngIf="urlFile | async; else btnDisabled" class="btn btn-primary" type="submit">
+                <button *ngIf="urlFile | async; else btnDisabled" class="btn btn-primary mr-3 px-4" type="submit">
                     <i class="fas fa-plus-circle"></i> Subir documento
                 </button>
                 <ng-template #btnDisabled>

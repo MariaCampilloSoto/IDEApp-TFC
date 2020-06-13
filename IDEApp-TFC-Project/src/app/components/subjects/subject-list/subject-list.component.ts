@@ -66,11 +66,7 @@ export class SubjectListComponent implements OnInit {
   onDelete($key: string) {
     if (confirm('¿Seguro que desea eliminar la asignatura?')) {
       this.subjectService.deleteSubject($key);
-      //no sale el toastr, me odia
-      this.toastr.success(
-        'Successfull Operation',
-        'Asignatura borrada con exito'
-      );
+      this.toastr.success('Eliminación completada', 'Has eliminado la asignatura.');
     }
   }
 

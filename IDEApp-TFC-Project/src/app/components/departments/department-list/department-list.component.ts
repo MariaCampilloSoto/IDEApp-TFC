@@ -47,9 +47,9 @@ export class DepartmentListComponent implements OnInit {
   }
 
   onDelete($key) {
-    if (confirm('Are you sure you want to delete it?')) {
+    if (confirm('¿Seguro que desea eliminar el departamento?')) {
       this.departmentService.deleteDepartment($key);
-      this.toastr.success('succesfull Operation', 'Departamento eliminado');
+      this.toastr.success('Eliminación completada', 'Has eliminado el departamento.');
     }
   }
 

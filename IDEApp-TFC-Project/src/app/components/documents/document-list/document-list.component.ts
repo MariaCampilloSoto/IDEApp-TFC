@@ -3,11 +3,12 @@ import { DocumentService } from 'src/app/services/document.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'src/app/models/subject';
 import { User } from 'src/app/models/user';
+import { Document } from 'src/app/models/document';
 import { UserService } from 'src/app/services/user.service';
 import { SubjectService } from 'src/app/services/subject.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-document-list',
@@ -15,82 +16,99 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./document-list.component.css'],
 })
 export class DocumentListComponent implements OnInit {
-  documentList;
+  isAdmin: any = false;
+  isTeacher: any = false;
+  isEditor: any = false;
+  isStudentOwner: any = false; //Cambiarlo
+
   documentService: DocumentService;
   userService: UserService;
   subjectService: SubjectService;
-  private toastr: ToastrService;
+
+  documentList: Document[] = [];
+  subjectList: Subject[] = [];
+  userList: User[] = [];
+
+  userKey: string;
+
 
   constructor(
     documentService: DocumentService,
     userService: UserService,
     subjectService: SubjectService,
-    toastr: ToastrService,
+    private toastr: ToastrService,
+    private authService: AuthService,
     private firebase: AngularFireDatabase,
     private firestore: AngularFirestore
   ) {
     this.documentService = documentService;
     this.userService = userService;
     this.subjectService = subjectService;
-    this.toastr = toastr;
   }
 
   ngOnInit(): void {
-    this.getMarker().then(res=> console.log(res))
-  }
-      async getMarker() {
-        const snapshot = await this.firestore.collection('uploads').get()
-        return snapshot.pipe(map(doc => doc));
-    }
+    this.getCurrentUser();
 
-  onDelete($key) {
-    if (confirm('Are you sure you want to delete it?')) {
-      this.documentService.deleteDocument($key);
-      this.toastr.success('succesfull Operation', 'Departamento eliminado');
-    }
-  }
+    this.subjectService.getSubjects()
+    .snapshotChanges()
+    .subscribe((item) => {
+      this.subjectList = [];
+      item.forEach((element) => {
+        let x = element.payload.toJSON();
+        x['$key'] = element.key;
+        this.subjectList.push(x as Subject);
+      });
+    });
 
-  getDocuments() {
-    let subjectList: Subject[] = [];
-    let userList: User[] = [];
-
-    this.subjectService
-      .getSubjects()
+    this.documentService
+      .getDocuments()
       .snapshotChanges()
       .subscribe((item) => {
+        this.documentList = [];
         item.forEach((element) => {
           let x = element.payload.toJSON();
+          x['subjectName'] = this.subjectList.find(subject => subject.$key === x['subjectName']).subjectName
           x['$key'] = element.key;
-          subjectList.push(x as Subject);
+          this.documentList.push(x as Document);
+          this.isStudentOwner = (x as Document).userName === this.userKey;
         });
       });
 
-    this.userService
-      .getAllUsers()
-      .snapshotChanges()
-      .subscribe((item) => {
-        item.forEach((element) => {
-          let x = element.payload.toJSON();
-          x['$key'] = element.key;
-          userList.push(x as User);
-        });
-      });
+  }
 
-    for (let subject of subjectList) {
-      for (let user of userList) {
-        this.firebase
-          .list(`documents/${subject.$key}/${user.$key}`)
+  onDelete(document) {
+    if (confirm('¿Seguro que desea eliminar el documento?')) {
+      this.documentService.deleteDocument(document);
+      this.toastr.success('Eliminación completada', 'Has eliminado el documento.');
+    }
+  }
+
+  getCurrentUser() {
+    this.authService.isAuth().subscribe((auth) => {
+      if (auth) {
+        this.authService
+          .getUsers()
           .snapshotChanges()
           .subscribe((item) => {
             item.forEach((element) => {
-              let x = element.payload.toJSON();
-              x['$key'] = element.key;
-              this.documentList.push(x as Document);
+              let user = element.payload.toJSON();
+              user['$key'] = element.key;
+              if ((user as User).email === auth.email) {
+                let role = Object.assign({}, (user as User).role);
+                this.isAdmin = role.hasOwnProperty('admin');
+                this.isEditor = role.hasOwnProperty('editor');
+                this.isTeacher = role.hasOwnProperty('teacher');
+                this.userKey = (user as User).$key;
+                console.log('role: ', role);
+                console.log('isAdmin: ', this.isAdmin);
+                console.log('isEditor: ', this.isEditor);
+                console.log('isTeacher: ', this.isTeacher);
+              }
             });
           });
+      } else {
+        console.log('NOT user logged --> problem');
       }
-    }
-
-    console.log(this.documentList);
+    });
   }
 }

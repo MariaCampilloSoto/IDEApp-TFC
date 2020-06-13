@@ -7,4 +7,6 @@ export class Document {
     userName:string;
     //nombre de la asignatura
     subjectName?:string;
+
+    url?:string;
 }
