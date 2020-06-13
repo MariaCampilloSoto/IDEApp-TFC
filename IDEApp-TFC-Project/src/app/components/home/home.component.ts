@@ -16,7 +16,10 @@ export class HomeComponent implements OnInit {
       date: null,
       range: null,
     });
-    this.twit(document, 'script', 'twitter-wjs');
+    try{
+      this.twit(document, 'script', 'twitter-wjs');
+    } catch (err) {
+    }
   }
 
  

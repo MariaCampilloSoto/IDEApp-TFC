@@ -19,7 +19,6 @@ export class DocumentListComponent implements OnInit {
   isAdmin: any = false;
   isTeacher: any = false;
   isEditor: any = false;
-  isStudentOwner: any = false; //Cambiarlo
 
   documentService: DocumentService;
   userService: UserService;
@@ -29,7 +28,6 @@ export class DocumentListComponent implements OnInit {
   subjectList: Subject[] = [];
   userList: User[] = [];
 
-  userKey: string;
 
 
   constructor(
@@ -70,7 +68,6 @@ export class DocumentListComponent implements OnInit {
           x['subjectName'] = this.subjectList.find(subject => subject.$key === x['subjectName']).subjectName
           x['$key'] = element.key;
           this.documentList.push(x as Document);
-          this.isStudentOwner = (x as Document).userName === this.userKey;
         });
       });
 
@@ -98,7 +95,6 @@ export class DocumentListComponent implements OnInit {
                 this.isAdmin = role.hasOwnProperty('admin');
                 this.isEditor = role.hasOwnProperty('editor');
                 this.isTeacher = role.hasOwnProperty('teacher');
-                this.userKey = (user as User).$key;
               }
             });
           });

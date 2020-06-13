@@ -99,7 +99,6 @@ export class DocumentComponent implements OnInit {
   onSubmit(documentForm: NgForm) {
     this.document.url = `${this.document.subjectName}/${this.document.userName}`;
     this.documentService.insertDocument(this.document);
-
     this.resetForm(documentForm);
   }
 
@@ -118,6 +117,7 @@ export class DocumentComponent implements OnInit {
   resetForm(subjectForm?: NgForm) {
     this.getCurrentUser();
     this.document = new Document();
-    this.uploadPercent;
+    this.uploadPercent= new Observable<number>();
+    this.urlFile= new Observable<string>();
   }
 }

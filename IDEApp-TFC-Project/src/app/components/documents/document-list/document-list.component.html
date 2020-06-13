@@ -19,7 +19,7 @@
                         <!-- <a class="btn btn-secondary text-white" (click)="onEdit(document)">
                             <i class="fas fa-edit"></i>
                         </a> -->
-                        <a class="btn btn-danger text-white px-4" *ngIf="isAdmin || isEditor || isTeacher || ( !isAdmin && !isEditor && !isTeacher && userKey === document.userName)" (click)="onDelete(document)">
+                        <a class="btn btn-danger text-white px-4" *ngIf="isAdmin || isEditor || isTeacher" (click)="onDelete(document)">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
