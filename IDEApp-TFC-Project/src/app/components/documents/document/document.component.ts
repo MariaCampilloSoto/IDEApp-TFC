@@ -83,9 +83,13 @@ export class DocumentComponent implements OnInit {
           item.forEach((element) => {
             let user = element.payload.toJSON();
             user['$key'] = element.key;
-            if ((user as User).email === auth.email) {
-              this.currentUser = Object.assign({}, user as User);
-              this.document.userName = `${this.currentUser.name} ${this.currentUser.surname1} ${this.currentUser.surname2}`;
+            try{
+              if ((user as User).email === auth.email) {
+                this.currentUser = Object.assign({}, user as User);
+                this.document.userName = `${this.currentUser.name} ${this.currentUser.surname1} ${this.currentUser.surname2}`;
+              }
+            } catch(err){
+              
             }
           });
         });
@@ -93,7 +97,7 @@ export class DocumentComponent implements OnInit {
   }
 
   onSubmit(documentForm: NgForm) {
-    this.document.url = `${this.document.subjectName}/${this.currentUser.$key}`;
+    this.document.url = `${this.document.subjectName}/${this.document.userName}`;
     this.documentService.insertDocument(this.document);
 
     this.resetForm(documentForm);
@@ -101,7 +105,7 @@ export class DocumentComponent implements OnInit {
 
   onUpload(event) {
     const file = event.target.files[0];
-    const filePath = `${this.document.subjectName}/${this.currentUser.$key}/${this.document.documentName}`;
+    const filePath = `${this.document.subjectName}/${this.document.userName}/${this.document.documentName}`; //${this.document.documentName}
     const ref = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
     this.uploadPercent = task.percentageChanges();
@@ -114,5 +118,6 @@ export class DocumentComponent implements OnInit {
   resetForm(subjectForm?: NgForm) {
     this.getCurrentUser();
     this.document = new Document();
+    this.uploadPercent;
   }
 }

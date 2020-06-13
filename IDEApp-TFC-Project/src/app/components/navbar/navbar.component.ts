@@ -43,10 +43,6 @@ export class NavbarComponent implements OnInit {
                 this.isAdmin = role.hasOwnProperty('admin');
                 this.isEditor = role.hasOwnProperty('editor');
                 this.isTeacher = role.hasOwnProperty('teacher');
-                console.log('role: ', role);
-                console.log('isAdmin: ', this.isAdmin);
-                console.log('isEditor: ', this.isEditor);
-                console.log('isTeacher: ', this.isTeacher);
               }
             });
           });

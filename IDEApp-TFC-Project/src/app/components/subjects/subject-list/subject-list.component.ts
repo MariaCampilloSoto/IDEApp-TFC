@@ -91,11 +91,6 @@ export class SubjectListComponent implements OnInit {
                     (user as User).surname1
                   } ${(user as User).surname2}`;
                 }
-                console.log('role: ', role);
-                console.log('isAdmin: ', this.isAdmin);
-                console.log('isEditor: ', this.isEditor);
-                console.log('isTeacher: ', this.isTeacher);
-                console.log('teacherName: ', this.teacherFullName);
               }
             });
           });

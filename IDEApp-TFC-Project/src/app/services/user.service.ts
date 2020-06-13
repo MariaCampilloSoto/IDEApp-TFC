@@ -42,8 +42,6 @@ export class UserService {
     let surname2 = user.surname2 || '';
     let email = user.email;
     let password = user.password;
-    console.log('user: ', user);
-    console.log('user.role: ', user.role);
     let role = user.role;
     let newKey = this.userList.push({
       name,

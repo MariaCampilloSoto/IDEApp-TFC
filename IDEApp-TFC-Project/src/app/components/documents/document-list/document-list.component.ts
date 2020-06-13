@@ -99,10 +99,6 @@ export class DocumentListComponent implements OnInit {
                 this.isEditor = role.hasOwnProperty('editor');
                 this.isTeacher = role.hasOwnProperty('teacher');
                 this.userKey = (user as User).$key;
-                console.log('role: ', role);
-                console.log('isAdmin: ', this.isAdmin);
-                console.log('isEditor: ', this.isEditor);
-                console.log('isTeacher: ', this.isTeacher);
               }
             });
           });

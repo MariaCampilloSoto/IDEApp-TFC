@@ -26,14 +26,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentUser();
-    // this.authService.isAuth().subscribe(user =>{
-    //   if(user){
-    //     this.user.name = user.displayName;
-    //     this.user.email = user.email;
-    //     this.providerid = user.providerData[0].providerId;
-    //     console.log('user: ', user);
-    //   }
-    // })
   }
 
 
@@ -55,10 +47,6 @@ export class ProfileComponent implements OnInit {
                 this.user = Object.assign({}, (user as User));
                 this.isSurname2 = this.user.surname2 === '' ? false : true;
                 this.isContact2 = this.user.hasOwnProperty('contact2') ? true : false;
-                console.log('role: ', role);
-                console.log('isAdmin: ', this.isAdmin);
-                console.log('isEditor: ', this.isEditor);
-                console.log('isTeacher: ', this.isTeacher);
               }
             });
           });

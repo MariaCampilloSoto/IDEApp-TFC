@@ -14,25 +14,24 @@
         <div class="col-sm">
           <h4>Tu información</h4>
           <ul class="list-group">
-            <li class="list-group-item">{{user?.name}}</li>
-            <li class="list-group-item">{{user?.surname1}}</li>
-            <li class="list-group-item" *ngIf="isSurname2">{{user?.surname2}}</li>
-            <li class="list-group-item">{{user?.email}}</li>
-            <li class="list-group-item" *ngIf="isTeacher">{{user?.phone}}</li>
-            <li class="list-group-item" *ngIf="isTeacher">{{user?.department?.departmentName}}</li>
+            <li class="list-group-item">Nombre: {{user?.name}}</li>
+            <li class="list-group-item">Apellido(s): {{user?.surname1}} {{user?.surname2}}</li>
+            <li class="list-group-item">Email: {{user?.email}}</li>
+            <li class="list-group-item" *ngIf="isTeacher">Teléfono: {{user?.phone}}</li>
+            <li class="list-group-item" *ngIf="isTeacher">Departamento: {{user?.department?.departmentName}}</li>
           </ul>
         </div>
         <div class="col sm" *ngIf="!isTeacher && !isAdmin && !isEditor">
           <h4>Información de tus contactos</h4>
           <ul class="list-group">
-            <li class="list-group-item">{{user?.contact1?.tutor}}</li>
-            <li class="list-group-item">{{user?.contact1?.address}}</li>
-            <li class="list-group-item">{{user?.contact1?.email}}</li>
-            <li class="list-group-item">{{user?.contact1?.phone}}</li>
-            <li class="list-group-item" *ngIf="isContact2">{{user?.contact2?.tutor}}</li>
-            <li class="list-group-item" *ngIf="isContact2">{{user?.contact2?.address}}</li>
-            <li class="list-group-item" *ngIf="isContact2">{{user?.contact2?.email}}</li>
-            <li class="list-group-item" *ngIf="isContact2">{{user?.contact2?.phone}}</li>
+            <li class="list-group-item">Nombre completo: {{user?.contact1?.tutor}}</li>
+            <li class="list-group-item">Dirección: {{user?.contact1?.address}}</li>
+            <li class="list-group-item">Email: {{user?.contact1?.email}}</li>
+            <li class="list-group-item">Teléfono: {{user?.contact1?.phone}}</li>
+            <li class="list-group-item" *ngIf="isContact2">Nombre completo: {{user?.contact2?.tutor}}</li>
+            <li class="list-group-item" *ngIf="isContact2">Dirección: {{user?.contact2?.address}}</li>
+            <li class="list-group-item" *ngIf="isContact2">Email: {{user?.contact2?.email}}</li>
+            <li class="list-group-item" *ngIf="isContact2">Telefóno: {{user?.contact2?.phone}}</li>
           </ul>
         </div>
       </div>

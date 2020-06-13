@@ -57,7 +57,7 @@ export class DocumentService {
 
   deleteDocument(document: Document) {
     this.getDocuments().remove(document.$key);
-    this.storage.ref(`${document.url}/${document.$key}`).delete()
+    this.storage.ref(`${document.url}/${document.documentName}`).delete()
   }
 
 

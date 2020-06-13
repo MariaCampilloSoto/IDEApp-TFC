@@ -58,7 +58,6 @@ export class RegisterComponent implements OnInit {
   onSubmit(registerForm: NgForm) {
     this.course.setFullInfo();
     registerForm.value.role = this.role;
-    console.log('value form: ', registerForm.value);
     if (registerForm.value.$key == null) {
       this.userService.insertUserInSubjects(
         registerForm.value,
@@ -111,7 +110,6 @@ export class RegisterComponent implements OnInit {
   }
 
   subjectSignUp(event) {
-    console.log(event);
     let isChecked = event.target.checked;
     let id = event.target.id;
     this.subjectList.forEach((subject) => {
@@ -129,7 +127,6 @@ export class RegisterComponent implements OnInit {
   }
 
   resetForm(registerForm?: NgForm) {
-    console.log(registerForm);
     if (registerForm != null) registerForm.reset();
     this.userService.selectedUser = new User();
     this.resetRole();
