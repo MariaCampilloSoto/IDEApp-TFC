@@ -1,6 +1,25 @@
 <div class="card  mt-1">
     <div class="card-body">
-        <table class="table table-sm table-hover">
+
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <p>
+                  Filtrar documentos por asignatura:
+                </p>
+      
+              </div>
+              <div class="col">
+                <select class="form-control" [(ngModel)]="subjectName" name="selectionSubject"  (change)="getListadoDocumentos()">
+                  <option *ngFor="let subject of subjectList" value="{{subject.subjectName}}">
+                    {{subject.subjectName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        <table class="table table-sm table-hover mt-2">
             <thead>
                 <tr>
                     <th scope="col">Nombre del documento</th>

@@ -84,48 +84,37 @@ export class UserService {
     let surname1 = user.surname1;
     let surname2 = user.surname2 || '';
     let email = user.email;
-    let password = user.password;
-    let role = user.role;
+    
     this.userList.update(user.$key, {
       name,
       surname1,
       surname2,
       email,
-      password,
-      role,
     });
 
-    if (user.role.hasOwnProperty('teacher')) {
+    if(!user.hasOwnProperty('role')){
+      let contact1 = user.contact1 || Object.assign({}, this.contact1);
+      let contact2 = user.contact2 || Object.assign({}, this.contact2);
+      this.userList.update(user.$key, {
+        name,
+        surname1,
+        surname2,
+        email,
+        contact1,
+        contact2,
+      });
+    } else if (user.role.hasOwnProperty('teacher')) {
       let department = Object.assign({}, this.department);
       this.userList.update(user.$key, {
         name,
         surname1,
         surname2,
         email,
-        password,
-        role,
         dni: user.dni,
         phone: user.phone,
         address: user.address,
         department,
         active: true,
-      });
-    } else if (
-      !user.role.hasOwnProperty('teacher') ||
-      !user.role.hasOwnProperty('admin') ||
-      !user.role.hasOwnProperty('editor')
-    ) {
-      let contact1 = Object.assign({}, this.contact1);
-      let contact2 = Object.assign({}, this.contact2);
-      this.userList.update(user.$key, {
-        name,
-        surname1,
-        surname2,
-        email,
-        password,
-        role,
-        contact1,
-        contact2,
       });
     }
   }

@@ -11,6 +11,7 @@ import { DocumentsComponent } from './components/documents/documents.component';
 import { CourseComponent } from './components/course/course/course.component';
 import { EvaluationComponent } from './components/course/evaluation/evaluation.component';
 import { AuthGuard } from './guards/auth.guard'
+import { UserListComponent } from './components/users/user-list/user-list.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'user/login', component: LoginComponent},
   {path: 'user/register', component: RegisterComponent, canActivate: [AuthGuard]}, // Usuarios admin
   {path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'user/list', component: UserListComponent, canActivate: [AuthGuard]},
   {path: 'course/register', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'evaluation', component: EvaluationComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component}

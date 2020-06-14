@@ -1,7 +1,25 @@
 <div class="card mt-1">
   <div class="card-body">
-    <!-- <h6 class="text-center">Lista de Asignaturas</h6> -->
-    <table class="table table-sm table-hover">
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p>
+            Filtrar asignaturas por curso:
+          </p>
+
+        </div>
+        <div class="col">
+          <select class="form-control" [(ngModel)]="courseFullInfo" name="selectionCourse"  (change)="getListadoAsignaturas()">
+            <option *ngFor="let course of courseList" value="{{course.course}} {{course.level}}">
+              {{course.course}} {{course.level}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <table class="table table-sm table-hover mt-2">
       <thead>
         <tr>
           <th scope="col">Nombre</th>

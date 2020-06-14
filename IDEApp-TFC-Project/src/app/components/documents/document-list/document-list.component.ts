@@ -28,6 +28,8 @@ export class DocumentListComponent implements OnInit {
   subjectList: Subject[] = [];
   userList: User[] = [];
 
+  subjectName:string = '';
+
 
 
   constructor(
@@ -58,6 +60,18 @@ export class DocumentListComponent implements OnInit {
       });
     });
 
+    this.getListadoDocumentos();
+
+  }
+
+  onDelete(document) {
+    if (confirm('¿Seguro que desea eliminar el documento?')) {
+      this.documentService.deleteDocument(document);
+      this.toastr.success('Eliminación completada', 'Has eliminado el documento.');
+    }
+  }
+
+  getListadoDocumentos(){
     this.documentService
       .getDocuments()
       .snapshotChanges()
@@ -67,17 +81,11 @@ export class DocumentListComponent implements OnInit {
           let x = element.payload.toJSON();
           x['subjectName'] = this.subjectList.find(subject => subject.$key === x['subjectName']).subjectName
           x['$key'] = element.key;
-          this.documentList.push(x as Document);
+          if(this.subjectName === (x as Document).subjectName || this.subjectName === ''){
+            this.documentList.push(x as Document);
+          }
         });
       });
-
-  }
-
-  onDelete(document) {
-    if (confirm('¿Seguro que desea eliminar el documento?')) {
-      this.documentService.deleteDocument(document);
-      this.toastr.success('Eliminación completada', 'Has eliminado el documento.');
-    }
   }
 
   getCurrentUser() {

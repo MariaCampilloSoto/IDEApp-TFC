@@ -1,0 +1,146 @@
+<div class="jumbotron jumbotron-fluid mt-5 px-0"
+  style="background-image: url(../../../assets/subjectImage.png); background-position: center top;">
+  <div class="container text-light">
+    <h1>Lista de usuarios</h1>
+  </div>
+</div>
+
+<div class="container mt-2">
+
+  <div class="container" id="editarUser" style="display: none;">
+    <div class="card">
+      <div class="card-body">
+        <form #formEdit="ngForm" (ngSubmit)="onSubmit(formEdit)">
+          <h3 class="text-center">Editar usuario</h3>
+          <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="editUser.$key">
+
+          <div class="form-group">
+            <h4>Información</h4>
+            <label for="editUser.name">Nombre: </label>
+            <input type="text" name="name" class="form-control my-1" [(ngModel)]="editUser.name" id="editUser.name">
+
+            <label for="editUser.surname1">Primer apellido:</label>
+            <input type="text" name="surname1" class="form-control my-1" [(ngModel)]="editUser.surname1"
+              id="editUser.surname1">
+
+            <label for="editUser.surname2">Segundo apellido:</label>
+            <input type="text" name="surname2" class="form-control my-1" [(ngModel)]="editUser.surname2"
+              id="editUser.surname2">
+
+            <label for="editUser.email">Email:</label>
+            <input type="text" name="email" class="form-control my-1" [(ngModel)]="editUser.email"
+              id="editUser.email">
+
+            <label for="editUser.phone" *ngIf="isTeacher">Teléfono:</label>
+            <input type="text" name="phone" class="form-control my-1" [(ngModel)]="editUser.phone" id="editUser.phone"
+              *ngIf="isTeacher">
+
+            <label for="editUser.department.departmentName" *ngIf="isTeacher">Departamento:</label>
+            <input type="text" name="departmentName" class="form-control my-1"
+              [(ngModel)]="editUser.department.departmentName" id="editUser.department.departmentName"
+              *ngIf="isTeacher">
+          </div>
+
+          <div class="form-group" *ngIf="!isTeacher && !isAdmin && !isEditor">
+            <h4>Información contactos</h4>
+            <h5>Tutor 1</h5>
+            <label *ngIf="isContact1" for="contact1.tutor">Nombre completo: </label>
+            <input *ngIf="isContact1" type="text" name="tutor1" class="form-control my-1" [(ngModel)]="contact1.tutor" id="contact1.tutor">
+
+            <label *ngIf="isContact1" for="contact1.address">Dirección:</label>
+            <input *ngIf="isContact1" type="text" name="direccion1" class="form-control my-1" [(ngModel)]="contact1.address"
+              id="contact1.address">
+
+            <label *ngIf="isContact1" for="contact1.email">Email:</label>
+            <input *ngIf="isContact1" type="text" name="email1" class="form-control my-1" [(ngModel)]="contact1.email"
+              id="contact1.email">
+
+            <label *ngIf="isContact1" for="contact1.phone">Teléfono:</label>
+            <input *ngIf="isContact1" type="text" name="phone1" class="form-control my-1" [(ngModel)]="contact1.phone" id="contact1.phone">
+            
+            <h5 *ngIf="isContact2">Tutor 2</h5>
+            <label *ngIf="isContact2" for="contact2.tutor">Nombre completo: </label>
+            <input *ngIf="isContact2" type="text" name="tutor2" class="form-control my-1" [(ngModel)]="contact2.tutor" id="contact2.tutor">
+
+            <label *ngIf="isContact2" for="contact2.address">Dirección:</label>
+            <input *ngIf="isContact2" type="text" name="direccion2" class="form-control my-1" [(ngModel)]="contact2.address"
+              id="contact2.address">
+
+            <label *ngIf="isContact2" for="contact2.email">Email:</label>
+            <input *ngIf="isContact2" type="text" name="email2" class="form-control my-1" [(ngModel)]="contact2.email"
+              id="contact2.email">
+
+            <label *ngIf="isContact2" for="contact2.phone">Teléfono:</label>
+            <input *ngIf="isContact2" type="text" name="phone2" class="form-control my-1" [(ngModel)]="contact2.phone" id="contact2.phone">
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary mr-3 px-4" type="submit"  >
+              <i class="far fa-edit"></i>  Moficicar
+          </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container mt-5"></div> -->
+  <div class="row text-center justify-content-center mt-auto">
+    <!-- <div class="row"> -->
+    <div class="card mt-5">
+      <div class="card-body">
+
+
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <p>
+                Filtrar usuarios por role:
+              </p>
+
+            </div>
+            <div class="col">
+              <select class="form-control" [(ngModel)]="userRoleSelected" name="userRoleSelected"
+                (change)="getListadoUsersByRole()">
+                <option *ngFor="let role of roleList" value="{{role}}">
+                  {{role}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <table class="table table-sm table-hover mt-2">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Role</th>
+              <th scope="col" *ngIf="isCurso">Curso</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of userList">
+              <td scope="row">{{user.name}}</td>
+              <td scope="row">{{user.surname1}} {{user?.surname2}}</td>
+              <td scope="row">{{user.roleName}}</td>
+              <td scope="row" *ngIf="isCurso">{{user.course}}</td>
+              <td>
+                <button class="btn btn-secondary text-white mx-1 px-3" (click)="onEdit(user)">
+                  <i class="far fa-edit"></i>
+                </button>
+
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+    </div>
+    <!-- </div> -->
+  </div>
+
+</div>

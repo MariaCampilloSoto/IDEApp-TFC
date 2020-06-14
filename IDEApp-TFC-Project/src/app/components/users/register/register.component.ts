@@ -6,6 +6,9 @@ import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/app/models/course';
 import { SubjectService } from 'src/app/services/subject.service';
 import { Subject } from '../../../models/subject';
+import { DepartmentListComponent } from '../../departments/department-list/department-list.component';
+import { Department } from 'src/app/models/department';
+import { DepartmentService } from 'src/app/services/department.service';
 
 @Component({
   selector: 'app-register',
@@ -16,60 +19,75 @@ export class RegisterComponent implements OnInit {
   userService: UserService;
   courseService: CourseService;
   subjectService: SubjectService;
+  departmentService: DepartmentService;
 
+  courseList: Course[];
   subjectList: Subject[];
   subjectSignUpList: string[];
+  departmentList: Department[];
 
-  course: Course;
+  departmentName: string;
+  courseFullInfo: string;
+  // courseSubjectTeacherGives: string;
   private role: Role;
 
   constructor(
     userService: UserService,
     courseService: CourseService,
+    departmentService: DepartmentService,
     subjectService: SubjectService
   ) {
     this.userService = userService;
     this.courseService = courseService;
     this.subjectService = subjectService;
+    this.departmentService = departmentService;
     this.role = new Role();
-    this.course = new Course();
     this.subjectSignUpList = [];
+    this.courseList = [];
+    this.departmentList = [];
   }
 
   ngOnInit(): void {
     this.userService.getAllUsers();
-    this.courseService.getCourses();
-    this.subjectService.getSubjects();
+    
     this.resetForm();
 
-    this.subjectService
-      .getSubjects()
+    this.courseService
+      .getCourses()
       .snapshotChanges()
       .subscribe((item) => {
-        this.subjectList = [];
+        this.courseList = [];
         item.forEach((element) => {
           let x = element.payload.toJSON();
           x['$key'] = element.key;
-          this.subjectList.push(x as Subject);
+          this.courseList.push(x as Course);
         });
       });
+
+      this.departmentService.getDepartments()
+      .snapshotChanges()
+      .subscribe((item) => {
+        this.departmentList = [];
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          this.departmentList.push(x as Department);
+        });
+      });
+
+    this.getListadoAsignaturas()
   }
 
   onSubmit(registerForm: NgForm) {
-    this.course.setFullInfo();
     registerForm.value.role = this.role;
+    registerForm.value.course = this.courseFullInfo;
+    registerForm.value.department.departmentName = this.departmentName;
+    
     if (registerForm.value.$key == null) {
       this.userService.insertUserInSubjects(
         registerForm.value,
         this.subjectSignUpList
       );
-      if (
-        !this.role.hasOwnProperty('admin') ||
-        !this.role.hasOwnProperty('editor')
-      ) {
-        if (typeof this.course === 'undefined') {
-          this.courseService.insertCourse(this.course);}
-      }
     } else {
       this.userService.updateUser(registerForm.value);
     }
@@ -91,10 +109,10 @@ export class RegisterComponent implements OnInit {
       document.getElementById('studentForm').style.display = 'none';
       document.getElementById('teacherForm').style.display = 'none';
       if (value === 'admin') {
-        alert('Vas a crear un nuevo administrador')
+        alert('Vas a crear un nuevo administrador');
         this.role.admin = true;
       } else {
-        alert('Vas a crear un nuevo editor')
+        alert('Vas a crear un nuevo editor');
         this.role.editor = true;
       }
     }
@@ -126,6 +144,22 @@ export class RegisterComponent implements OnInit {
     //}
   }
 
+  getListadoAsignaturas(){
+    this.subjectService
+    .getSubjects()
+    .snapshotChanges()
+    .subscribe((item) => {
+      this.subjectList = [];
+      item.forEach((element) => {
+        let x = element.payload.toJSON();
+        x['$key'] = element.key;
+        if (this.courseFullInfo === (x as Subject).schoolYear) {
+          this.subjectList.push(x as Subject);
+        }
+      });
+    });
+  }
+
   resetForm(registerForm?: NgForm) {
     if (registerForm != null) registerForm.reset();
     this.userService.selectedUser = new User();
@@ -146,6 +180,5 @@ export class RegisterComponent implements OnInit {
 
   resetRole() {
     this.role = new Role();
-    this.course = new Course();
   }
 }

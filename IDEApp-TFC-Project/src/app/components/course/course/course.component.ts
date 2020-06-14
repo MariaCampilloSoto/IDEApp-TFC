@@ -40,6 +40,6 @@ export class CourseComponent implements OnInit {
   }
 
   getFullInfo(obj: any) {
-    return `${obj.course} ${obj.level} ${obj.year}`;
+    return `${obj.course} ${obj.level}`;
   }
 }

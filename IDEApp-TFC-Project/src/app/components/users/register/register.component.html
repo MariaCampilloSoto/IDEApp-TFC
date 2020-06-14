@@ -70,8 +70,8 @@
                     <input type="text" name="contact1.tutor" class="form-control my-1"
                       placeholder="Nombre y apellidos del tutor 1" [(ngModel)]="userService.contact1.tutor" required>
 
-                    <input type="text" name="contact1.address" class="form-control my-1" placeholder="Dirección del tutor 1"
-                      [(ngModel)]="userService.contact1.address" required>
+                    <input type="text" name="contact1.address" class="form-control my-1"
+                      placeholder="Dirección del tutor 1" [(ngModel)]="userService.contact1.address" required>
 
                     <input type="tel" name="contact1.phone" class="form-control my-1" placeholder="Teléfono del tutor 1"
                       [(ngModel)]="userService.contact1.phone" required>
@@ -86,8 +86,8 @@
                     <input type="text" name="contact2.tutor" class="form-control my-1"
                       placeholder="Nombre y apellidos del tutor 2" [(ngModel)]="userService.contact2.tutor">
 
-                    <input type="text" name="contact2.address" class="form-control my-1" placeholder="Dirección del tutor 2"
-                      [(ngModel)]="userService.contact2.address">
+                    <input type="text" name="contact2.address" class="form-control my-1"
+                      placeholder="Dirección del tutor 2" [(ngModel)]="userService.contact2.address">
 
                     <input type="tel" name="contact2.phone" class="form-control my-1" placeholder="Teléfono del tutor 2"
                       [(ngModel)]="userService.contact2.phone">
@@ -101,24 +101,24 @@
               <div class="row">
                 <div class="col-sm">
                   <div class="form-group">
-                    <input type="text" name="course" class="form-control my-1" placeholder="Curso: 1, 2, 3... SIN º Ó ª"
-                      [(ngModel)]="course.course" required>
-
-                    <input type="text" name="level" class="form-control my-1"
-                      placeholder="Nivel del curso: ESO, BTO, FPB ..." [(ngModel)]="course.level" required>
-
-                    <input type="text" name="year" class="form-control my-1" placeholder="Año: 2020/2021"
-                      [(ngModel)]="course.year" required>
+                    <div class="form-group">
+                      <select class="form-control" [(ngModel)]="courseFullInfo" name="selectionCourse"
+                        (change)="getListadoAsignaturas()">
+                        <option *ngFor="let course of courseList" value="{{course.course}} {{course.level}}">
+                          {{course.course}} {{course.level}}
+                        </option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
                 <div class="col-sm">
                   <div class="container text-left bg-white">
-                    <h5>Asignaturas a matricularse</h5> 
+                    <h5>Asignaturas a matricularse</h5>
                     <div class="container" style="overflow-y: scroll; max-height: 10em;">
                       <div class="container" *ngFor="let subject of subjectList">
                         <label for="{{subject.$key}}"><input class="mr-2" type="checkbox" name="{{subject.subjectName}}"
-                            id="{{subject.$key}}" (change)="subjectSignUp($event)">{{subject.subjectName}} {{subject.schoolYear}}</label>
+                            id="{{subject.$key}}" (change)="subjectSignUp($event)">{{subject.subjectName}}</label>
                       </div>
                     </div>
 
@@ -144,9 +144,11 @@
                   <input type="tel" name="phone" class="form-control my-1" placeholder="Teléfono del profesor"
                     [(ngModel)]="userService.selectedUser.phone" required>
 
-                  <input type="text" name="departmentName" class="form-control my-1"
-                    placeholder="Nombre del departamento al que pertenece"
-                    [(ngModel)]="userService.department.departmentName" required>
+                  <select class="form-control my-1" [(ngModel)]="departmentName" name="departmentName">
+                    <option *ngFor="let department of departmentList" value="{{department.departmentName}}">
+                      {{department.departmentName}}
+                    </option>
+                  </select>
                 </div>
 
                 <div class="col-sm">
@@ -159,21 +161,31 @@
                   </div>
 
                   <div class="container" id="teacherTutorForm" style="display: none;">
-
-                    <input type="text" name="course" class="form-control my-1" placeholder="Curso: 1, 2, 3... SIN º Ó ª"
-                      [(ngModel)]="course.course" required>
-
-                    <input type="text" name="level" class="form-control my-1"
-                      placeholder="Nivel del curso: ESO, BTO, FPB ..." [(ngModel)]="course.level" required>
-
-                    <input type="text" name="year" class="form-control my-1" placeholder="Año: 2020/2021"
-                      [(ngModel)]="course.year" required>
-
+                    <select class="form-control" [(ngModel)]="courseFullInfo" name="selectionCourse">
+                      <option *ngFor="let course of courseList" value="{{course.course}} {{course.level}}">
+                        {{course.course}} {{course.level}}
+                      </option>
+                    </select>
                   </div>
                 </div>
               </div>
+              
+              <!-- <div class="row">
+                <div class="col">
+                  <select class="form-control" [(ngModel)]="courseSubjectTeacherGives" name="selectionCourse">
+                    <option *ngFor="let course of courseList" value="{{course.course}} {{course.level}}">
+                      {{course.course}} {{course.level}}
+                    </option>
+                  </select>
+                </div>
 
+                <div class="col">
+
+                </div>
+              </div> -->
+              
             </div>
+
             <br>
             <button type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>
 

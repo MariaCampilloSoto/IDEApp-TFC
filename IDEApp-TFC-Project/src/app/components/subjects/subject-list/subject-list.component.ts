@@ -10,6 +10,8 @@ import { Subject } from 'src/app/models/subject';
 //Toastr
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
+import { CourseService } from 'src/app/services/course.service';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-subject-list',
@@ -27,32 +29,40 @@ export class SubjectListComponent implements OnInit {
   isEditor: any = false;
   teacherFullName: string = '';
 
+  courseFullInfo: string = '';
+  courseList: Course[];
+  courseService: CourseService;
+
   constructor(
     subjectService: SubjectService,
+    courseService: CourseService,
     toastr: ToastrService,
     private authService: AuthService
   ) {
     this.subjectService = subjectService;
+    this.courseService = courseService;
     this.toastr = toastr;
+    this.courseList = [];
   }
 
   // Método llamado cuando se inicia el componente
   ngOnInit() {
     // Llama al metodo para obtener el role del usuario
     this.getCurrentUser();
-    // Obtener la lista de asignaturas
-    this.subjectService
-      .getSubjects()
+
+    this.courseService
+      .getCourses()
       .snapshotChanges()
       .subscribe((item) => {
-        this.subjectList = [];
+        this.courseList = [];
         item.forEach((element) => {
           let x = element.payload.toJSON();
           x['$key'] = element.key;
-          // Añadirlas al array, interpolacion -> Data binding con HTML
-          this.subjectList.push(x as Subject);
+          this.courseList.push(x as Course);
         });
       });
+
+    this.getListadoAsignaturas();
   }
 
   // Editar una asignatura dada
@@ -66,8 +76,31 @@ export class SubjectListComponent implements OnInit {
   onDelete($key: string) {
     if (confirm('¿Seguro que desea eliminar la asignatura?')) {
       this.subjectService.deleteSubject($key);
-      this.toastr.success('Eliminación completada', 'Has eliminado la asignatura.');
+      this.toastr.success(
+        'Eliminación completada',
+        'Has eliminado la asignatura.'
+      );
     }
+  }
+
+  // Obtener la lista de asignaturas
+  getListadoAsignaturas() {
+    this.subjectService
+      .getSubjects()
+      .snapshotChanges()
+      .subscribe((item) => {
+        this.subjectList = [];
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          if (
+            this.courseFullInfo === (x as Subject).schoolYear ||
+            this.courseFullInfo === ''
+          ) {
+            this.subjectList.push(x as Subject);
+          }
+        });
+      });
   }
 
   // Obtener el usuario actual y comprobar su role
@@ -86,10 +119,8 @@ export class SubjectListComponent implements OnInit {
                 this.isAdmin = role.hasOwnProperty('admin');
                 this.isEditor = role.hasOwnProperty('editor');
                 this.isTeacher = role.hasOwnProperty('teacher');
-                if (this.isTeacher) {
-                  this.teacherFullName = `${(user as User).name} ${
-                    (user as User).surname1
-                  } ${(user as User).surname2}`;
+                if ((user as User).hasOwnProperty('course')) {
+                  this.courseFullInfo = (user as User).course;
                 }
               }
             });

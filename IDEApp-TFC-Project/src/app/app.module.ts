@@ -59,6 +59,7 @@ import { EvaluationComponent } from './components/course/evaluation/evaluation.c
 
 //
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserListComponent } from './components/users/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CourseListComponent,
     CourseComponent,
     EvaluationComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
