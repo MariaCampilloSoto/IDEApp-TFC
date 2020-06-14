@@ -79,6 +79,44 @@ export class UserService {
     }
   }
 
+  insertUser(user: User) {
+    let name = user.name;
+    let surname1 = user.surname1;
+    let surname2 = user.surname2 || '';
+    let email = user.email;
+    let password = user.password;
+    let role = user.role;
+    let newKey = this.userList.push({
+      name,
+      surname1,
+      surname2,
+      email,
+      password,
+      role,
+    }).key;
+    if (user.role.hasOwnProperty('teacher')) {
+      let department = user.department || Object.assign({}, this.department);
+      this.userList.update(newKey, {
+        dni: user.dni,
+        phone: user.phone,
+        address: user.address,
+        department,
+        active: true,
+      });
+    } else if (
+      !user.role.hasOwnProperty('teacher') ||
+      !user.role.hasOwnProperty('admin') ||
+      !user.role.hasOwnProperty('editor')
+    ) {
+      let contact1 = user.contact1 || Object.assign({}, this.contact1);
+      let contact2 = user.contact2 || Object.assign({}, this.contact2);
+      this.userList.update(newKey, {
+        contact1,
+        contact2,
+      });
+    }
+  }
+
   updateUser(user: User) {
     let name = user.name;
     let surname1 = user.surname1;

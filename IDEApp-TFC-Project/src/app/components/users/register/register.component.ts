@@ -81,16 +81,17 @@ export class RegisterComponent implements OnInit {
   onSubmit(registerForm: NgForm) {
     registerForm.value.role = this.role;
     registerForm.value.course = this.courseFullInfo;
+    registerForm.value.department={}
     registerForm.value.department.departmentName = this.departmentName;
     
-    if (registerForm.value.$key == null) {
-      this.userService.insertUserInSubjects(
-        registerForm.value,
-        this.subjectSignUpList
-      );
-    } else {
-      this.userService.updateUser(registerForm.value);
-    }
+    // if (registerForm.value.$key == null) {
+    //   this.userService.insertUserInSubjects(
+    //     registerForm.value,
+    //     this.subjectSignUpList
+    //   );
+    // } else {
+      this.userService.insertUser(registerForm.value);
+    
 
     this.resetForm(registerForm);
   }
