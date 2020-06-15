@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit, OnChanges {
       if (t != null) t.remove();
       this.twit(document, 'script', 'twitter-wjs');
     } catch (err) {
-      console.log(err);
     }
   }
 

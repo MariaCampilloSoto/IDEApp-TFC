@@ -9,7 +9,6 @@ export class Course {
 
     defaultYear(){
         let anyo = (new Date()).getFullYear();
-        console.log('actual year: ', anyo)
         this.year = `${anyo}/${anyo+1}`;
     }
 

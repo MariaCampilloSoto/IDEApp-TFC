@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
   getCurrentUser() {
     this.authService.isAuth().subscribe((auth) => {
       if (auth) {
-        console.log('user logged');
         this.authService
           .getUsers()
           .snapshotChanges()
@@ -49,7 +48,6 @@ export class NavbarComponent implements OnInit {
 
         this.isLogged = true;
       } else {
-        console.log('NOT user logged');
         this.isLogged = false;
       }
     });

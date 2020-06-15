@@ -40,7 +40,6 @@ export class DepartmentsComponent implements OnInit {
             });
           });
       } else {
-        console.log('NOT user logged --> problem');
       }
     });
   }

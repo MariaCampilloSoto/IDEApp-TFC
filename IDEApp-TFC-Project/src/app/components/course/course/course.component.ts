@@ -23,7 +23,6 @@ export class CourseComponent implements OnInit {
 
   onSubmit(courseForm: NgForm) {
     courseForm.value.fullInfo = this.getFullInfo(courseForm.value);
-    console.log('courseForm.value: ', courseForm.value)
     if (courseForm.value.$key == null) {
       this.courseService.insertCourse(courseForm.value);
     } else {

@@ -148,7 +148,6 @@ export class RegisterComponent implements OnInit {
         }
       }
     });
-    //}
   }
 
   getListadoAsignaturas() {

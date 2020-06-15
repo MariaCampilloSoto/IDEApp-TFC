@@ -36,7 +36,6 @@ export class CourseService {
         }
       });
 
-    console.log('condicion: ', isCourse);
     if (!isCourse) {
       this.courseList.push({
         course: course.course,
@@ -65,14 +64,11 @@ export class CourseService {
       item.forEach((element) => {
         let x = element.payload.toJSON();
         x['$key'] = element.key;
-        console.log('x: ', x);
         if ((x as Course)['fullInfo'] === courseFullInfo) {
-          console.log('estoy dentro');
           isCourse = true;
         }
       });
     });
-    console.log('resultado: ', isCourse);
     return isCourse;
   }
 }

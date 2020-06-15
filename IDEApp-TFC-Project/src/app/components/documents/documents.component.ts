@@ -38,7 +38,6 @@ export class DocumentsComponent implements OnInit {
             });
           });
       } else {
-        console.log('NOT user logged --> problem');
       }
     });
   }
