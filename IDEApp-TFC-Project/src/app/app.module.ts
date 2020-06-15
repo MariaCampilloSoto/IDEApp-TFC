@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
 
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule} from '@angular/common';
 //animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -103,8 +103,7 @@ import { UserListComponent } from './components/users/user-list/user-list.compon
     SubjectService,
     DepartmentService,
     AngularFireAuth,
-    AngularFirestore,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    AngularFirestore
   ],
   bootstrap: [AppComponent],
 })

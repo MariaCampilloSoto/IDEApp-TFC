@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getAllUsers();
-    
+
     this.resetForm();
 
     this.courseService
@@ -64,7 +64,8 @@ export class RegisterComponent implements OnInit {
         });
       });
 
-      this.departmentService.getDepartments()
+    this.departmentService
+      .getDepartments()
       .snapshotChanges()
       .subscribe((item) => {
         this.departmentList = [];
@@ -75,23 +76,22 @@ export class RegisterComponent implements OnInit {
         });
       });
 
-    this.getListadoAsignaturas()
+    this.getListadoAsignaturas();
   }
 
   onSubmit(registerForm: NgForm) {
     registerForm.value.role = this.role;
     registerForm.value.course = this.courseFullInfo;
-    registerForm.value.department={}
+    registerForm.value.department = {};
     registerForm.value.department.departmentName = this.departmentName;
-    
+
     // if (registerForm.value.$key == null) {
     //   this.userService.insertUserInSubjects(
     //     registerForm.value,
     //     this.subjectSignUpList
     //   );
     // } else {
-      this.userService.insertUser(registerForm.value);
-    
+    this.userService.insertUser(registerForm.value);
 
     this.resetForm(registerForm);
   }
@@ -99,33 +99,39 @@ export class RegisterComponent implements OnInit {
   showContent(event) {
     let value = event.target.defaultValue;
     this.resetRole();
-    if (value === 'student') {
-      document.getElementById('studentForm').style.display = 'block';
-      document.getElementById('teacherForm').style.display = 'none';
-    } else if (value === 'teacher') {
-      document.getElementById('studentForm').style.display = 'none';
-      document.getElementById('teacherForm').style.display = 'block';
-      this.role.teacher = true;
-    } else {
-      document.getElementById('studentForm').style.display = 'none';
-      document.getElementById('teacherForm').style.display = 'none';
-      if (value === 'admin') {
-        alert('Vas a crear un nuevo administrador');
-        this.role.admin = true;
+
+    try {
+      if (value === 'student') {
+        document.getElementById('studentForm').style.display = 'block';
+        document.getElementById('teacherForm').style.display = 'none';
+      } else if (value === 'teacher') {
+        document.getElementById('studentForm').style.display = 'none';
+        document.getElementById('teacherForm').style.display = 'block';
+        this.role.teacher = true;
       } else {
-        alert('Vas a crear un nuevo editor');
-        this.role.editor = true;
+        document.getElementById('studentForm').style.display = 'none';
+        document.getElementById('teacherForm').style.display = 'none';
+        if (value === 'admin') {
+          alert('Vas a crear un nuevo administrador');
+          this.role.admin = true;
+        } else {
+          alert('Vas a crear un nuevo editor');
+          this.role.editor = true;
+        }
       }
-    }
+    } catch (error) {}
   }
 
   isTutor(event) {
     let isChecked = event.target.checked;
-    if (isChecked) {
-      document.getElementById('teacherTutorForm').style.display = 'block';
-    } else {
-      document.getElementById('teacherTutorForm').style.display = 'none';
-    }
+
+    try {
+      if (isChecked) {
+        document.getElementById('teacherTutorForm').style.display = 'block';
+      } else {
+        document.getElementById('teacherTutorForm').style.display = 'none';
+      }
+    } catch (error) {}
   }
 
   subjectSignUp(event) {
@@ -145,20 +151,20 @@ export class RegisterComponent implements OnInit {
     //}
   }
 
-  getListadoAsignaturas(){
+  getListadoAsignaturas() {
     this.subjectService
-    .getSubjects()
-    .snapshotChanges()
-    .subscribe((item) => {
-      this.subjectList = [];
-      item.forEach((element) => {
-        let x = element.payload.toJSON();
-        x['$key'] = element.key;
-        if (this.courseFullInfo === (x as Subject).schoolYear) {
-          this.subjectList.push(x as Subject);
-        }
+      .getSubjects()
+      .snapshotChanges()
+      .subscribe((item) => {
+        this.subjectList = [];
+        item.forEach((element) => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          if (this.courseFullInfo === (x as Subject).schoolYear) {
+            this.subjectList.push(x as Subject);
+          }
+        });
       });
-    });
   }
 
   resetForm(registerForm?: NgForm) {
@@ -174,9 +180,11 @@ export class RegisterComponent implements OnInit {
         inputs[i].checked = false;
       }
     }
-    document.getElementById('studentForm').style.display = 'none';
-    document.getElementById('teacherForm').style.display = 'none';
-    document.getElementById('teacherTutorForm').style.display = 'none';
+    try {
+      document.getElementById('studentForm').style.display = 'none';
+      document.getElementById('teacherForm').style.display = 'none';
+      document.getElementById('teacherTutorForm').style.display = 'none';
+    } catch (error) {}
   }
 
   resetRole() {

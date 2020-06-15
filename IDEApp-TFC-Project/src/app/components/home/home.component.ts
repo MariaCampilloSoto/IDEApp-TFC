@@ -9,19 +9,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class HomeComponent implements OnInit, OnChanges {
   myForm: FormGroup;
   constructor(private fb: FormBuilder) {
-    // try {
-    //   let t = document.getElementById('twitter-wjs');
-    //   t.remove();
-    //   this.twit(document, 'script', 'twitter-wjs');
-    // } catch (error) {}
   }
   ngOnChanges(changes: SimpleChanges): void {
-    // try{
-    //   let t = document.getElementById('twitter-wjs');
-    //   t.remove();
-    //   this.twit(document, 'script', 'twitter-wjs');
-    // } catch (err) {
-    // }
   }
 
   ngOnInit() {

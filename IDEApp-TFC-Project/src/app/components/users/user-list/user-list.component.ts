@@ -45,7 +45,9 @@ export class UserListComponent implements OnInit {
   }
 
   onEdit(user: User) {
-    document.getElementById('editarUser').style.display = 'block';
+    try {
+      document.getElementById('editarUser').style.display = 'block';
+    } catch (error) {}
     this.editUser = user;
     this.isContact1 = this.editUser.hasOwnProperty('contact1') ? true : false;
     if (this.isContact1) {
@@ -72,9 +74,6 @@ export class UserListComponent implements OnInit {
       this.isTeacher = true;
       this.isAdmin = false;
     }
-    //assign para no crear un doble enlace de datos
-    //this.user.selectedSubject = Object.assign({}, subjet);
-    //se crea una copia del producto
   }
 
   onSubmit(registerForm: NgForm) {
@@ -85,15 +84,10 @@ export class UserListComponent implements OnInit {
       registerForm.value.contact2 = this.contact2;
     }
     this.userService.updateUser(registerForm.value);
-    //   this.userService.insertUserInSubjects(
-    //     registerForm.value,
-    //     this.subjectSignUpList
-    //   );
-    // } else {
-    //   this.userService.updateUser(registerForm.value);
 
-    // this.resetForm(registerForm);
-    document.getElementById('editarUser').style.display = 'none';
+    try {
+      document.getElementById('editarUser').style.display = 'none';
+    } catch (error) {}
   }
 
   getListadoUsersByRole() {
