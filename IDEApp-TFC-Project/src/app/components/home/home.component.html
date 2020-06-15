@@ -18,9 +18,9 @@
 
     </div>
 
-    <!-- <script>
-        function twit(d, s, id) {
-            var js,
+    <script>
+        window.twit = function (d, s, id) {
+            let js,
                 fjs = d.getElementsByTagName(s)[0];
             if (!d.getElementById(id)) {
                 js = d.createElement(s);
@@ -29,13 +29,16 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }
         }
-        
+
         try {
+            let t = document.getElementById('twitter-wjs');
+            t.remove();
             twit(document, 'script', 'twitter-wjs');
-            
+            location.reload()
+
         } catch (error) {
-            
+
         }
-    </script> -->
+    </script>
 
 </div>
