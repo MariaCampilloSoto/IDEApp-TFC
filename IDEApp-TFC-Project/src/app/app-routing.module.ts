@@ -24,7 +24,6 @@ const routes: Routes = [
   {path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'user/list', component: UserListComponent, canActivate: [AuthGuard]},
   {path: 'course/register', component: CourseComponent, canActivate: [AuthGuard]},
- // {path: 'evaluation', component: EvaluationComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component}
 
 ];

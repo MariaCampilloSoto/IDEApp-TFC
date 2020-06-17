@@ -25,8 +25,8 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // Lo que que hace es que si el usuario no esta logeado
-    //y se va a cualquier ruta en la que tenga que estar logeado si o si,
+    // Lo que que hace es que si el usuario no esta logueado
+    //y se va a cualquier ruta en la que tenga que estar logueado si o si,
     // lo manda al inicio
     return this.afAuth.authState
       .pipe(take(1))
