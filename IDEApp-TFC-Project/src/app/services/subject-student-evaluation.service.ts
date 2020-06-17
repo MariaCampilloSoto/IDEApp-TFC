@@ -16,7 +16,7 @@ export class SubjectStudentEvaluationService {
 
   getEvaluationsByStudent(subjectkey: string, studentKey: string) {
     return (this.evaluationListByStudent = this.firebase.list(
-      `sing-up/${subjectkey}/${studentKey}`
+      `sign-up/${subjectkey}/${studentKey}`
     ));
   }
 
@@ -25,7 +25,7 @@ export class SubjectStudentEvaluationService {
     studentkey: string,
     evaluation: Evaluation
   ) {
-    this.firebase.database.ref(`sing-up/${subjectKey}/${studentkey}`).set({
+    this.firebase.database.ref(`sign-up/${subjectKey}/${studentkey}`).set({
       schoolYear: evaluation.schoolYear,
       numberEvaluation: evaluation.numberEvaluation,
       mark: evaluation.mark,

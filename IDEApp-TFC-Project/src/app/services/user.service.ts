@@ -52,7 +52,7 @@ export class UserService {
       role,
     }).key;
     if (user.role.hasOwnProperty('teacher')) {
-      let department = Object.assign({}, this.department);
+      let department = user.department;
       this.userList.update(newKey, {
         dni: user.dni,
         phone: user.phone,
@@ -67,15 +67,14 @@ export class UserService {
     ) {
       let contact1 = Object.assign({}, this.contact1);
       let contact2 = Object.assign({}, this.contact2);
+      let course = user.course;
       this.userList.update(newKey, {
         contact1,
         contact2,
+        course,
       });
 
-      this.subjectStudentService.insertStudentInSubject(
-        newKey,
-        subjectList
-      );
+      this.subjectStudentService.insertStudentInSubject(newKey, subjectList);
     }
   }
 
@@ -122,7 +121,7 @@ export class UserService {
     let surname1 = user.surname1;
     let surname2 = user.surname2 || '';
     let email = user.email;
-    
+
     this.userList.update(user.$key, {
       name,
       surname1,
@@ -130,7 +129,7 @@ export class UserService {
       email,
     });
 
-    if(!user.hasOwnProperty('role')){
+    if (!user.hasOwnProperty('role')) {
       let contact1 = user.contact1 || Object.assign({}, this.contact1);
       let contact2 = user.contact2 || Object.assign({}, this.contact2);
       this.userList.update(user.$key, {

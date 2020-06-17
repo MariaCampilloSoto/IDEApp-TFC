@@ -31,7 +31,7 @@ export class SubjectStudentService {
   ) {
     subjectKeys.forEach((key) => {
       this.subjectsList.update(key, {
-        [studentKey]: {},
+        [studentKey]: true,
       });
     });
   }
