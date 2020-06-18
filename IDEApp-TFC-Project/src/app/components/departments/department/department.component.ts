@@ -34,7 +34,7 @@ export class DepartmentComponent implements OnInit {
     else this.departmentService.updateDepartment(departmentForm.value);
 
     this.resetForm(departmentForm);
-    this.toastr.success('Successfull Operation');
+    this.toastr.success('Operación completada');
   }
 
   resetForm(departmentForm?: NgForm) {

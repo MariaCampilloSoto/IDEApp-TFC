@@ -6,6 +6,7 @@ import { SubjectService } from '../../../services/subject.service';
 
 //Subject Class
 import { Subject } from '../../../models/subject';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-subject-comp',
@@ -14,9 +15,8 @@ import { Subject } from '../../../models/subject';
 })
 export class SubjectComponent implements OnInit {
   subjectService: SubjectService;
-  //subjectService lo hace private pero da error asi que public it is for ahora
-
-  constructor(subjectService: SubjectService) {
+  
+  constructor(subjectService: SubjectService, private toastr: ToastrService) {
     this.subjectService = subjectService;
   }
 
@@ -30,6 +30,7 @@ export class SubjectComponent implements OnInit {
       this.subjectService.insertSubject(subjectForm.value);
     else this.subjectService.updateSubject(subjectForm.value);
 
+    this.toastr.success('Operación completada');
     this.resetForm(subjectForm);
   }
 

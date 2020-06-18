@@ -16,6 +16,7 @@ import { Subject } from 'src/app/models/subject';
 import { User } from 'src/app/models/user';
 import { DocumentService } from 'src/app/services/document.service';
 import { Document } from 'src/app/models/document';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-document',
@@ -42,7 +43,8 @@ export class DocumentComponent implements OnInit {
     userService: UserService,
     authService: AuthService,
     documentService: DocumentService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private toastr: ToastrService
   ) {
     this.subjectService = subjectService;
     this.userService = userService;
@@ -100,6 +102,7 @@ export class DocumentComponent implements OnInit {
     this.document.url = `${this.document.subjectName}/${this.document.userName}`;
     this.documentService.insertDocument(this.document);
     this.resetForm(documentForm);
+    this.toastr.success('Operación completada');
   }
 
   onUpload(event) {

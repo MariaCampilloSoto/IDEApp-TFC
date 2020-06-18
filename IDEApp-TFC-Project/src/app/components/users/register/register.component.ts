@@ -9,6 +9,7 @@ import { Subject } from '../../../models/subject';
 import { DepartmentListComponent } from '../../departments/department-list/department-list.component';
 import { Department } from 'src/app/models/department';
 import { DepartmentService } from 'src/app/services/department.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -35,7 +36,8 @@ export class RegisterComponent implements OnInit {
     userService: UserService,
     courseService: CourseService,
     departmentService: DepartmentService,
-    subjectService: SubjectService
+    subjectService: SubjectService,
+    private toastr: ToastrService
   ) {
     this.userService = userService;
     this.courseService = courseService;
@@ -94,6 +96,7 @@ export class RegisterComponent implements OnInit {
     this.userService.insertUserInSubjects(registerForm.value, this.subjectSignUpList);
 //}
     this.resetForm(registerForm);
+    this.toastr.success('Operación completada');
   }
 
   showContent(event) { 

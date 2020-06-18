@@ -30,7 +30,7 @@ export class CourseComponent implements OnInit {
     }
 
     this.resetForm(courseForm);
-    this.toastr.success('Successfull Operation');
+    this.toastr.success('Operación completada');
   }
 
   resetForm(courseForm?: NgForm) {
